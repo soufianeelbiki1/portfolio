@@ -59,7 +59,11 @@ class PortfolioSiteTests(unittest.TestCase):
         )
         self.assertIn("Issuer/acquirer routing with deterministic longest-prefix selection", self.html)
         self.assertIn("Strict DE55 BER-TLV parsing", self.html)
-        self.assertIn("durable PostgreSQL ingestion implemented", self.html)
+        self.assertIn("durable ingestion, hybrid rank fusion/reranking, and application-level RAG regression metrics implemented", self.html)
+        self.assertIn("timeout→reversal lifecycle", self.html)
+        self.assertIn("ISO 8583 → canonical → ISO 20022", self.html)
+        self.assertIn("read-only reconciliation and outbox checks", self.html)
+        self.assertIn("FastAPI precomputed-signal evaluation", self.html)
 
     def test_no_placeholder_or_unverified_demo_links(self) -> None:
         lowered = self.html.lower()
