@@ -52,27 +52,27 @@
         <div class="case-grid">
           <div>
             <h4>Problem</h4>
-            <p>Payment systems must remain correct when messages are malformed, responses arrive late, clients retry, and protocols disagree about data representation.</p>
+            <p>Payment systems must remain correct when clients retry, network messages duplicate or arrive late, external delivery fails, and accounting state must still reconcile.</p>
           </div>
           <div>
             <h4>Implemented evidence</h4>
             <ul>
-              <li>Strict ISO 8583 MTI and primary/secondary bitmap codec.</li>
-              <li>Fixed, LLVAR, LLLVAR, numeric, text, and binary field validation.</li>
-              <li>Binary DE55 support with malformed-input and property-based round-trip tests.</li>
-              <li>Canonical authorization model separated from the ISO 8583 wire format.</li>
-              <li>Explicit ISO numeric ↔ alpha currency mapping.</li>
-              <li>Response correlation using expected MTI plus STAN and RRN.</li>
-              <li>GitHub Actions quality gate for lint, formatting, compilation, and tests.</li>
+              <li>Strict ISO 8583 codec plus canonical authorization mapping and STAN/RRN correlation.</li>
+              <li>Durable PostgreSQL request and operation idempotency with explicit conflict detection.</li>
+              <li>Append-only, balanced double-entry ledger integrated atomically with capture/refund/reversal state.</li>
+              <li>Transactional outbox with explicit at-least-once delivery, consumer deduplication, retries, and poison-message retention.</li>
+              <li>Deterministic reconciliation reports and bounded replay controls that never silently rewrite accounting history.</li>
+              <li>Transport-independent network coordination for accepted, timeout, late-response, duplicate, and mismatch outcomes.</li>
+              <li>GitHub Actions gates for lint, formatting, migrations, compilation, and integration tests.</li>
             </ul>
           </div>
           <div>
             <h4>Engineering boundary</h4>
-            <p>Network-specific fields are mapped at the adapter boundary so future routing, ledger, risk, events, and ISO 20022 work can operate on a protocol-independent model.</p>
+            <p>Database atomicity is stated precisely; external broker/network delivery is not mislabeled as exactly-once. Protocol, ledger, outbox, reconciliation, and network coordination remain separate modules.</p>
           </div>
           <div>
             <h4>Next vertical slice</h4>
-            <p>Timeout and late-response classification, duplicate windows, reversal linkage, durable idempotency, then ledger/outbox foundations.</p>
+            <p>Issuer/acquirer routing and reversal correlation are under review, followed by explicit network-adapter boundaries and deeper DE55/EMV parsing.</p>
           </div>
         </div>
         <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">Review AtlasPay source →</a>
@@ -83,32 +83,43 @@
           <p class="project-label">02 · AI system</p>
           <h3>AtlasRAG</h3>
           <p class="project-role">Retrieval · Evaluation · LLM engineering</p>
-          <p>A deterministic retrieval contract and typed evidence model establish a testable base before heavier vector, reranking, and model infrastructure is introduced.</p>
+          <p>A deterministic retrieval baseline now feeds a citation-first query service with explicit abstention when evidence is absent or too weak.</p>
           <ul>
-            <li>Typed query/evidence contracts.</li>
-            <li>Deterministic lexical retrieval baseline.</li>
-            <li>Ranking and model validation tests.</li>
-            <li>Evaluation-first path toward hybrid retrieval and reranking.</li>
+            <li>Typed query, evidence, citation, and response contracts.</li>
+            <li>Deterministic lexical retrieval with precision/recall@k and MRR evaluation primitives.</li>
+            <li>Generator/provider boundary with a credential-free extractive reference implementation.</li>
+            <li>FastAPI query endpoint that returns cited evidence or abstains instead of inventing support.</li>
           </ul>
+          <p class="truth-label">Status: query/evaluation foundation implemented; deterministic ingestion persistence is the next reliability layer.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Review AtlasRAG source →</a>
         </article>
 
-        <article class="case-study muted">
+        <article class="case-study">
           <p class="project-label">03 · Platform surface</p>
           <h3>Nexus</h3>
           <p class="project-role">Platform · Operations · Control plane</p>
-          <p>Nexus is intentionally held back until AtlasPay exposes meaningful operational data. Its role is to become the operator/control-plane surface for transaction flows, incidents, diagnostics, and system health.</p>
-          <p class="truth-label">Status: foundation not yet implemented.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Track Nexus →</a>
+          <p>Nexus is now a typed AtlasPay operator surface with provenance-aware snapshot loading, explicit stale/partial/unavailable states, issuer health, incidents, and network transaction drill-down.</p>
+          <ul>
+            <li>Strict Next.js/React/TypeScript operator application.</li>
+            <li>Snapshot source boundary that refuses to render telemetry when source integrity is unknown.</li>
+            <li>STAN/RRN transaction outcomes with latency availability and reversal correlation/reason.</li>
+          </ul>
+          <p class="truth-label">Status: operator foundation implemented; fixture-backed, not live telemetry.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Review Nexus →</a>
         </article>
 
-        <article class="case-study muted">
+        <article class="case-study">
           <p class="project-label">04 · Applied ML</p>
           <h3>ForecastLab</h3>
-          <p class="project-role">ML lifecycle · Evaluation · Explainability</p>
-          <p>ForecastLab is reserved for a measurable applied-ML system with reproducible experiments, explicit evaluation, failure analysis, and deployable inference—not a notebook-only showcase.</p>
-          <p class="truth-label">Status: rebuild/foundation stage.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/ForecastLab">Track ForecastLab →</a>
+          <p class="project-role">Computer vision policy · Evaluation · Explainability</p>
+          <p>ForecastLab now has an explainable passport-photo compliance policy boundary over measured observations, with deterministic per-rule evidence and synthetic regression tests before heavyweight CV models are introduced.</p>
+          <ul>
+            <li>Rule evaluation for dimensions, face count, pose, background uniformity, and occlusion.</li>
+            <li>Versionable thresholds with explicit input validation and measured evidence strings.</li>
+            <li>Synthetic-only CI fixtures; no raw passport or identity photos are stored.</li>
+          </ul>
+          <p class="truth-label">Status: evaluator foundation implemented; no real-world accuracy claim.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/ForecastLab">Review ForecastLab →</a>
         </article>
       </div>
     </section>
@@ -119,12 +130,12 @@
         <h2 id="roles-title">Same work. Different evidence order.</h2>
       </div>
       <div class="role-grid">
-        <article><h3>Payments Engineer</h3><p>Start with AtlasPay: ISO 8583, correlation, failure semantics, canonical interoperability, then ledger/event reliability.</p></article>
-        <article><h3>Backend Engineer</h3><p>Focus on AtlasPay domain boundaries, API behavior, idempotency direction, tests, CI, and stateful failure handling.</p></article>
-        <article><h3>Distributed Systems</h3><p>Focus on correlation, retries, duplicates, timeouts, late responses, delivery semantics, replay, and reconciliation.</p></article>
-        <article><h3>AI Engineer</h3><p>Start with AtlasRAG and its evaluation-first retrieval path, then use AtlasPay as evidence of broader production engineering discipline.</p></article>
-        <article><h3>Platform / SRE</h3><p>Follow AtlasPay operational contracts into Nexus as the future observability and operator experience layer.</p></article>
-        <article><h3>ML Engineer</h3><p>Follow ForecastLab as it develops reproducible evaluation and inference, with AtlasRAG showing adjacent production AI rigor.</p></article>
+        <article><h3>Payments Engineer</h3><p>Start with AtlasPay: ISO 8583, durable idempotency, ledger correctness, outbox/reconciliation, then network failure semantics.</p></article>
+        <article><h3>Backend Engineer</h3><p>Focus on AtlasPay transaction boundaries, PostgreSQL invariants, replay-safe APIs, tests, CI, and explicit state transitions.</p></article>
+        <article><h3>Distributed Systems</h3><p>Focus on retries, duplicates, timeouts, late responses, at-least-once delivery, idempotent consumption, replay, and reconciliation.</p></article>
+        <article><h3>AI Engineer</h3><p>Start with AtlasRAG and its evaluation-first, citation-first, abstention-aware retrieval path, then use AtlasPay as evidence of broader production discipline.</p></article>
+        <article><h3>Platform / SRE</h3><p>Follow AtlasPay operational contracts into Nexus, where degraded source states, incidents, transaction outcomes, and reversal correlation are visible to operators.</p></article>
+        <article><h3>ML Engineer</h3><p>Follow ForecastLab's explainable compliance rules and evaluation path, with AtlasRAG showing adjacent production AI rigor.</p></article>
       </div>
     </section>
 
@@ -135,8 +146,8 @@
       </div>
       <div class="principle-grid">
         <p><strong>Fail closed.</strong> Unsupported protocol mappings and malformed inputs should not silently become plausible-looking data.</p>
-        <p><strong>Test behavior.</strong> Edge cases, invariants, property-based tests, and CI matter more than screenshot coverage.</p>
-        <p><strong>State guarantees precisely.</strong> No vague “exactly once” or production-scale claims without evidence.</p>
+        <p><strong>Test behavior.</strong> Edge cases, invariants, property-based tests, integration tests, and CI matter more than screenshot coverage.</p>
+        <p><strong>State guarantees precisely.</strong> No vague “exactly once,” live-telemetry, production-scale, or model-accuracy claims without evidence.</p>
         <p><strong>Add infrastructure for a reason.</strong> A modular monolith is preferable to decorative microservices.</p>
         <p><strong>Document trade-offs.</strong> Architecture should explain why a boundary exists and where it can fail.</p>
         <p><strong>Keep the portfolio truthful.</strong> Roadmap items are labeled as roadmap items until code and tests exist.</p>
