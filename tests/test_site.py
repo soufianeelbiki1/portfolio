@@ -33,7 +33,9 @@ class PortfolioSiteTests(unittest.TestCase):
         cls.parser.feed(cls.html)
 
     def test_required_case_study_sections_exist(self) -> None:
-        self.assertTrue({"main", "top", "work", "roles", "principles"} <= self.parser.ids)
+        self.assertTrue(
+            {"main", "top", "work", "analytics", "roles", "principles"} <= self.parser.ids
+        )
 
     def test_all_flagship_repositories_are_linked(self) -> None:
         expected = {
@@ -50,20 +52,29 @@ class PortfolioSiteTests(unittest.TestCase):
 
     def test_project_statuses_match_verified_evidence_boundaries(self) -> None:
         self.assertIn(
-            "Status: operator foundation implemented; fixture-backed, not live telemetry.",
+            "Status: live API consumption path implemented and CI-verified; no live deployment or durable network-history claim.",
             self.html,
         )
         self.assertIn(
-            "Status: evaluator and quality-policy foundations implemented; no real-world accuracy or certification claim.",
+            "Status: policy, inference contract, and held-out evaluation infrastructure implemented; no unmeasured real-world CV accuracy or certification claim.",
             self.html,
         )
-        self.assertIn("Issuer/acquirer routing with deterministic longest-prefix selection", self.html)
-        self.assertIn("Strict DE55 BER-TLV parsing", self.html)
-        self.assertIn("durable ingestion, hybrid rank fusion/reranking, and application-level RAG regression metrics implemented", self.html)
-        self.assertIn("timeout→reversal lifecycle", self.html)
+        self.assertIn("issuer/acquirer routing", self.html.lower())
+        self.assertIn("DE55 BER-TLV", self.html)
+        self.assertIn("timeout/reversal lifecycle", self.html)
         self.assertIn("ISO 8583 → canonical → ISO 20022", self.html)
-        self.assertIn("read-only reconciliation and outbox checks", self.html)
-        self.assertIn("FastAPI precomputed-signal evaluation", self.html)
+        self.assertIn("PostgreSQL CI executes every analytics mart", self.html)
+        self.assertIn("current payment status is not mislabeled as a historical authorization funnel", self.html.lower())
+        self.assertIn("citation precision/recall", self.html)
+        self.assertIn("held-out evaluation", self.html)
+
+    def test_data_hiring_lenses_are_present(self) -> None:
+        self.assertIn("Data Analyst", self.html)
+        self.assertIn("Analytics Engineer", self.html)
+        self.assertIn("Data Scientist", self.html)
+        self.assertIn("Product Experimentation Lab", self.html)
+        self.assertIn("Retail Decision Intelligence", self.html)
+        self.assertIn("Risk & Fraud Monitoring", self.html)
 
     def test_no_placeholder_or_unverified_demo_links(self) -> None:
         lowered = self.html.lower()
