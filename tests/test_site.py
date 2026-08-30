@@ -59,7 +59,7 @@ class PortfolioSiteTests(unittest.TestCase):
         )
         self.assertIn("Issuer/acquirer routing with deterministic longest-prefix selection", self.html)
         self.assertIn("Strict DE55 BER-TLV parsing", self.html)
-        self.assertIn("durable PostgreSQL ingestion remains under review", self.html)
+        self.assertIn("durable PostgreSQL ingestion implemented", self.html)
 
     def test_no_placeholder_or_unverified_demo_links(self) -> None:
         lowered = self.html.lower()
