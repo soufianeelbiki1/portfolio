@@ -65,6 +65,7 @@
               <li>Transport-independent network coordination for accepted, timeout, late-response, duplicate, and mismatch outcomes.</li>
               <li>Issuer/acquirer routing with deterministic longest-prefix selection plus one-to-one reversal correlation.</li>
               <li>Strict DE55 BER-TLV parsing with constructed templates, EMV tag metadata, and five-byte TVR decoding.</li>
+              <li>Byte-oriented transport adapter plus timeout→reversal lifecycle with explicit delivery ambiguity and late-response classification.</li>
               <li>GitHub Actions gates for lint, formatting, migrations, compilation, and integration tests.</li>
             </ul>
           </div>
@@ -74,7 +75,7 @@
           </div>
           <div>
             <h4>Next vertical slice</h4>
-            <p>Explicit network transport boundaries and issuer timeout/reversal integration are next; no external-delivery guarantee is implied by a timeout.</p>
+            <p>Scoped ISO 20022 interoperability is under review; observability and fault-injection around the network lifecycle follow.</p>
           </div>
         </div>
         <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">Review AtlasPay source →</a>
@@ -93,8 +94,9 @@
             <li>FastAPI query endpoint that returns cited evidence or abstains instead of inventing support.</li>
             <li>Deterministic ingestion identity with normalized fingerprints, stable chunk IDs, replay semantics, and explicit document-ID conflicts.</li>
             <li>Durable PostgreSQL document/chunk persistence with unique constraints, advisory-lock retry serialization, and concurrent replay tests.</li>
+            <li>Reciprocal-rank fusion across retriever ports plus a separate reranking contract, without pretending backend raw scores are calibrated.</li>
           </ul>
-          <p class="truth-label">Status: query/evaluation and durable PostgreSQL ingestion implemented; hybrid retrieval and reranking are next.</p>
+          <p class="truth-label">Status: query/evaluation, durable ingestion, hybrid rank fusion, and reranking contracts implemented; a measured semantic/vector adapter is next.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Review AtlasRAG source →</a>
         </article>
 
@@ -107,6 +109,7 @@
             <li>Strict Next.js/React/TypeScript operator application.</li>
             <li>Snapshot source boundary with runtime validation that refuses to render malformed or unavailable telemetry.</li>
             <li>STAN/RRN transaction outcomes with latency availability and reversal correlation/reason.</li>
+            <li>Transaction search/outcome filtering plus read-only reconciliation and outbox checks with explicit no-auto-repair guidance.</li>
           </ul>
           <p class="truth-label">Status: operator foundation implemented; fixture-backed, not live telemetry.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Review Nexus →</a>
@@ -122,6 +125,7 @@
             <li>Versionable thresholds with explicit input validation and measured evidence strings.</li>
             <li>Estimator interfaces for pose/background/occlusion/quality signals with deterministic doubles in CI.</li>
             <li>Versioned quality policy for blur, compression, illumination, and shadow with synthetic rule-level regression metrics.</li>
+            <li>FastAPI precomputed-signal evaluation returning policy/estimator versions and per-rule evidence; raw-photo inference is not claimed.</li>
             <li>Synthetic-only CI fixtures; no raw passport or identity photos are stored.</li>
           </ul>
           <p class="truth-label">Status: evaluator and quality-policy foundations implemented; no real-world accuracy or certification claim.</p>
