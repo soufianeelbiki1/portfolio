@@ -61,6 +61,7 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn("Strict DE55 BER-TLV parsing", self.html)
         self.assertIn("durable ingestion, hybrid rank fusion, and reranking contracts implemented", self.html)
         self.assertIn("timeout→reversal lifecycle", self.html)
+        self.assertIn("ISO 8583 → canonical → ISO 20022", self.html)
         self.assertIn("read-only reconciliation and outbox checks", self.html)
         self.assertIn("FastAPI precomputed-signal evaluation", self.html)
 
