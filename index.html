@@ -66,6 +66,7 @@
               <li>Issuer/acquirer routing with deterministic longest-prefix selection plus one-to-one reversal correlation.</li>
               <li>Strict DE55 BER-TLV parsing with constructed templates, EMV tag metadata, and five-byte TVR decoding.</li>
               <li>Byte-oriented transport adapter plus timeout→reversal lifecycle with explicit delivery ambiguity and late-response classification.</li>
+              <li>Scoped ISO 8583 → canonical → ISO 20022 authorization projection with explicit STAN/DE55 loss reporting and fail-closed bridge constraints.</li>
               <li>GitHub Actions gates for lint, formatting, migrations, compilation, and integration tests.</li>
             </ul>
           </div>
@@ -75,7 +76,7 @@
           </div>
           <div>
             <h4>Next vertical slice</h4>
-            <p>Scoped ISO 20022 interoperability is under review; observability and fault-injection around the network lifecycle follow.</p>
+            <p>Observability and fault-injection around the network lifecycle are next; concrete ISO 20022 XML/XSD card-message conformance remains separate future adapter work.</p>
           </div>
         </div>
         <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">Review AtlasPay source →</a>
