@@ -48,9 +48,16 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn("styles.css", self.parser.stylesheets)
         self.assertTrue((ROOT / "styles.css").is_file())
 
-    def test_early_stage_projects_are_labeled_truthfully(self) -> None:
-        self.assertIn("Status: foundation not yet implemented.", self.html)
-        self.assertIn("Status: rebuild/foundation stage.", self.html)
+    def test_project_statuses_match_verified_evidence_boundaries(self) -> None:
+        self.assertIn(
+            "Status: operator foundation implemented; fixture-backed, not live telemetry.",
+            self.html,
+        )
+        self.assertIn(
+            "Status: evaluator foundation implemented; no real-world accuracy claim.",
+            self.html,
+        )
+        self.assertIn("Issuer/acquirer routing and reversal correlation are under review", self.html)
 
     def test_no_placeholder_or_unverified_demo_links(self) -> None:
         lowered = self.html.lower()
