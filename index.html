@@ -92,8 +92,9 @@
             <li>Generator/provider boundary with a credential-free extractive reference implementation.</li>
             <li>FastAPI query endpoint that returns cited evidence or abstains instead of inventing support.</li>
             <li>Deterministic ingestion identity with normalized fingerprints, stable chunk IDs, replay semantics, and explicit document-ID conflicts.</li>
+            <li>Durable PostgreSQL document/chunk persistence with unique constraints, advisory-lock retry serialization, and concurrent replay tests.</li>
           </ul>
-          <p class="truth-label">Status: query/evaluation and deterministic ingestion identity implemented; durable PostgreSQL ingestion remains under review.</p>
+          <p class="truth-label">Status: query/evaluation and durable PostgreSQL ingestion implemented; hybrid retrieval and reranking are next.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Review AtlasRAG source →</a>
         </article>
 
