@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Soufiane Elbiki engineering portfolio: payments, distributed systems, data analytics, decision science, and applied AI/ML.">
+  <meta name="description" content="Soufiane Elbiki engineering and data portfolio: payments, distributed systems, analytics, experimentation, retail intelligence, and applied AI/ML.">
   <title>Soufiane Elbiki — Engineering & Data Portfolio</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -13,7 +13,7 @@
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Go to top">SE</a>
     <nav aria-label="Primary navigation">
-      <a href="#work">Work</a>
+      <a href="#work">Engineering</a>
       <a href="#analytics">Analytics</a>
       <a href="#roles">Role lenses</a>
       <a href="#principles">Principles</a>
@@ -23,61 +23,55 @@
 
   <main id="main">
     <section class="hero" id="top">
-      <p class="eyebrow">Payments · Distributed Systems · Data Analytics · Applied AI/ML</p>
-      <h1>I build reliable systems and turn their data into defensible decisions.</h1>
+      <p class="eyebrow">Payments · Distributed Systems · Data Analytics · Decision Science · Applied AI/ML</p>
+      <h1>I build systems that stay correct under failure and analytics that stay honest under uncertainty.</h1>
       <p class="hero-copy">
-        One portfolio, several hiring lenses. The projects below show protocol and transaction correctness,
-        advanced SQL and metric definition, analytical decision support, ML evaluation, and explicit failure
-        boundaries—not disconnected tutorial notebooks or screenshot-only demos.
+        This portfolio is built around a small number of deep projects: payment infrastructure, operator tooling,
+        decision-oriented data warehouses, experimentation, retail intelligence, RAG engineering, and explainable
+        ML evaluation. The emphasis is working code, explicit data grain, tests, CI, and defensible claims.
       </p>
       <div class="hero-actions">
-        <a class="button primary" href="#work">Explore flagship systems</a>
-        <a class="button secondary" href="#analytics">Review analytics evidence</a>
+        <a class="button primary" href="#analytics">Data & decision projects</a>
+        <a class="button secondary" href="#work">Engineering systems</a>
       </div>
-      <p class="status-note">No production traffic, scale, live deployment, business result, or model accuracy is claimed unless it is supported by verifiable evidence.</p>
+      <p class="status-note">Synthetic data, fixture telemetry, unmeasured accuracy, and unavailable metrics are labeled explicitly. No production scale or live deployment is implied without evidence.</p>
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="section-heading">
-        <p class="eyebrow">Flagship systems</p>
-        <h2 id="work-title">Depth first, with reusable data.</h2>
-        <p>Each project has a distinct hiring signal and a clear relationship to the rest of the portfolio.</p>
+        <p class="eyebrow">Engineering flagships</p>
+        <h2 id="work-title">Correctness, contracts, and failure handling.</h2>
+        <p>These systems focus on behavior under retries, unavailable dependencies, protocol boundaries, and measurable AI quality.</p>
       </div>
 
       <article class="case-study featured">
         <div>
-          <p class="project-label">01 · Flagship</p>
+          <p class="project-label">01 · Payments flagship</p>
           <h3>AtlasPay</h3>
-          <p class="project-role">Payments · Backend · Distributed systems · Analytics</p>
+          <p class="project-role">Payments · Backend · Distributed systems · PostgreSQL</p>
         </div>
         <div class="case-grid">
           <div>
-            <h4>Problem</h4>
-            <p>Payment systems must remain correct under retries, duplicates, late network responses, ambiguous delivery, accounting reconciliation, and event redelivery—then expose data that analysts can interpret without inventing unavailable history.</p>
-          </div>
-          <div>
-            <h4>Implemented engineering evidence</h4>
+            <h4>Implemented</h4>
             <ul>
-              <li>Strict ISO 8583 codec, canonical authorization model, STAN/RRN correlation, issuer/acquirer routing, and timeout/reversal lifecycle.</li>
-              <li>Durable PostgreSQL idempotency plus append-only balanced double-entry ledger.</li>
-              <li>Transactional outbox with explicit at-least-once delivery, consumer deduplication, retries, poison retention, and read-only reconciliation.</li>
-              <li>Strict DE55 BER-TLV parsing, EMV metadata/TVR decoding, and scoped ISO 8583 → canonical → ISO 20022 projection with explicit loss reporting.</li>
-              <li>Low-cardinality network observability and deterministic fault injection without sensitive identifiers in metric labels.</li>
+              <li>Strict ISO 8583 message-body codecs with primary/secondary bitmaps and LLVAR/LLLVAR validation.</li>
+              <li>EMV DE55 BER-TLV parsing, canonical authorization model, STAN/RRN correlation, routing, timeouts, late responses, duplicates, and reversal correlation.</li>
+              <li>Durable PostgreSQL idempotency, append-only balanced double-entry ledger, transactional outbox, idempotent consumers, reconciliation, and bounded replay.</li>
+              <li>Low-cardinality observability and deterministic network fault injection.</li>
+              <li>Scoped ISO 8583 → canonical → ISO 20022 projection with explicit loss boundaries.</li>
             </ul>
           </div>
           <div>
-            <h4>Implemented analytics evidence</h4>
-            <ul>
-              <li>Daily payment cohorts by currency with gross minor-unit amount, average ticket, and current durable status composition.</li>
-              <li>Capture/refund/reversal lifecycle timing with average, p50, and p95 elapsed time.</li>
-              <li>Outbox reliability mart for delivered/backlogged/retry-limit events and publish latency.</li>
-              <li>Daily debit-credit ledger control totals that surface imbalance instead of repairing it.</li>
-              <li>PostgreSQL CI executes every analytics mart and verifies its output contract.</li>
-            </ul>
+            <h4>Why it matters</h4>
+            <p>The project models payment ambiguity rather than hiding it: a local timeout is not proof of remote failure, at-least-once delivery is not called exactly-once, and accounting invariants are enforced durably.</p>
+          </div>
+          <div>
+            <h4>Analytics layer</h4>
+            <p>CI-tested PostgreSQL marts cover payment cohorts, operation timing, outbox reliability, and daily ledger controls with currency and grain limitations documented.</p>
           </div>
           <div>
             <h4>Truth boundary</h4>
-            <p>Current payment status is not mislabeled as a historical authorization funnel, lifecycle timing is not issuer latency, currencies are never combined in monetary KPIs, and non-durable network history remains unavailable until AtlasPay persists it.</p>
+            <p>AtlasPay is an engineering simulation. It does not process real money, connect to live card networks, or claim production scale or scheme certification.</p>
           </div>
         </div>
         <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">Review AtlasPay source →</a>
@@ -85,48 +79,46 @@
 
       <div class="project-grid">
         <article class="case-study">
-          <p class="project-label">02 · AI system</p>
+          <p class="project-label">02 · AI / LLM</p>
           <h3>AtlasRAG</h3>
-          <p class="project-role">Retrieval · Evaluation · LLM engineering</p>
-          <p>A citation-first RAG system built around measurable retrieval/evaluation contracts rather than a generic chat UI.</p>
+          <p class="project-role">RAG · Retrieval · Evaluation · Durable ingestion</p>
           <ul>
-            <li>Deterministic lexical retrieval with precision/recall@k and MRR primitives.</li>
-            <li>Durable PostgreSQL document/chunk ingestion with replay-safe identity and explicit content conflicts.</li>
-            <li>Reciprocal-rank fusion and a separate reranking contract without treating raw backend scores as calibrated.</li>
-            <li>Versioned RAG regression data with citation precision/recall, abstention accuracy, support checks, and relevance signals.</li>
-            <li>Provider token/cost/latency accounting using provider-reported usage and explicit unknown pricing.</li>
+            <li>Citation-first responses and explicit abstention under weak evidence.</li>
+            <li>Replay-safe PostgreSQL document/chunk ingestion with fingerprints, stable chunk identity, constraints, and advisory locking.</li>
+            <li>Reciprocal-rank fusion across retriever ports plus a separate reranker contract.</li>
+            <li>Versioned regression evaluation for retrieval, citation support, abstention, and expected answer terms.</li>
+            <li>Provider token, estimated cost, and latency accounting behind provider-neutral boundaries.</li>
           </ul>
-          <p class="truth-label">Status: durable ingestion, hybrid orchestration, RAG regression metrics, and provider usage accounting implemented; measured semantic/vector retrieval remains a future adapter.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Review AtlasRAG source →</a>
+          <p class="truth-label">Measured semantic/vector retrieval remains future work; hybrid orchestration is not presented as measured vector quality.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Review AtlasRAG →</a>
         </article>
 
         <article class="case-study">
-          <p class="project-label">03 · Platform surface</p>
+          <p class="project-label">03 · Full stack / platform</p>
           <h3>Nexus</h3>
-          <p class="project-role">Platform · Operations · Control plane</p>
-          <p>Nexus is a strict Next.js/TypeScript AtlasPay operator surface with provenance-aware degraded states and an authenticated live API path.</p>
+          <p class="project-role">Next.js · TypeScript · Operator control plane</p>
           <ul>
-            <li>Authenticated AtlasPay `/v1/ops/snapshot` source with bounded timeout and strict runtime parsing.</li>
-            <li>Live configuration fails closed on config/auth/API/contract errors instead of silently showing fixture numbers.</li>
-            <li>Live mode renders only durable payment, ledger, outbox, incident, and missing-section fields that AtlasPay actually exposes.</li>
-            <li>Richer issuer-route and STAN/RRN transaction workflows remain explicitly fixture-only until a durable network fact source exists.</li>
+            <li>Authenticated AtlasPay operator API client with bounded timeout and runtime contract validation.</li>
+            <li>Fail-closed live configuration: API/auth/contract failures render unavailable state rather than fixture telemetry.</li>
+            <li>Durable payment, ledger, outbox, incident, and missing-section views.</li>
+            <li>Transaction filtering and read-only reconciliation workflows.</li>
+            <li>Automated TypeScript tests, typecheck, production build, and CI.</li>
           </ul>
-          <p class="truth-label">Status: live API consumption path implemented and CI-verified; no live deployment or durable network-history claim.</p>
+          <p class="truth-label">Richer network/issuer drill-down remains fixture-only until AtlasPay publishes a durable network read model.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Review Nexus →</a>
         </article>
 
         <article class="case-study">
           <p class="project-label">04 · Applied ML</p>
           <h3>ForecastLab</h3>
-          <p class="project-role">Computer vision policy · Evaluation · Explainability</p>
-          <p>ForecastLab separates explainable passport-photo compliance policy from future pixel estimators so evaluation claims stay measurable.</p>
+          <p class="project-role">CV policy · Evaluation · Explainability · FastAPI</p>
           <ul>
-            <li>Versioned rule evaluation for dimensions, face count, pose, background, occlusion, and image quality.</li>
-            <li>Estimator interfaces for pose/background/occlusion/quality signals with deterministic CI doubles.</li>
-            <li>FastAPI precomputed-signal inference with estimator/policy versions and per-rule evidence.</li>
-            <li>Licensed held-out evaluation contract with confusion counts, precision, recall, accuracy, and named slices.</li>
+            <li>Versioned explainable rules for geometry, pose, background, occlusion, blur, compression, illumination, and shadow signals.</li>
+            <li>Estimator interfaces with deterministic test doubles and stable inference contracts.</li>
+            <li>FastAPI precomputed-signal evaluation exposing per-rule evidence and version provenance.</li>
+            <li>Versioned synthetic regression data plus licensed held-out evaluation infrastructure with slice metrics.</li>
           </ul>
-          <p class="truth-label">Status: policy, inference contract, and held-out evaluation infrastructure implemented; no unmeasured real-world CV accuracy or certification claim.</p>
+          <p class="truth-label">No ICAO certification or unmeasured real-world pixel-estimator accuracy is claimed.</p>
           <a class="text-link" href="https://github.com/soufianeelbiki1/ForecastLab">Review ForecastLab →</a>
         </article>
       </div>
@@ -135,52 +127,91 @@
     <section class="section contrast" id="analytics" aria-labelledby="analytics-title">
       <div class="section-heading">
         <p class="eyebrow">Data analytics & decision science</p>
-        <h2 id="analytics-title">Analysis starts with grain, provenance, and a decision.</h2>
-        <p>The first analytics layer is already merged into AtlasPay. The next projects extend the same standard instead of producing generic Kaggle clones.</p>
+        <h2 id="analytics-title">Three dedicated analytics flagships are now implemented.</h2>
+        <p>Each project starts with analytical grain and decision use instead of a generic dashboard or notebook.</p>
       </div>
-      <div class="role-grid">
-        <article><h3>Payments Analytics Warehouse · implemented foundation</h3><p>Advanced PostgreSQL marts over durable payment, operation, outbox, and ledger tables. Next: a privacy-conscious historical authorization fact, decline taxonomy, issuer cohorts, timeout/reversal analysis, synthetic demo data, and an executive operations dashboard.</p></article>
-        <article><h3>Product Experimentation Lab · build queue</h3><p>Event schema, funnel/retention cohorts, experiment assignment integrity, sample-ratio-mismatch detection, CUPED, bootstrap intervals, guardrails, multiple-testing caveats, and a reproducible ship/no-ship memo.</p></article>
-        <article><h3>Retail Decision Intelligence · build queue</h3><p>Orders/customers/products/inventory/promotions/returns/suppliers star schema; RFM/cohorts, margin decomposition, stockout/overstock diagnosis, time-split demand forecasts, reorder scenarios, and an interactive decision dashboard.</p></article>
-        <article><h3>Risk & Fraud Monitoring · build queue</h3><p>Leakage-safe temporal splits, precision-recall and expected-cost evaluation, calibration, threshold selection, PSI/drift monitoring, segment diagnostics, explainability, and analyst investigation queues.</p></article>
-        <article><h3>Public Data Operations · build queue</h3><p>Real open-data ingestion with provenance and incremental loads, schema-change checks, time-series/geospatial analysis where appropriate, reproducible SQL/Python reporting, and a concise decision narrative.</p></article>
-        <article><h3>Required evidence for every analytics project</h3><p>Business question, source provenance, data dictionary, analytical model, non-trivial SQL, Python/statistics, data-quality tests, reproducible pipeline, dashboard/report, quantified findings only when data supports them, and explicit limitations.</p></article>
+
+      <div class="project-grid">
+        <article class="case-study">
+          <p class="project-label">05 · Payments analytics</p>
+          <h3>AtlasAnalytics</h3>
+          <p class="project-role">Data Analyst · Analytics Engineer · Data Scientist</p>
+          <ul>
+            <li>DuckDB warehouse with separate payment, authorization-attempt, reversal, reconciliation, issuer, and currency grains.</li>
+            <li>Payment/issuer/decline marts with window functions, response-code taxonomy, rolling issuer baselines, and anomaly signals.</li>
+            <li>Measured executive findings generated from reproducible synthetic warehouse data and explicitly labeled synthetic.</li>
+            <li>Leakage-safe chronological fraud/risk evaluation with precision, recall, FPR, alert rate and amount-sensitive expected cost.</li>
+            <li>Cost-optimal threshold selection, calibration bins, and PSI distribution monitoring.</li>
+          </ul>
+          <p class="truth-label">Synthetic data is used for reproducibility; no production fraud-loss or merchant-performance claim is made.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasAnalytics">Review AtlasAnalytics →</a>
+        </article>
+
+        <article class="case-study">
+          <p class="project-label">06 · Experimentation</p>
+          <h3>ExperimentLab</h3>
+          <p class="project-role">Product Analytics · Experimentation Data Science</p>
+          <ul>
+            <li>Reproducible experiment assignment/outcome warehouse with balanced synthetic data.</li>
+            <li>Sample Ratio Mismatch validity gate and two-proportion inference with effect size and confidence interval.</li>
+            <li>CUPED variance reduction using pre-treatment covariates.</li>
+            <li>Bootstrap uncertainty for skewed metrics and explicit `ship` / `hold` / `do_not_ship` decision policy.</li>
+            <li>Sample-size and minimum-detectable-effect planning with fixed-horizon and sequential-look caveats.</li>
+          </ul>
+          <p class="truth-label">Statistical significance is separated from business impact; all current experiment observations are synthetic.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/ExperimentLab">Review ExperimentLab →</a>
+        </article>
+
+        <article class="case-study">
+          <p class="project-label">07 · Retail intelligence</p>
+          <h3>RetailIntel</h3>
+          <p class="project-role">Commercial Analytics · Inventory Decisions · SQL</p>
+          <ul>
+            <li>Retail star-schema style warehouse across products, suppliers, orders, order lines, inventory snapshots, and purchase orders.</li>
+            <li>Product margin/returns, supplier reliability, RFM segmentation, acquisition cohorts, and descriptive promotion economics.</li>
+            <li>Dense SKU × calendar-day demand spine including zero-demand days.</li>
+            <li>Seven-day trailing forecast using prior observations only plus 28-day demand volatility and forecast error.</li>
+            <li>Explicit 95% service-level assumption, safety stock, reorder point, inventory position, and recommended reorder quantity.</li>
+          </ul>
+          <p class="truth-label">Promotion analysis is descriptive, not causal; replenishment recommendations expose assumptions instead of claiming optimization.</p>
+          <a class="text-link" href="https://github.com/soufianeelbiki1/RetailIntel">Review RetailIntel →</a>
+        </article>
       </div>
     </section>
 
     <section class="section" id="roles" aria-labelledby="roles-title">
       <div class="section-heading">
         <p class="eyebrow">Role lenses</p>
-        <h2 id="roles-title">Same portfolio. Different evidence order.</h2>
+        <h2 id="roles-title">Use the projects that match the job.</h2>
       </div>
       <div class="role-grid">
-        <article><h3>Data Analyst</h3><p>Start with AtlasPay analytics: SQL marts, currency-safe KPI definitions, percentiles, operational reliability, ledger controls, and explicit metric limitations; then follow the decision-science build queue.</p></article>
-        <article><h3>Analytics Engineer</h3><p>Focus on durable source grains, PostgreSQL analytical contracts, CI-executed marts, data-quality invariants, metric semantics, and the planned fact/dimension layer.</p></article>
-        <article><h3>Data Scientist</h3><p>Use AtlasRAG/ForecastLab for evaluation discipline, then add experimentation, forecasting, fraud-cost modeling, calibration, and drift analysis on top of reproducible analytical pipelines.</p></article>
-        <article><h3>Payments Engineer</h3><p>Start with AtlasPay: ISO 8583/EMV/ISO 20022 boundaries, durable idempotency, ledger correctness, outbox/reconciliation, and network ambiguity.</p></article>
-        <article><h3>Backend / Distributed Systems</h3><p>Focus on PostgreSQL invariants, at-least-once delivery, retries, duplicates, timeouts, reversals, reconciliation, fault injection, and explicit transaction boundaries.</p></article>
-        <article><h3>AI / ML Engineer</h3><p>Start with AtlasRAG and ForecastLab evaluation paths; use AtlasPay as evidence of production-minded state, reliability, and observability discipline.</p></article>
+        <article><h3>Data Analyst</h3><p>AtlasAnalytics → RetailIntel → ExperimentLab. Evidence: advanced SQL, data modeling, KPI semantics, cohorts, forecasting baselines, risk thresholds, and decision narratives.</p></article>
+        <article><h3>Analytics Engineer</h3><p>AtlasAnalytics → RetailIntel → AtlasPay analytics. Evidence: explicit fact grains, warehouse loading, reproducible marts, data-quality invariants, and CI.</p></article>
+        <article><h3>Data Scientist</h3><p>ExperimentLab → AtlasAnalytics risk evaluation → ForecastLab / AtlasRAG evaluation. Evidence: uncertainty, power/MDE, calibration, drift, validation, and evaluation contracts.</p></article>
+        <article><h3>Payments / Backend</h3><p>AtlasPay → Nexus. Evidence: payment protocols, durable state, idempotency, ledger, outbox, retries, ambiguous network outcomes, reconciliation, and operator APIs.</p></article>
+        <article><h3>Full Stack</h3><p>Nexus → AtlasPay. Evidence: strict TypeScript, Next.js, authenticated backend integration, runtime validation, degraded states, tests, and build gates.</p></article>
+        <article><h3>AI / LLM / ML</h3><p>AtlasRAG → ForecastLab. Evidence: evaluation-driven AI engineering, durable ingestion, citations/abstention, provider accounting, explainable policies, and held-out evaluation infrastructure.</p></article>
       </div>
     </section>
 
     <section class="section" id="principles" aria-labelledby="principles-title">
       <div class="section-heading">
-        <p class="eyebrow">Engineering & analytics principles</p>
-        <h2 id="principles-title">What I optimize for.</h2>
+        <p class="eyebrow">Principles</p>
+        <h2 id="principles-title">What the portfolio optimizes for.</h2>
       </div>
       <div class="principle-grid">
-        <p><strong>Define the grain.</strong> Every KPI should say what one row represents, what time it describes, and which dimensions may be aggregated safely.</p>
-        <p><strong>Fail closed.</strong> Unsupported protocol mappings, malformed inputs, and unavailable sources should not silently become plausible-looking data.</p>
-        <p><strong>Test behavior and data contracts.</strong> Invariants, integration tests, SQL execution, evaluation datasets, and CI matter more than screenshot coverage.</p>
-        <p><strong>State guarantees precisely.</strong> No vague exactly-once, live-telemetry, production-scale, business-impact, or model-accuracy claims without evidence.</p>
-        <p><strong>Use statistics for decisions.</strong> Confidence intervals, experiment integrity, leakage control, calibration, and validation strategy matter more than a single headline metric.</p>
-        <p><strong>Document limitations.</strong> A trustworthy analysis explains what the available data cannot answer as clearly as what it can.</p>
+        <p><strong>Define the grain.</strong> Money, attempts, inventory, assignments, and events are kept at the correct analytical level.</p>
+        <p><strong>Fail closed.</strong> Unsupported mappings, malformed live responses, and unavailable telemetry do not become plausible fake values.</p>
+        <p><strong>Test behavior and data contracts.</strong> CI, warehouse regressions, integration tests, and evaluation datasets matter more than screenshots.</p>
+        <p><strong>State guarantees precisely.</strong> At-least-once is not exactly-once; synthetic findings are not production findings; policy accuracy is not real-world model accuracy.</p>
+        <p><strong>Use statistics for decisions.</strong> Confidence intervals, SRM, CUPED, bootstrap uncertainty, power, calibration and expected cost are tied to explicit decisions.</p>
+        <p><strong>Document limitations.</strong> Every flagship explains what the available data or implementation cannot yet support.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Built as a truthful engineering and data case-study surface.</p>
+    <p>Built as a truthful engineering, analytics, and AI case-study surface.</p>
     <a href="https://github.com/soufianeelbiki1">github.com/soufianeelbiki1</a>
   </footer>
 </body>
