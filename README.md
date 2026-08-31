@@ -1,21 +1,27 @@
-# Engineering & Data Portfolio
+# Engineering project site
 
-A small index of the projects in this GitHub account. The repositories cover payment systems, operational tooling, analytics, experimentation, retail planning, RAG engineering and ML evaluation.
+Public project hub for Soufiane Elbiki's engineering repositories.
 
-## Projects
+Live site: https://soufiane-portfolio-delta.vercel.app
 
-| Project | Area | Main pieces |
-|---|---|---|
-| **AtlasPay** | Payments / backend | ISO 8583 + EMV, routing, timeout/reversal handling, PostgreSQL idempotency, double-entry ledger, transactional outbox, reconciliation, observability |
-| **Nexus** | Full stack / operations | Next.js + TypeScript, AtlasPay operational API, runtime validation, degraded/unavailable states, transaction and reconciliation views |
-| **AtlasAnalytics** | Payments analytics | DuckDB warehouse, payment/authorization grains, issuer and decline analysis, rolling baselines, risk thresholds, calibration, PSI |
-| **ExperimentLab** | Product experimentation | SRM, treatment effects, CUPED, bootstrap intervals, power/MDE planning, ship/hold decision rules |
-| **RetailIntel** | Retail analytics | margin and returns, supplier reliability, RFM/cohorts, SKU-day demand, forecast baseline, safety stock and reorder recommendations |
-| **AtlasRAG** | RAG / backend | durable ingestion, citations, abstention, rank fusion, reranking interface, regression evaluation, provider usage accounting |
-| **ForecastLab** | Applied ML | passport-photo rules, estimator interfaces, signal API, synthetic regression data, held-out evaluation tooling |
+The site focuses on payment systems, operational tooling, analytics, experimentation, retail planning, retrieval systems and ML evaluation. It includes direct browser demos for project outputs that can be published safely as deterministic static reports.
 
-## Notes
+## Browser demos
 
-The analytics repositories use generated data so the pipelines and tests are reproducible. AtlasPay is a payment-system simulation rather than a live processor. ForecastLab currently evaluates signals rather than claiming a finished raw-image model. Details and limitations live in each project README.
+- AtlasAnalytics risk threshold evaluation: `/demos/atlasanalytics-risk.html`
+- ExperimentLab experiment decision report: `/demos/experimentlab.html`
+- RetailIntel inventory dashboard is implemented on PR #5 and is kept out of the live-demo list until the repository state is merged and stable.
 
-The website in this repository provides a visual version of the same project list.
+## Project repositories
+
+- AtlasPay — payment-system simulation with durable idempotency, double-entry accounting, transactional outbox, reconciliation and network failure scenarios.
+- Nexus — Next.js/TypeScript operations console for AtlasPay.
+- AtlasAnalytics — DuckDB payments analytics and risk evaluation.
+- ExperimentLab — experiment validity, uncertainty, power and decision tooling.
+- RetailIntel — retail warehouse, forecasting baseline and replenishment decisions.
+- AtlasRAG — durable RAG ingestion, retrieval, citations and regression evaluation.
+- ForecastLab — passport-photo compliance policy and evaluation tooling.
+
+## Scope
+
+The data-oriented examples use generated data for reproducibility. AtlasPay is a simulation and does not process real money or connect to a live card network. ForecastLab does not claim real-world raw-image accuracy. The browser demos preserve those boundaries instead of presenting synthetic results as production evidence.
