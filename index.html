@@ -1,145 +1,126 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Soufiane Elbiki projects in payment systems, full-stack engineering, analytics and applied AI.">
-  <title>Soufiane Elbiki — Projects</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Soufiane Elbiki — backend systems, full-stack operations tooling, DevSecOps, analytics and applied AI projects.">
+<title>Soufiane Elbiki — Engineering Projects</title>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Go to top">SE</a>
-    <nav aria-label="Primary navigation">
-      <a href="#work">Engineering</a>
-      <a href="#analytics">Data</a>
-      <a href="#about">About</a>
-      <a href="https://github.com/soufianeelbiki1">GitHub</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top"><span class="brand-mark">SE</span><span>Soufiane Elbiki<small>Engineering projects</small></span></a>
+    <nav>
+      <a href="#systems">Systems</a><a href="#demos">Live demos</a><a href="#projects">Projects</a>
+      <a class="gh" href="https://github.com/soufianeelbiki1">GitHub ↗</a>
     </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top">
-      <p class="eyebrow">Backend · Full Stack · Data · Applied AI</p>
-      <h1>Projects built around real failure cases and testable behavior.</h1>
-      <p class="hero-copy">
-        I use these projects to explore payment processing, operational tooling, analytics,
-        experimentation and evaluation. Each repository includes runnable code and automated tests.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#work">Engineering projects</a>
-        <a class="button secondary" href="#analytics">Data projects</a>
-      </div>
-    </section>
-
-    <section class="section" id="work" aria-labelledby="work-title">
-      <div class="section-heading">
-        <p class="eyebrow">Engineering</p>
-        <h2 id="work-title">Systems and operational tooling</h2>
-      </div>
-
-      <article class="case-study featured">
-        <div>
-          <h3>AtlasPay</h3>
-          <p class="project-role">Payments · Backend · PostgreSQL</p>
-        </div>
-        <div class="case-grid">
-          <div>
-            <h4>Payment core</h4>
-            <p>ISO 8583 and EMV boundaries, routing, STAN/RRN correlation, duplicate handling, timeouts, late responses and reversal correlation.</p>
-          </div>
-          <div>
-            <h4>Durability</h4>
-            <p>PostgreSQL idempotency, append-only double-entry accounting, transactional outbox delivery and read-only reconciliation.</p>
-          </div>
-          <div>
-            <h4>Operations</h4>
-            <p>Prometheus/OpenTelemetry instrumentation and a protected snapshot API consumed by Nexus.</p>
-          </div>
-          <div>
-            <h4>Scope</h4>
-            <p>AtlasPay is a simulation and does not connect to a live card network or process real money.</p>
-          </div>
-        </div>
-        <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">Source →</a>
+  </div>
+</header>
+<main id="top">
+<section class="wrap hero">
+  <div>
+    <div class="kicker">Backend · Full Stack · DevSecOps · Data</div>
+    <h1>Building systems that stay <span class="gradient-text">understandable when they fail.</span></h1>
+    <p class="lead">Payment infrastructure, operator tooling, analytical decision systems and applied AI experiments — built with explicit behavior, reproducible data and automated checks.</p>
+    <div class="actions">
+      <a class="button primary" href="#demos">Open live demos ↓</a>
+      <a class="button secondary" href="https://github.com/soufianeelbiki1">Browse source ↗</a>
+    </div>
+  </div>
+  <aside class="hero-panel">
+    <div class="panel-head"><span class="panel-title">AtlasPay → Nexus · local system demo</span><span class="live-dot">● CI smoke-tested</span></div>
+    <div class="pipeline">
+      <div class="node"><strong>Payment request</strong><span>idempotency · amount validation</span></div><div class="arrow"></div>
+      <div class="node"><strong>AtlasPay</strong><span>ISO 8583 · routing · timeout / late response</span></div><div class="arrow"></div>
+      <div class="node"><strong>Durable state</strong><span>PostgreSQL · ledger · transactional outbox</span></div><div class="arrow"></div>
+      <div class="node"><strong>Nexus operator console</strong><span>network observations · incidents · reconciliation</span></div>
+    </div>
+  </aside>
+</section>
+<div class="metrics-row">
+  <div class="wrap metrics-inner">
+    <div class="metric"><strong>7</strong><span>substantive repositories</span></div>
+    <div class="metric"><strong>CI</strong><span>tests, builds & security gates</span></div>
+    <div class="metric"><strong>Failure paths</strong><span>timeouts, duplicates, stale data</span></div>
+    <div class="metric"><strong>Reproducible</strong><span>synthetic data where appropriate</span></div>
+  </div>
+</div>
+<section class="section" id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">Featured system</div><h2>AtlasPay + Nexus</h2></div>
+      <p class="section-copy">The strongest end-to-end engineering story in this site: payment state transitions and network failure scenarios on the backend, surfaced through an operator console.</p>
+    </div>
+    <div class="featured">
+      <article class="system-card">
+        <div class="role">PAYMENTS · BACKEND · DISTRIBUTED-SYSTEMS PRACTICE</div>
+        <h3>AtlasPay</h3>
+        <p>FastAPI payment simulation with durable idempotency, append-only double-entry accounting, transactional outbox delivery, reconciliation, ISO 8583 boundaries and deterministic network failure scenarios.</p>
+        <div class="chips"><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">ISO 8583</span><span class="chip">EMV</span><span class="chip">OpenTelemetry</span><span class="chip">Prometheus</span></div>
+        <div class="flow"><span>authorize</span><b>→</b><span>route</span><b>→</b><span>timeout / response</span><b>→</b><span>ledger</span><b>→</b><span>outbox</span><b>→</b><span>reconcile</span></div>
+        <div class="demo-links"><a class="text-link" href="https://github.com/soufianeelbiki1/AtlasPay">AtlasPay source ↗</a><a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Nexus source ↗</a></div>
       </article>
-
-      <div class="project-grid">
-        <article class="case-study">
-          <h3>Nexus</h3>
-          <p class="project-role">Next.js · TypeScript · Operations UI</p>
-          <p>An operator console for AtlasPay with authenticated API access, runtime contract validation, transaction filtering and reconciliation views.</p>
-          <p>When live mode is configured, API or validation failures are shown as unavailable data instead of falling back to fixture values.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Source →</a>
-        </article>
-
-        <article class="case-study">
-          <h3>AtlasRAG</h3>
-          <p class="project-role">FastAPI · PostgreSQL · Retrieval</p>
-          <p>RAG backend with deterministic ingestion, durable document/chunk storage, citation-aware responses, weak-evidence abstention, rank fusion, reranking hooks and regression evaluation.</p>
-          <p>Semantic/vector retrieval is still planned; the current repository does not report vector-search quality.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Source →</a>
-        </article>
-
-        <article class="case-study">
-          <h3>ForecastLab</h3>
-          <p class="project-role">Python · FastAPI · ML evaluation</p>
-          <p>Passport-photo compliance rules with estimator interfaces, per-rule evidence, synthetic regression datasets and held-out evaluation tooling.</p>
-          <p>The current API evaluates signals; raw-image inference and measured real-world accuracy are not implemented yet.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/ForecastLab">Source →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section contrast" id="analytics" aria-labelledby="analytics-title">
-      <div class="section-heading">
-        <p class="eyebrow">Data</p>
-        <h2 id="analytics-title">Analytics and decision models</h2>
-        <p>These repositories use generated data so the warehouse builds and tests are reproducible.</p>
-      </div>
-
-      <div class="project-grid">
-        <article class="case-study">
-          <h3>AtlasAnalytics</h3>
-          <p class="project-role">DuckDB · SQL · Risk analysis</p>
-          <p>Payments warehouse with separate payment and authorization-attempt grains, issuer/decline marts, rolling baselines, chronological risk evaluation, expected-cost thresholds, calibration and PSI monitoring.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/AtlasAnalytics">Source →</a>
-        </article>
-
-        <article class="case-study">
-          <h3>ExperimentLab</h3>
-          <p class="project-role">A/B testing · Statistics · DuckDB</p>
-          <p>Experiment assignment checks, Sample Ratio Mismatch, treatment-effect confidence intervals, CUPED, bootstrap uncertainty, power/MDE planning and explicit ship/hold rules.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/ExperimentLab">Source →</a>
-        </article>
-
-        <article class="case-study">
-          <h3>RetailIntel</h3>
-          <p class="project-role">Retail analytics · Forecasting · Inventory</p>
-          <p>Retail warehouse with margin and returns, supplier reliability, RFM/cohorts, dense SKU-day demand, a time-safe forecast baseline, safety stock and reorder recommendations.</p>
-          <p>Promotion comparisons are descriptive rather than causal.</p>
-          <a class="text-link" href="https://github.com/soufianeelbiki1/RetailIntel">Source →</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="section-heading">
-        <p class="eyebrow">About</p>
-        <h2 id="about-title">What I am working on now</h2>
-      </div>
-      <div class="role-grid">
-        <article><h3>AtlasPay + Nexus</h3><p>A compact end-to-end demo with seeded success, duplicate, timeout and reversal scenarios.</p></article>
-        <article><h3>Delivery and security</h3><p>More CI/CD, dependency/security scanning, container builds and observable local deployments where they add practical value.</p></article>
-        <article><h3>Data dashboards</h3><p>Interactive views backed directly by the analytics warehouses rather than screenshots or manually copied numbers.</p></article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <a href="https://github.com/soufianeelbiki1">github.com/soufianeelbiki1</a>
-  </footer>
-</body>
-</html>
+      <aside class="system-card">
+        <div class="role">WHAT THE DEMO PROVES</div>
+        <div class="card-list">
+          <div class="mini"><strong>Deterministic network scenarios</strong><span>Accepted, timeout, late-response and transport-failure observations are seeded for repeatable demos.</span></div>
+          <div class="mini"><strong>Protected operational snapshot</strong><span>Nexus validates authenticated AtlasPay data and fails closed instead of silently showing fixture values.</span></div>
+          <div class="mini"><strong>Operational evidence</strong><span>Ledger state, outbox backlog, reconciliation and network disposition counts are visible together.</span></div>
+          <div class="mini"><strong>Containerized run path</strong><span>A Compose stack and cross-repository smoke test exercise the integrated environment.</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section" id="demos">
+  <div class="wrap">
+    <div class="section-head">
+      <div><div class="eyebrow">One-click browser demos</div><h2>Open the work, not just the README.</h2></div>
+      <p class="section-copy">These pages are static, public and backed by the same deterministic assumptions documented in their repositories. No local setup is required.</p>
+    </div>
+    <div class="demo-grid">
+      <article class="demo-card">
+        <div class="demo-top"><span class="demo-tag">AtlasAnalytics</span><span class="status">LIVE</span></div>
+        <h3>Risk threshold evaluation</h3>
+        <p>Chronological holdout analysis with threshold trade-offs, calibration and PSI monitoring.</p>
+        <div class="demo-preview"><div class="preview-row"><span>Selected threshold</span><strong>0.55</strong></div><div class="preview-row"><span>Holdout fraud rate</span><strong>14.3%</strong></div><div class="preview-row"><span>PSI</span><strong>0.774</strong></div></div>
+        <div class="demo-links"><a class="text-link" href="/demos/atlasanalytics-risk.html">Open live demo →</a><a class="text-link" href="https://github.com/soufianeelbiki1/AtlasAnalytics">Source ↗</a></div>
+      </article>
+      <article class="demo-card">
+        <div class="demo-top"><span class="demo-tag">ExperimentLab</span><span class="status">LIVE</span></div>
+        <h3>Experiment decision report</h3>
+        <p>Sample Ratio Mismatch, conversion interval, revenue bootstrap, guardrail evidence and an explicit ship/hold decision.</p>
+        <div class="demo-preview"><div class="preview-row"><span>Control</span><strong>12.1%</strong></div><div class="preview-row"><span>Treatment</span><strong>14.9%</strong></div><div class="preview-row"><span>Decision</span><strong>SHIP</strong></div></div>
+        <div class="demo-links"><a class="text-link" href="/demos/experimentlab.html">Open live demo →</a><a class="text-link" href="https://github.com/soufianeelbiki1/ExperimentLab">Source ↗</a></div>
+      </article>
+      <article class="demo-card">
+        <div class="demo-top"><span class="demo-tag">RetailIntel</span><span class="status pending">GREEN PR</span></div>
+        <h3>Inventory decision dashboard</h3>
+        <p>Replenishment priorities, demand volatility, safety stock, reorder points and supplier reliability. Promotion comparisons remain descriptive rather than causal.</p>
+        <div class="demo-preview"><div class="preview-row"><span>Data</span><strong>Synthetic</strong></div><div class="preview-row"><span>CI</span><strong>Green</strong></div><div class="preview-row"><span>State</span><strong>PR #5</strong></div></div>
+        <div class="demo-links"><a class="text-link" href="https://github.com/soufianeelbiki1/RetailIntel/pull/5">View dashboard PR ↗</a><a class="text-link" href="https://github.com/soufianeelbiki1/RetailIntel">Source ↗</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Project index</div><h2>Engineering depth across different problem shapes.</h2></div><p class="section-copy">Each project is scoped honestly: simulations are labeled as simulations, generated datasets are labeled synthetic, and unmeasured production claims are left out.</p></div>
+    <div class="projects">
+      <article class="card"><div class="card-head"><h3>Nexus</h3><span class="num">01</span></div><p>Next.js/TypeScript operations console for AtlasPay with runtime contract validation, authenticated live mode, transaction filtering and explicit degraded states.</p><a class="text-link" href="https://github.com/soufianeelbiki1/Nexus">Source ↗</a></article>
+      <article class="card"><div class="card-head"><h3>AtlasRAG</h3><span class="num">02</span></div><p>FastAPI retrieval service with deterministic ingestion, stable chunk IDs, hybrid rank fusion, citation-aware answers, abstention and regression evaluation. Semantic/vector retrieval is still planned.</p><a class="text-link" href="https://github.com/soufianeelbiki1/AtlasRAG">Source ↗</a></article>
+      <article class="card"><div class="card-head"><h3>ForecastLab</h3><span class="num">03</span></div><p>Passport-photo compliance policy layer with per-rule evidence, estimator interfaces and synthetic evaluation tooling. Raw-image inference remains explicit future work.</p><a class="text-link" href="https://github.com/soufianeelbiki1/ForecastLab">Source ↗</a></article>
+      <article class="card"><div class="card-head"><h3>RetailIntel</h3><span class="num">04</span></div><p>DuckDB retail warehouse covering demand history, safety stock, reorder recommendations, supplier reliability, margins, RFM and cohorts.</p><a class="text-link" href="https://github.com/soufianeelbiki1/RetailIntel">Source ↗</a></article>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Engineering habits</div><h2>Evidence over decoration.</h2></div></div>
+    <div class="proof-grid"><article class="proof"><strong>Failure behavior first</strong><p>Timeouts, duplicates, late responses, unavailable upstreams and poison/backlog states are modeled instead of only showing happy paths.</p></article><article class="proof"><strong>Automated checks</strong><p>Tests, type checks, production builds, container smoke tests and dependency/security checks are used where they materially prove behavior.</p></article><article class="proof"><strong>Truthful boundaries</strong><p>Synthetic data, simulations, reference implementations and unmeasured real-world accuracy are clearly separated from production claims.</p></article></div>
+  </div>
+</section>
+</main>
+<footer class="wrap footer"><span>Soufiane Elbiki · Engineering projects</span><span><a href="https://github.com/soufianeelbiki1">GitHub</a> · Public demos on Vercel</span></footer>
+</body></html>
