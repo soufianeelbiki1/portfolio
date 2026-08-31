@@ -17,7 +17,7 @@ The site focuses on payment systems, operational tooling, analytics, experimenta
 
 ## Project repositories
 
-- AtlasPay — Python payment-system simulation plus a Java 21/Spring Boot 3 authorization boundary, durable idempotency, double-entry accounting, transactional outbox, reconciliation and network failure scenarios.
+- AtlasPay — Python payment-system simulation plus a Java 21/Spring Boot 3 authorization boundary, durable idempotency, double-entry accounting, transactional outbox, restartable Spring Batch reconciliation and network failure scenarios.
 - Nexus — Next.js/TypeScript operations console for AtlasPay.
 - AtlasAnalytics — DuckDB payments analytics and risk evaluation.
 - ExperimentLab — experiment validity, uncertainty, power and decision tooling.
@@ -27,4 +27,4 @@ The site focuses on payment systems, operational tooling, analytics, experimenta
 
 ## Scope
 
-The data-oriented examples use generated data for reproducibility. AtlasPay is a simulation and does not process real money or connect to a live card network. The Java module documents at-least-once event semantics and is not a live issuer integration. AtlasRAG and ForecastLab retain explicit evaluation limits rather than presenting synthetic results as production evidence.
+The data-oriented examples use generated data for reproducibility. AtlasPay is a simulation and does not process real money or connect to a live card network. The Java module documents at-least-once event semantics, restartable reconciliation batches and is not a live issuer integration. AtlasRAG and ForecastLab retain explicit evaluation limits rather than presenting synthetic results as production evidence.
