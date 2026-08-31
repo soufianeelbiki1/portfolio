@@ -32,12 +32,10 @@ class PortfolioSiteTests(unittest.TestCase):
         cls.parser = PortfolioParser()
         cls.parser.feed(cls.html)
 
-    def test_required_case_study_sections_exist(self) -> None:
-        self.assertTrue(
-            {"main", "top", "work", "analytics", "roles", "principles"} <= self.parser.ids
-        )
+    def test_required_sections_exist(self) -> None:
+        self.assertTrue({"main", "top", "work", "analytics", "about"} <= self.parser.ids)
 
-    def test_all_cv_flagship_repositories_are_linked(self) -> None:
+    def test_project_repositories_are_linked(self) -> None:
         expected = {
             "https://github.com/soufianeelbiki1/AtlasPay",
             "https://github.com/soufianeelbiki1/AtlasAnalytics",
@@ -53,43 +51,44 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn("styles.css", self.parser.stylesheets)
         self.assertTrue((ROOT / "styles.css").is_file())
 
-    def test_engineering_claim_boundaries_are_present(self) -> None:
+    def test_core_technical_topics_are_present(self) -> None:
         lowered = self.html.lower()
-        self.assertIn("engineering simulation", lowered)
-        self.assertIn("at-least-once", lowered)
-        self.assertIn("iso 8583 → canonical → iso 20022", lowered)
-        self.assertIn("fail-closed", lowered)
-        self.assertIn("measured semantic/vector retrieval remains future work", lowered)
-        self.assertIn("no icao certification", lowered)
+        for expected in (
+            "iso 8583",
+            "double-entry",
+            "transactional outbox",
+            "sample ratio mismatch",
+            "cuped",
+            "psi monitoring",
+            "safety stock",
+            "citation-aware",
+            "runtime contract validation",
+        ):
+            self.assertIn(expected, lowered)
 
-    def test_analytics_projects_are_present_as_implemented_work(self) -> None:
+    def test_scope_notes_are_present(self) -> None:
         lowered = self.html.lower()
-        self.assertIn("three dedicated analytics flagships are now implemented", lowered)
-        self.assertIn("atlasanalytics", lowered)
-        self.assertIn("experimentlab", lowered)
-        self.assertIn("retailintel", lowered)
-        self.assertIn("sample ratio mismatch", lowered)
-        self.assertIn("minimum-detectable-effect", lowered)
-        self.assertIn("cost-optimal threshold selection", lowered)
-        self.assertIn("psi distribution monitoring", lowered)
-        self.assertIn("dense sku × calendar-day demand spine", lowered)
-        self.assertIn("95% service-level assumption", lowered)
+        self.assertIn("does not connect to a live card network", lowered)
+        self.assertIn("semantic/vector retrieval is still planned", lowered)
+        self.assertIn("raw-image inference", lowered)
+        self.assertIn("promotion comparisons are descriptive rather than causal", lowered)
+        self.assertIn("generated data", lowered)
 
-    def test_data_hiring_lenses_are_present(self) -> None:
-        self.assertIn("Data Analyst", self.html)
-        self.assertIn("Analytics Engineer", self.html)
-        self.assertIn("Data Scientist", self.html)
-        self.assertIn("Product Analytics", self.html)
-        self.assertIn("Commercial Analytics", self.html)
-
-    def test_synthetic_and_causal_boundaries_are_visible(self) -> None:
+    def test_meta_portfolio_language_does_not_return(self) -> None:
         lowered = self.html.lower()
-        self.assertIn("synthetic data", lowered)
-        self.assertIn("promotion analysis is descriptive, not causal", lowered)
-        self.assertIn("no production fraud-loss", lowered)
-        self.assertIn("statistical significance is separated from business impact", lowered)
+        for forbidden in (
+            "flagship",
+            "portfolio signal",
+            "hiring evidence",
+            "cv-ready",
+            "claim boundary",
+            "truth boundary",
+            "next highest-value",
+            "operating brief",
+        ):
+            self.assertNotIn(forbidden, lowered)
 
-    def test_no_placeholder_or_unverified_demo_links(self) -> None:
+    def test_no_placeholder_or_local_links(self) -> None:
         lowered = self.html.lower()
         for forbidden in ("lorem ipsum", "example.com", "localhost", 'href="#"'):
             self.assertNotIn(forbidden, lowered)
