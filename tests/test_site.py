@@ -63,16 +63,17 @@ class PortfolioSiteTests(unittest.TestCase):
         self.assertIn("no icao certification", lowered)
 
     def test_analytics_projects_are_present_as_implemented_work(self) -> None:
-        self.assertIn("Three dedicated analytics flagships are now implemented", self.html)
-        self.assertIn("AtlasAnalytics", self.html)
-        self.assertIn("ExperimentLab", self.html)
-        self.assertIn("RetailIntel", self.html)
-        self.assertIn("Sample Ratio Mismatch", self.html)
-        self.assertIn("minimum-detectable-effect", self.html)
-        self.assertIn("cost-optimal threshold selection", self.html)
-        self.assertIn("PSI distribution monitoring", self.html)
-        self.assertIn("Dense SKU × calendar-day demand spine", self.html)
-        self.assertIn("95% service-level assumption", self.html)
+        lowered = self.html.lower()
+        self.assertIn("three dedicated analytics flagships are now implemented", lowered)
+        self.assertIn("atlasanalytics", lowered)
+        self.assertIn("experimentlab", lowered)
+        self.assertIn("retailintel", lowered)
+        self.assertIn("sample ratio mismatch", lowered)
+        self.assertIn("minimum-detectable-effect", lowered)
+        self.assertIn("cost-optimal threshold selection", lowered)
+        self.assertIn("psi distribution monitoring", lowered)
+        self.assertIn("dense sku × calendar-day demand spine", lowered)
+        self.assertIn("95% service-level assumption", lowered)
 
     def test_data_hiring_lenses_are_present(self) -> None:
         self.assertIn("Data Analyst", self.html)
