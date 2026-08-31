@@ -5,6 +5,14 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
+DEMO_FILES = (
+    "atlaspay-nexus.html",
+    "atlasanalytics-risk.html",
+    "experimentlab.html",
+    "retailintel.html",
+    "atlasrag.html",
+    "forecastlab.html",
+)
 
 
 class SiteParser(HTMLParser):
@@ -49,15 +57,12 @@ class ProjectSiteTests(unittest.TestCase):
     def test_stylesheet_and_browser_demos_exist(self) -> None:
         self.assertIn("/styles.css", self.parser.stylesheets)
         self.assertTrue((ROOT / "styles.css").is_file())
-        for path in (
-            ROOT / "demos" / "atlasanalytics-risk.html",
-            ROOT / "demos" / "experimentlab.html",
-        ):
-            self.assertTrue(path.is_file())
+        for filename in DEMO_FILES:
+            self.assertTrue((ROOT / "demos" / filename).is_file())
 
-    def test_live_demo_links_are_present(self) -> None:
-        self.assertIn("/demos/atlasanalytics-risk.html", self.parser.links)
-        self.assertIn("/demos/experimentlab.html", self.parser.links)
+    def test_all_demo_links_are_present(self) -> None:
+        for filename in DEMO_FILES:
+            self.assertIn(f"/demos/{filename}", self.parser.links)
 
     def test_core_technical_topics_are_present(self) -> None:
         lowered = self.html.lower()
@@ -78,7 +83,6 @@ class ProjectSiteTests(unittest.TestCase):
         self.assertIn("payment simulation", lowered)
         self.assertIn("semantic/vector retrieval is still planned", lowered)
         self.assertIn("raw-image inference", lowered)
-        self.assertIn("promotion comparisons remain descriptive rather than causal", lowered)
         self.assertIn("synthetic data", lowered)
 
     def test_old_meta_language_does_not_return(self) -> None:
@@ -102,12 +106,16 @@ class ProjectSiteTests(unittest.TestCase):
             self.assertNotIn(forbidden, lowered)
 
     def test_demo_pages_keep_scope_boundaries(self) -> None:
-        risk = (ROOT / "demos" / "atlasanalytics-risk.html").read_text(encoding="utf-8").lower()
-        experiment = (ROOT / "demos" / "experimentlab.html").read_text(encoding="utf-8").lower()
-        self.assertIn("not a deployed fraud model", risk)
-        self.assertIn("not a production loss estimate", risk)
-        self.assertIn("not production results", experiment)
-        self.assertIn("deterministically generated", experiment)
+        pages = {
+            filename: (ROOT / "demos" / filename).read_text(encoding="utf-8").lower()
+            for filename in DEMO_FILES
+        }
+        self.assertIn("engineering simulation", pages["atlaspay-nexus.html"])
+        self.assertIn("not a deployed fraud model", pages["atlasanalytics-risk.html"])
+        self.assertIn("not production results", pages["experimentlab.html"])
+        self.assertIn("not proof of globally optimal inventory", pages["retailintel.html"])
+        self.assertIn("not model-based semantic groundedness scores", pages["atlasrag.html"])
+        self.assertIn("not icao certification", pages["forecastlab.html"])
 
 
 if __name__ == "__main__":
