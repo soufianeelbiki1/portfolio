@@ -6,6 +6,18 @@ Live site: https://soufiane-portfolio-delta.vercel.app
 
 The site focuses on payment systems, operational tooling, analytics, experimentation, retail planning, retrieval systems and ML evaluation. Public browser pages make deterministic project scenarios viewable without local setup.
 
+## Start with three engineering case studies
+
+Read the [reviewer guide](docs/CASE_STUDIES.md) for the problem, design decisions,
+failure-path tests, reproducible run instructions and limitations of:
+
+1. AtlasPay + Nexus: payment retries and operator visibility, including the separate Java/Spring Boot authorization boundary.
+2. RetailIntel: inventory decisions with measured forecast error, not invented savings.
+3. AtlasRAG: evidence decisions and citation regression tests without paid model calls.
+
+The guide pins evidence to source revisions and distinguishes unmerged review
+branches from the published website. A static snapshot is not a live backend.
+
 ## Browser demos
 
 - AtlasPay + Nexus integrated-system walkthrough: `/demos/atlaspay-nexus.html`
