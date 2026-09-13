@@ -5,10 +5,11 @@ deployments, production adoption or commercial results. All payment scenarios
 and retail inputs are synthetic. The AI demonstration uses deterministic
 retrieval and extractive answers, not a paid model.
 
-Evidence reviewed on September 12, 2026. The linked improvements are **unmerged
-review branches**. Their passing checks do not mean the published portfolio or
-production services include them. Links below pin source revisions so the
-described behavior remains inspectable after a branch changes.
+Evidence reviewed on September 13, 2026. AtlasRAG's metric correction is merged
+to main. AtlasPay/Nexus and RetailIntel improvements remain on review branches;
+AtlasPay #39 is integrated into #38, not main. Passing checks do not mean the
+published portfolio or production services include those branches. Links below
+pin source revisions so the behavior remains inspectable after a branch changes.
 
 ## 1. AtlasPay + Nexus: making payment failures inspectable
 
@@ -27,6 +28,8 @@ prove the entire Python-to-Nexus system runs through Java.
 
 - Bind an idempotency key to the original payment, issuer, amount and currency.
   An identical retry returns the stored decision; a changed request conflicts.
+- Validate input before consulting that key. Rejected input must not consume
+  the key, and an existing decision must not turn an invalid retry into a success.
 - Let a PostgreSQL unique constraint arbitrate concurrent first requests.
   `ON CONFLICT DO NOTHING` chooses a winner; a subsequent read under explicit
   READ COMMITTED isolation sees the committed decision. An in-process lock
@@ -46,7 +49,9 @@ prove the entire Python-to-Nexus system runs through Java.
   and one conflict; an outbox write failure rolls back the decision.
 - [HTTP-to-PostgreSQL tests][java-http]: real HTTP retries, HTTP 409 conflict,
   HTTP 401 without credentials, HTTP 400 for zero amount, and a persisted
-  simulated business decline returned with HTTP 200.
+  simulated business decline returned with HTTP 200. Six invalid-input sequences
+  verify rejection, correction with the same key, invalid retry and unchanged
+  persistence; further cases check 128/129-character boundaries.
 - [Nexus outage/recovery workflow][nexus-smoke]: an authenticated local stack,
   upstream shutdown, unavailable output without fixture fallback, and recovery.
 
@@ -54,7 +59,8 @@ prove the entire Python-to-Nexus system runs through Java.
 
 Follow the [pinned Java local walkthrough][java-walkthrough] for Java 21,
 Maven and disposable local PostgreSQL. The Java CI run recorded
-[14 passing tests with no skips][java-ci]. Separately, follow the
+[36 passing tests with no skips][java-ci], including 12 HTTP/database cases,
+three concurrency/rollback cases and 14 MVC cases. Separately, follow the
 [Nexus local demo instructions][nexus-walkthrough] for the integrated Python
 stack. Dependency downloads are required; no hosted database or issuer is needed.
 
@@ -64,8 +70,9 @@ READ COMMITTED, and what changes if outbox delivery is retried after persistence
 **Limits:** The tests cover a bounded authorization contract, not throughput or
 distributed failover. The Java HTTP tests create only the outbox columns this
 boundary writes; they do not run a publisher. Identifier/currency validation
-improvements in [AtlasPay #39][java-validation] are a separate branch, not part
-of this pinned Java revision. Browser/mobile verification of Nexus is pending.
+from [AtlasPay #39][java-validation] is now integrated into the #38 review branch
+and included in this pinned revision. It is not on main or deployed.
+Browser/mobile verification of Nexus is pending.
 
 ## 2. RetailIntel: inventory recommendations with forecast evidence
 
@@ -169,7 +176,9 @@ while citation precision is poor, and what evaluation would a real generator nee
 **Limits:** No implemented semantic/vector retriever, no tenant isolation, and
 no claim of general semantic groundedness. Supported-answer rate checks text
 containment in cited evidence; it is not human evaluation of answer quality.
-The naming correction in [AtlasRAG #11][rag-pr] is unmerged.
+The naming correction in [AtlasRAG #11][rag-pr] is merged to main; the
+[post-merge checks][rag-ci] passed all 42 tests on Python 3.11 and 3.12 with
+PostgreSQL. This is test evidence, not a hosted deployment.
 
 ## Review order and release status
 
@@ -177,15 +186,17 @@ Start with one design decision, read its implementation and failure test, then
 reproduce it locally. The public site's HTML reports are snapshots; they must
 not be used as proof of the review branches' current runtime behavior.
 
-No new cloud deployment accompanies this guide. Railway's zero-cost eligibility
-is unverified; Vercel Hobby's commercial-use restriction still applies. Hosting
-choices, browser verification and publication remain separate release gates.
+No new cloud deployment accompanies this guide. Railway's finite trial was
+confirmed by the user's screenshot; current allowance and release side effects
+still require verification. Vercel Hobby's commercial-use restriction remains a
+gate for freelance-services marketing. Hosting choices, browser verification and
+publication remain separate release gates.
 
-[java-service]: https://github.com/soufianeelbiki1/AtlasPay/blob/2b3a606d1697f4e323fe385fa0cf914d8f6f3cfe/java-service/src/main/java/com/atlaspay/AuthorizationService.java
-[java-concurrency]: https://github.com/soufianeelbiki1/AtlasPay/blob/2b3a606d1697f4e323fe385fa0cf914d8f6f3cfe/java-service/src/test/java/com/atlaspay/AuthorizationPostgresTest.java
-[java-http]: https://github.com/soufianeelbiki1/AtlasPay/blob/2b3a606d1697f4e323fe385fa0cf914d8f6f3cfe/java-service/src/test/java/com/atlaspay/AuthorizationHttpPostgresTest.java
-[java-walkthrough]: https://github.com/soufianeelbiki1/AtlasPay/blob/2b3a606d1697f4e323fe385fa0cf914d8f6f3cfe/java-service/docs/LOCAL_WALKTHROUGH.md
-[java-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34709914274
+[java-service]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/main/java/com/atlaspay/AuthorizationService.java
+[java-concurrency]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/test/java/com/atlaspay/AuthorizationPostgresTest.java
+[java-http]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/test/java/com/atlaspay/AuthorizationHttpPostgresTest.java
+[java-walkthrough]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/docs/LOCAL_WALKTHROUGH.md
+[java-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34761993013
 [java-validation]: https://github.com/soufianeelbiki1/AtlasPay/pull/39
 [nexus-smoke]: https://github.com/soufianeelbiki1/Nexus/blob/d060f45a28d10de342bb6861599de5c99f76bed3/.github/workflows/demo-smoke.yml
 [nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/d060f45a28d10de342bb6861599de5c99f76bed3/docs/LOCAL_DEMO.md
@@ -200,3 +211,4 @@ choices, browser verification and publication remain separate release gates.
 [rag-report]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/app/demo_report.py
 [rag-readme]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/README.md
 [rag-pr]: https://github.com/soufianeelbiki1/AtlasRAG/pull/11
+[rag-ci]: https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34744313209
