@@ -54,6 +54,8 @@ prove the entire Python-to-Nexus system runs through Java.
   persistence; further cases check 128/129-character boundaries.
 - [Nexus outage/recovery workflow][nexus-smoke]: an authenticated local stack,
   upstream shutdown, unavailable output without fixture fallback, and recovery.
+- [Nexus combined CI][nexus-ci]: a clean Node 24 install, 21 tests, production
+  build, non-root container, dependency audit and runtime smoke checks.
 
 ### Reproduce and discuss
 
@@ -72,7 +74,9 @@ distributed failover. The Java HTTP tests create only the outbox columns this
 boundary writes; they do not run a publisher. Identifier/currency validation
 from [AtlasPay #39][java-validation] is now integrated into the #38 review branch
 and included in this pinned revision. It is not on main or deployed.
-Browser/mobile verification of Nexus is pending.
+The [combined preview][nexus-preview] rendered live authenticated data in a real
+1363×936 browser without horizontal overflow, and a reload advanced its producer
+timestamp. Mobile layout and the conditional transaction filter remain unverified.
 
 ## 2. RetailIntel: inventory recommendations with forecast evidence
 
@@ -198,8 +202,10 @@ publication remain separate release gates.
 [java-walkthrough]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/docs/LOCAL_WALKTHROUGH.md
 [java-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34761993013
 [java-validation]: https://github.com/soufianeelbiki1/AtlasPay/pull/39
-[nexus-smoke]: https://github.com/soufianeelbiki1/Nexus/blob/d060f45a28d10de342bb6861599de5c99f76bed3/.github/workflows/demo-smoke.yml
-[nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/d060f45a28d10de342bb6861599de5c99f76bed3/docs/LOCAL_DEMO.md
+[nexus-smoke]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/.github/workflows/demo-smoke.yml
+[nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/docs/LOCAL_DEMO.md
+[nexus-ci]: https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889919
+[nexus-preview]: https://nexus-mchodvzdz-soufiane15.vercel.app/
 [retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/src/retailintel/sql/marts/forecast_evaluation.sql
 [retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_forecast_evaluation.py
 [retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_evaluation_report.py
