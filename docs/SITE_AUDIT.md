@@ -51,7 +51,10 @@ experience, production adoption, benchmark numbers, client testimonials or a
 
 Netlify Free remains a candidate pending account access and exact plan/settings
 verification. Vercel Hobby commercial use remains unresolved for freelance
-service marketing. Railway releases remain held while billing/quota are unknown.
+service marketing. The 2026-09-12 Railway screenshot now confirms the existing
+trial plan; remaining allowance and release side effects must be checked before
+deployment. See PORTFOLIO_PROGRESS.md for current gates; the audit findings above
+refer to the pinned source revision, not later branches.
 No paid domains, functions, models, APIs or cloud resources. Verify desktop and
 mobile layout, keyboard navigation, contact links and demo interactions in a
 supported browser before publishing UI changes.
