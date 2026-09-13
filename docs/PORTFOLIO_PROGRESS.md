@@ -1,6 +1,14 @@
 # Recruiter-readiness backlog and evidence
 
-Updated: 2026-09-12. Positioning: backend-first full-stack/platform engineering; Java/Spring Boot, TypeScript/Next.js, PostgreSQL, reliability and data workflows. Budget: zero additional spend. Project simulations and synthetic data must remain explicitly labelled.
+Updated: 2026-09-13. Positioning: backend-first full-stack/platform engineering; Java/Spring Boot, TypeScript/Next.js, PostgreSQL, reliability and data workflows. Budget: zero additional spend. Project simulations and synthetic data must remain explicitly labelled.
+
+## Current integration decision (2026-09-13)
+
+Portfolio #10 changes only this log, the source audit and offline navigation tests. It does not change the rendered site or cloud configuration. The repository is public, its only workflow runs standard ubuntu-latest Python checks, and the known Vercel portfolio project exposes no GitHub connection. Source-only integration is independent of UI/browser and hosting-release gates; merge after exact-head CI and review, without deploying.
+
+The user's matching Railway project screenshot confirms an existing Trial plan with credit remaining (observed 2026-09-12, not a live quota reading). Earlier entries saying the plan is unknown are historical and superseded. Credit expiry still prevents promising permanent hosting; no paid upgrade or new trial is authorised. The screenshot itself is not committed. No Railway service or deployment is changed in this integration.
+
+Next priority: separate or verify portfolio #11's presentation work so the revision-pinned case studies can reach main; recover supported desktop/mobile/contact verification. Do not block independent documentation/tests on unrelated cloud publishing. AtlasPay #37 remains open with passing checks; Nexus #25 remains open with dependency failures, addressed separately by #26.
 
 ## Progress / evidence
 
@@ -13,7 +21,7 @@ Updated: 2026-09-12. Positioning: backend-first full-stack/platform engineering;
 
 1. Inspect latest PR heads, diffs, checks and review comments before writes; do not create duplicate fix PRs. No active-run overlap.
 2. Never bypass protected workflow approvals or required checks. Recheck exact head SHA before merging.
-3. Railway billing and quota remain unverified; historical main tracking had checkSuites=false. Do not merge AtlasPay into an unverified auto-deployment path or change/shut down existing infrastructure.
+3. Railway trial identity is confirmed by the user's 2026-09-12 screenshot of the known project: finite remaining trial credit and two services online. This resolves the previously unknown plan, not permanent free hosting. Recheck remaining allowance and deployment side effects before AtlasPay merges (main auto-deploys with checkSuites=false). Never upgrade, create billable resources, or shut down infrastructure without authority.
 4. Vercel team remains Hobby and Nexus project remains Node 24 (checked 2026-09-12). Personal-demo previews do not establish eligibility for a commercial freelance-services site. [Hobby rules](https://vercel.com/docs/plans/hobby) restrict use to non-commercial personal projects; verify a commercial-compatible free static route before publishing service marketing. No upgrades, trials, paid calls, paid resources or domains.
 5. A possible Netlify Free route was checked on 2026-09-12: the official pricing page lists $0 forever with a 300-credit monthly hard limit and says auto-recharge is off by default; credits meter production deploys, web requests, bandwidth and functions. It is a candidate only until Soufiane connects an account and we confirm the account’s exact terms/settings, disable/keep auto-recharge off, and review the deploy before publishing. Do not use functions, database, AI, forms, or extra domains for the static portfolio.
 6. Deployment READY is not end-to-end proof. Test source unavailable/recovery states, credentials staying server-side, and key interactions. Any UI change requires desktop/mobile browser and accessibility verification.
