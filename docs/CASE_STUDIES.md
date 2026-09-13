@@ -7,9 +7,10 @@ retrieval and extractive answers, not a paid model.
 
 Evidence reviewed on September 13, 2026. AtlasRAG's metric correction is merged
 to main. AtlasPay/Nexus and RetailIntel improvements remain on review branches;
-AtlasPay #39 is integrated into #38, not main. Passing checks do not mean the
-published portfolio or production services include those branches. Links below
-pin source revisions so the behavior remains inspectable after a branch changes.
+AtlasPay #37 and #39 are integrated into #38, not main. Passing checks do not
+mean the published portfolio or production services include those branches.
+Links below pin source revisions so the behavior remains inspectable after a
+branch changes.
 
 ## 1. AtlasPay + Nexus: making payment failures inspectable
 
@@ -52,6 +53,9 @@ prove the entire Python-to-Nexus system runs through Java.
   simulated business decline returned with HTTP 200. Six invalid-input sequences
   verify rejection, correction with the same key, invalid retry and unchanged
   persistence; further cases check 128/129-character boundaries.
+- [Flagship README][atlaspay-readme]: reviewer-oriented Java navigation, direct
+  reproduction links and explicit simulation/finite-trial limits. Root CI keeps
+  every local README link resolvable inside the repository.
 - [Nexus outage/recovery workflow][nexus-smoke]: an authenticated local stack,
   upstream shutdown, unavailable output without fixture fallback, and recovery.
 - [Nexus combined CI][nexus-ci]: a clean Node 24 install, 21 tests, production
@@ -62,7 +66,9 @@ prove the entire Python-to-Nexus system runs through Java.
 Follow the [pinned Java local walkthrough][java-walkthrough] for Java 21,
 Maven and disposable local PostgreSQL. The Java CI run recorded
 [36 passing tests with no skips][java-ci], including 12 HTTP/database cases,
-three concurrency/rollback cases and 14 MVC cases. Separately, follow the
+three concurrency/rollback cases and 14 MVC cases. [Root CI][atlaspay-root-ci]
+also recorded 105 Python/PostgreSQL tests plus the README-link and container
+checks. Separately, follow the
 [Nexus local demo instructions][nexus-walkthrough] for the integrated Python
 stack. Dependency downloads are required; no hosted database or issuer is needed.
 
@@ -72,8 +78,9 @@ READ COMMITTED, and what changes if outbox delivery is retried after persistence
 **Limits:** The tests cover a bounded authorization contract, not throughput or
 distributed failover. The Java HTTP tests create only the outbox columns this
 boundary writes; they do not run a publisher. Identifier/currency validation
-from [AtlasPay #39][java-validation] is now integrated into the #38 review branch
-and included in this pinned revision. It is not on main or deployed.
+from [AtlasPay #39][java-validation] and the presentation/link safeguards from
+[AtlasPay #37][atlaspay-presentation] are now integrated into the #38 review
+branch and included in this pinned revision. It is not on main or deployed.
 The [combined preview][nexus-preview] rendered live authenticated data in a real
 1363×936 browser without horizontal overflow, and a reload advanced its producer
 timestamp. Mobile layout and the conditional transaction filter remain unverified.
@@ -196,11 +203,14 @@ still require verification. Vercel Hobby's commercial-use restriction remains a
 gate for freelance-services marketing. Hosting choices, browser verification and
 publication remain separate release gates.
 
-[java-service]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/main/java/com/atlaspay/AuthorizationService.java
-[java-concurrency]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/test/java/com/atlaspay/AuthorizationPostgresTest.java
-[java-http]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/src/test/java/com/atlaspay/AuthorizationHttpPostgresTest.java
-[java-walkthrough]: https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/docs/LOCAL_WALKTHROUGH.md
-[java-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34761993013
+[java-service]: https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/src/main/java/com/atlaspay/AuthorizationService.java
+[java-concurrency]: https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/src/test/java/com/atlaspay/AuthorizationPostgresTest.java
+[java-http]: https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/src/test/java/com/atlaspay/AuthorizationHttpPostgresTest.java
+[java-walkthrough]: https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/docs/LOCAL_WALKTHROUGH.md
+[atlaspay-readme]: https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/README.md
+[java-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966552
+[atlaspay-root-ci]: https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966473
+[atlaspay-presentation]: https://github.com/soufianeelbiki1/AtlasPay/pull/37
 [java-validation]: https://github.com/soufianeelbiki1/AtlasPay/pull/39
 [nexus-smoke]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/.github/workflows/demo-smoke.yml
 [nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/docs/LOCAL_DEMO.md

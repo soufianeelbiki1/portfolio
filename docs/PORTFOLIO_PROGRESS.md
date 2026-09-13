@@ -23,21 +23,23 @@ no horizontal overflow, semantic landmarks were exposed, and a reload advanced
 the producer timestamp, proving runtime data was not frozen at build. Mobile and
 the conditional transaction filter remain unverified.
 
-[AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) is merged into
-the existing **#38 review branch, not main**, at
-`e6ba5557e8572a4c013a40bfe0b407129916daa8`. Validation and idempotency behavior
-are now tested together. Eight added HTTP/database cases verify rejected input
-does not consume a key, invalid retries still validate, corrected/identical
-requests preserve one decision/event, and identifier length boundaries persist
-without truncation. No unrelated changes or workflow modifications.
+[AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) and
+[AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) are merged
+into the existing **#38 review branch, not main**, at
+`9e04930d863abd88a0c6813c8c32aa878869e204`. The root README now leads with the
+Java/Spring Boot boundary, links directly to the reproducible retry/HTTP
+evidence, separates Python and Java startup paths and states finite-trial hosting
+limits. A regression test rejects broken or repository-escaping local README
+links. Validation and idempotency behavior remain tested together.
 
-[Combined-head Java 21 CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34761993013)
+[Combined-head Java 21 CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966552)
 passes **36 tests, zero failures/errors/skips**: 12 real-server HTTP/PostgreSQL
 cases, three PostgreSQL concurrency/rollback cases, 14 MVC cases, three service
-cases and four authentication cases. Root Python and container checks also pass.
-Local diff/whitespace checks pass and the reviewed local/remote trees match;
+cases and four authentication cases. [Root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966473)
+passes lint/format, all migrations, **105 Python/PostgreSQL tests**, runtime-image
+build and non-root verification. Local diff, format and README-link checks pass;
 Maven/Docker execution is CI-based, not falsely claimed local. The
-[walkthrough](https://github.com/soufianeelbiki1/AtlasPay/blob/e6ba5557e8572a4c013a40bfe0b407129916daa8/java-service/docs/LOCAL_WALKTHROUGH.md)
+[walkthrough](https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/docs/LOCAL_WALKTHROUGH.md)
 and [three case studies](CASE_STUDIES.md) describe the combined evidence.
 
 AtlasPay main stays at `7990d04f2485b9cf46ab5c540b0418a128b48a7b`.
@@ -48,8 +50,8 @@ No production merge, deployment, hosted database/API/model call or paid resource
 | Work | State and evidence | Remaining gate |
 | --- | --- | --- |
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally | Real desktop/mobile, keyboard, reduced-motion and contact-path verification; eligible hosting |
-| [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness branch; 36 Java tests and root/container checks pass | Current zero-cost main deployment effects |
-| [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Ready documentation PR; checks pass | Same main auto-deployment gate |
+| [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `9e04930d863abd88a0c6813c8c32aa878869e204`; 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Current zero-cost main deployment effects |
+| [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
 | [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview verified | Mobile/filter QA and production API/deployment effects |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `400f9f41520feca7392d4a472049db23eb2c6792`; baseline evaluation, installed wheel, JSON report and uncertainty table; Python 3.11/3.12 CI pass | Desktop/mobile table and keyboard QA; release-effect verification |
@@ -109,9 +111,9 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
 1. Recover a permitted portfolio preview and verify desktop/mobile layout,
    keyboard navigation, reduced motion, three scenario controls and contact
    links. Keep #11 draft until actual browser evidence exists. Do not add effects.
-2. Verify a no-cost release route, then integrate AtlasPay #37/#38. Verify Nexus
-   #26 on mobile and its conditional filter before its main release. No bypass,
-   forced push, silently disabled service or trial/plan change.
+2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
+   Verify Nexus #26 on mobile and its conditional filter before its main release.
+   No bypass, forced push, silently disabled service or trial/plan change.
 3. Verify RetailIntel's uncertainty table and release the existing coherent
    data/business case study; no further dashboard feature scope first.
 4. Refresh public evidence entry points to the verified revisions; curate the
