@@ -2,7 +2,33 @@
 
 Public project hub for Soufiane Elbiki's engineering repositories.
 
-Live site: https://soufiane-portfolio-delta.vercel.app
+Existing published site: https://soufiane-portfolio-delta.vercel.app
+
+This branch's React Bits design has not been published there.
+
+## Build the portfolio
+
+Node 24 and Python 3.11+:
+
+```sh
+npm ci --ignore-scripts
+npm run typecheck
+npm run build
+npm test
+node --test tests/interactions.test.mjs
+python3 -m http.server 8767 --directory dist
+```
+
+Edit `src/portfolio.tsx` and `src/portfolio.css`, then build. `index.html` and
+`assets/` are committed generated output; CI checks that they match the source.
+`dist/` contains only publishable static files. All content and links render
+without JavaScript; hydration adds the scenario selector and decorative effects.
+The interactive model never calls a backend and is not an integration test.
+
+The free React Bits SpotlightCard and Magnet components are adapted with motion
+preferences and stable keyboard/touch targets. See [design decisions and source
+attribution](docs/DESIGN.md) and the retained [license](third-party/react-bits-LICENSE.md).
+There are no Pro components, analytics, remote fonts, paid APIs or runtime server.
 
 The site focuses on payment systems, operational tooling, analytics, experimentation, retail planning, retrieval systems and ML evaluation. Public browser pages make deterministic project scenarios viewable without local setup.
 
