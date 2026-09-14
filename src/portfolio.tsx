@@ -3,7 +3,7 @@ import SpotlightCard from './components/react-bits/SpotlightCard';
 import Magnet from './components/react-bits/Magnet';
 
 const github = 'https://github.com/soufianeelbiki1/';
-const evidence = `${github}portfolio/blob/102c1c26a19a30f352cf4090a0e84d9adb303358/docs/CASE_STUDIES.md`;
+const evidence = `${github}portfolio/blob/b6ae772ab2cec4c8ac43aaaee1752cfbd9920797/docs/CASE_STUDIES.md`;
 const scenarios = {
   retry: { label: 'Same request', code: '200', state: 'REPLAY', title: 'Two requests. One decision.', note: 'An identical retry returns the original authorization. The database keeps one decision and one event.', request: 'key: demo-01 · amount: 120.00', response: 'original decision returned', color: 'mint', steps: ['Request repeated', 'Key matched', 'Original returned'], source: `${github}AtlasPay/pull/38` },
   conflict: { label: 'Changed amount', code: '409', state: 'CONFLICT', title: 'A retry is not a new payment.', note: 'Reusing the key with a different amount produces a conflict. The first decision remains unchanged.', request: 'key: demo-01 · amount: 180.00', response: 'conflict · original unchanged', color: 'orange', steps: ['Amount changed', 'Payload differs', 'Write rejected'], source: `${github}AtlasPay/pull/38` },
