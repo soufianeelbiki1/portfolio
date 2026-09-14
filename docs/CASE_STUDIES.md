@@ -5,8 +5,9 @@ deployments, production adoption or commercial results. All payment scenarios
 and retail inputs are synthetic. The AI demonstration uses deterministic
 retrieval and extractive answers, not a paid model.
 
-Evidence reviewed on September 13, 2026. AtlasRAG's metric correction is merged
-to main. AtlasPay/Nexus and RetailIntel improvements remain on review branches;
+Evidence reviewed on September 14, 2026. AtlasRAG's metric correction and
+decision-breakdown safeguards are merged to main. AtlasPay/Nexus and RetailIntel
+improvements remain on review branches;
 AtlasPay #37 and #39 are integrated into #38, not main. Passing checks do not
 mean the published portfolio or production services include those branches.
 Links below pin source revisions so the behavior remains inspectable after a
@@ -154,8 +155,12 @@ implementation makes both mistakes observable with deterministic regression case
 - Evaluate citation IDs against hand-authored evidence expectations.
 - Name the combined grounded/abstained outcome **evidence decision accuracy**:
   it includes answerable questions as well as questions that should be refused.
+- Split that aggregate into answerable-grounding and safe-abstention rates, then
+  count false abstentions and unsafe evidence responses separately.
 - Keep citation correctness separate from evidence-decision correctness. A
   grounded flag alone is not proof of the answer's meaning or factual accuracy.
+- Let a relevant chunk contribute at most one citation hit. Duplicate citations
+  remain in the precision denominator and cannot inflate recall above 100%.
 - Use an extractive generator for the offline demonstration so tests need no
   external model credentials and are repeatable.
 
@@ -164,9 +169,11 @@ implementation makes both mistakes observable with deterministic regression case
 - [Evaluator implementation][rag-evaluator]: the populations and denominators
   for citation, evidence-decision and supported-answer metrics.
 - [Regression tests][rag-tests]: the four-case reference contract, irrelevant
-  citations, invalid examples, and the always-abstain failure example.
+  and duplicate citations, invalid examples, the always-abstain failure example,
+  and separate unsafe-evidence/false-abstention counts.
 - [Report generator][rag-report]: per-case outcomes alongside aggregate metrics
-  and explicit limits on what the measurements establish.
+  and explicit limits on what the measurements establish. Green/red outcomes
+  represent this deterministic contract, not human quality judgment.
 
 ### Reproduce and discuss
 
@@ -180,6 +187,8 @@ The default reference contract has four cases. Raising the evidence threshold
 so every case abstains reduces evidence decision accuracy to **25%**, while
 citation precision and recall become zero. This failure example is more
 informative than presenting a perfect score on four hand-authored cases alone.
+A duplicate relevant citation contributes one recall hit and lowers precision,
+so neither metric can be made flattering by repeating a chunk.
 
 **Useful review question:** How can the grounded/abstained decision be correct
 while citation precision is poor, and what evaluation would a real generator need?
@@ -187,8 +196,9 @@ while citation precision is poor, and what evaluation would a real generator nee
 **Limits:** No implemented semantic/vector retriever, no tenant isolation, and
 no claim of general semantic groundedness. Supported-answer rate checks text
 containment in cited evidence; it is not human evaluation of answer quality.
-The naming correction in [AtlasRAG #11][rag-pr] is merged to main; the
-[post-merge checks][rag-ci] passed all 42 tests on Python 3.11 and 3.12 with
+The naming correction in [AtlasRAG #11][rag-name-pr] and the failure breakdown
+in [AtlasRAG #12][rag-pr] are merged to main. The latest
+[post-merge checks][rag-ci] passed all 44 tests on Python 3.11 and 3.12 with
 PostgreSQL. This is test evidence, not a hosted deployment.
 
 ## Review order and release status
@@ -222,9 +232,10 @@ publication remain separate release gates.
 [retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_wheel_installation.py
 [retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/docs/DECISION_WALKTHROUGH.md
 [retail-pr]: https://github.com/soufianeelbiki1/RetailIntel/pull/6
-[rag-evaluator]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/app/rag_evaluation.py
-[rag-tests]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/tests/test_rag_evaluation.py
-[rag-report]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/app/demo_report.py
-[rag-readme]: https://github.com/soufianeelbiki1/AtlasRAG/blob/880d6f36c0fefa7ea45bec899d37b74b9faa196c/README.md
-[rag-pr]: https://github.com/soufianeelbiki1/AtlasRAG/pull/11
-[rag-ci]: https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34744313209
+[rag-evaluator]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/app/rag_evaluation.py
+[rag-tests]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/tests/test_rag_evaluation.py
+[rag-report]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/app/demo_report.py
+[rag-readme]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/README.md
+[rag-name-pr]: https://github.com/soufianeelbiki1/AtlasRAG/pull/11
+[rag-pr]: https://github.com/soufianeelbiki1/AtlasRAG/pull/12
+[rag-ci]: https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34795357503

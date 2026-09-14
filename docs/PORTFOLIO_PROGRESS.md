@@ -1,10 +1,24 @@
 # Recruiter-readiness backlog and evidence
 
-Updated: 2026-09-13. Backend-first full-stack/platform engineering: Java/Spring
+Updated: 2026-09-14. Backend-first full-stack/platform engineering: Java/Spring
 Boot, TypeScript/React/Next.js, PostgreSQL, data workflows and reliability.
 Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
+
+[AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12) is merged to
+main at `18ac326741cae5db33fabb5f3c6a9b6a1047a025`. Duplicate relevant citations
+can no longer inflate recall above 100%: each expected chunk contributes at most
+one hit while every duplicate stays in the precision denominator. The evaluator
+now separates answerable-grounding and safe-abstention rates and counts false
+abstentions and unsafe evidence responses, so opposite failure modes cannot hide
+inside one aggregate. The deterministic report exposes the same case-level
+outcomes and retains its synthetic-data and non-semantic-evaluation limits.
+
+[Post-merge CI](https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34795357503)
+passes **44 tests** on both Python 3.11 and 3.12 with PostgreSQL, plus dependency,
+lint, formatting and compilation checks. No deployment, hosted model/API call or
+paid resource accompanied the merge.
 
 [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) is merged into the
 existing **#26 review branch, not main**, at
@@ -63,6 +77,11 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
 
 ## Already merged to main
 
+- [AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12): bounded
+  citation recall and separate evidence-decision failure modes. Merge
+  `18ac326741cae5db33fabb5f3c6a9b6a1047a025`;
+  [post-merge CI](https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34795357503)
+  passed 44 tests on Python 3.11 and 3.12 with PostgreSQL.
 - [Portfolio #10](https://github.com/soufianeelbiki1/portfolio/pull/10): source
   audit, navigation tests and durable backlog; no site deployment.
 - [AtlasRAG #11](https://github.com/soufianeelbiki1/AtlasRAG/pull/11): truthful
@@ -81,10 +100,13 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
 
 ## Exact blockers and budget rules
 
-1. **Browser:** supported browser still returns `ERR_BLOCKED_BY_CLIENT` for the
-   local portfolio preview (rechecked 2026-09-13). DOM tests and static builds do
-   not establish responsive geometry, real keyboard traversal or mail-client
-   behavior. No alternate control/network bypass or unverified UI merge.
+1. **Browser:** the local portfolio preview still returns
+   `ERR_BLOCKED_BY_CLIENT`. The public Nexus preview works, but the supported
+   browser exposes only a fixed 1363×936 viewport; its URL policy rejected an
+   isolated narrow-width frame on 2026-09-14. That is not mobile verification.
+   DOM tests and static builds do not establish responsive geometry, real
+   keyboard traversal or mail-client behavior. No alternate control/network
+   bypass or unverified UI merge.
 2. **Railway:** the user's matching project screenshot confirmed a finite Trial
    on 2026-09-12, not permanent free hosting or today's allowance. Read-only
    recheck on 2026-09-13 shows AtlasPay Python and Java still track **main**, with
@@ -125,3 +147,5 @@ responsive portfolio with working contacts, curated profile, reliable CI and
 permitted zero-cost verified demos. Then switch to targeted maintenance.
 
 Historical details are preserved in the [September 12–13 archive](progress/2026-09-12-13.md).
+The latest merge and verification trail is in the
+[September 14 log](progress/2026-09-14.md).
