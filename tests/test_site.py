@@ -115,6 +115,9 @@ class ProjectSiteTests(unittest.TestCase):
         self.assertIn("not production results", pages["experimentlab.html"])
         self.assertIn("not proof of globally optimal inventory", pages["retailintel.html"])
         self.assertIn("not model-based semantic groundedness scores", pages["atlasrag.html"])
+        self.assertIn("answerable grounded", pages["atlasrag.html"])
+        self.assertIn("safe abstentions", pages["atlasrag.html"])
+        self.assertIn("zero unsafe evidence responses", pages["atlasrag.html"])
         self.assertIn("not icao certification", pages["forecastlab.html"])
 
 
