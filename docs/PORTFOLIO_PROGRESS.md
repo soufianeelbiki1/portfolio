@@ -6,6 +6,24 @@ Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
 
+[RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) now
+connects the forecast evaluation to the replenishment decision at
+`0ede0d6ce04699917b71f9b557cd24e94a79ea3f`. The policy uses the same
+prior-only seven-day mean that the holdout scores, rather than a separate
+unscored 28-day mean. Demand is selected at or before the inventory snapshot,
+and evidence observed after that snapshot is withheld. The queue places both
+baselines' SKU-level MAE, WAPE and sample count beside the proposed order while
+retaining the separate 28-day volatility input for safety stock.
+
+The exact local gate passes **33 tests**, lint, formatting, compilation,
+deterministic JSON/dashboard generation and dependency checks. The
+[exact-head CI](https://github.com/soufianeelbiki1/RetailIntel/actions/runs/34812439971)
+passes the same 33 tests on Python 3.11 and 3.12 plus lint and formatting. New
+regressions cover formula equivalence, lagged snapshots, matching evidence rows
+and unscored point-in-time states. The PR stays draft because real
+desktop/mobile and keyboard verification is still unavailable; no deployment
+or paid resource was used.
+
 [AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12) is merged to
 main at `18ac326741cae5db33fabb5f3c6a9b6a1047a025`. Duplicate relevant citations
 can no longer inflate recall above 100%: each expected chunk contributes at most
@@ -68,7 +86,7 @@ No production merge, deployment, hosted database/API/model call or paid resource
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
 | [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview verified | Mobile/filter QA and production API/deployment effects |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
-| [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `400f9f41520feca7392d4a472049db23eb2c6792`; baseline evaluation, installed wheel, JSON report and uncertainty table; Python 3.11/3.12 CI pass | Desktop/mobile table and keyboard QA; release-effect verification |
+| [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `0ede0d6ce04699917b71f9b557cd24e94a79ea3f`; evaluated policy mean, point-in-time guards, per-SKU queue evidence, installed wheel and JSON report; exact-head Python 3.11/3.12 CI passes 33 tests | Desktop/mobile table and keyboard QA; release-effect verification |
 
 All scoped open PRs, latest file diffs, checks and comments were inspected before
 this change, including dependency PRs. No review comments were pending. Do not
@@ -136,8 +154,9 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
 2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
    Verify Nexus #26 on mobile and its conditional filter before its main release.
    No bypass, forced push, silently disabled service or trial/plan change.
-3. Verify RetailIntel's uncertainty table and release the existing coherent
-   data/business case study; no further dashboard feature scope first.
+3. Verify RetailIntel's updated queue and uncertainty evidence in a real
+   desktop/mobile browser, then release the coherent data/business case study;
+   no further dashboard feature scope first.
 4. Refresh public evidence entry points to the verified revisions; curate the
    supporting repositories only where they add distinct evidence. Never invent
    client adoption, scale, production benchmarks or personal experience.

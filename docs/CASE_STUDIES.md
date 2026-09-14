@@ -101,8 +101,11 @@ inventory movement ledger or a purchasing integration.
 ### Engineering decisions
 
 - Build a dense SKU/day history, including zero-demand days.
-- Compare a trailing-seven-day mean with a seasonal-naive baseline on the same
-  eligible observations. Predictions only use history before their target day.
+- Use the prior-only seven-day mean in the replenishment formula and compare
+  that exact policy input with seasonal naive on the same eligible observations.
+  Predictions only use history before their target day.
+- Select demand at or before each inventory snapshot and withhold forecast
+  evidence observed after that decision date.
 - Report MAE in units, WAPE relative to actual demand, and mean error for bias.
   Preserve undefined WAPE as null when actual demand is zero.
 - Pool SKU-day errors for category summaries; do not present these as forecasts
@@ -114,6 +117,9 @@ inventory movement ledger or a purchasing integration.
 
 - [Forecast SQL][retail-sql] and [regression tests][retail-tests]: known errors,
   matching populations, zero demand and future-data perturbation.
+- [Replenishment SQL][retail-policy] and [policy/dashboard tests][retail-policy-tests]:
+  formula equivalence, lagged snapshots, matching SKU evidence and explicit
+  unscored states when evaluation occurs after the inventory decision.
 - [JSON report tests][retail-report-tests]: reproducibility, empty evaluation
   histories, undefined metrics and CLI behavior.
 - [Installed-wheel regression][retail-wheel]: install the package and generate
@@ -137,9 +143,11 @@ forecast errors, not accuracy percentages or demonstrated savings. A WAPE over
 evidence would be required before turning a recommendation into a purchase order?
 
 **Limits:** One generated final-seven-day scoring window, not a production
-backtest. Multiple rolling windows and reconciled inventory are future work.
-The dashboard changes in [RetailIntel #6][retail-pr] are not published and their
-desktop/mobile usability remains unverified.
+backtest. The 28-day demand standard deviation remains a separate safety-stock
+assumption; forecast scores do not validate it. Multiple rolling windows and
+reconciled inventory are future work. The dashboard changes in
+[RetailIntel #6][retail-pr] are not published and their desktop/mobile usability
+remains unverified.
 
 ## 3. AtlasRAG: testing when to answer and when to abstain
 
@@ -226,11 +234,13 @@ publication remain separate release gates.
 [nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/docs/LOCAL_DEMO.md
 [nexus-ci]: https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889919
 [nexus-preview]: https://nexus-mchodvzdz-soufiane15.vercel.app/
-[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/src/retailintel/sql/marts/forecast_evaluation.sql
-[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_forecast_evaluation.py
-[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_evaluation_report.py
-[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/tests/test_wheel_installation.py
-[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/400f9f41520feca7392d4a472049db23eb2c6792/docs/DECISION_WALKTHROUGH.md
+[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/src/retailintel/sql/marts/forecast_evaluation.sql
+[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_forecast_evaluation.py
+[retail-policy]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/src/retailintel/sql/marts/replenishment_recommendation.sql
+[retail-policy-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_replenishment.py
+[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_evaluation_report.py
+[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_wheel_installation.py
+[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/docs/DECISION_WALKTHROUGH.md
 [retail-pr]: https://github.com/soufianeelbiki1/RetailIntel/pull/6
 [rag-evaluator]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/app/rag_evaluation.py
 [rag-tests]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/tests/test_rag_evaluation.py
