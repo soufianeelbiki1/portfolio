@@ -90,6 +90,16 @@ deployment, hosted database/API/model call or paid resource accompanied the
 merges. This is direct evidence that the monorepo watch paths ignore unrelated
 changes, while `checkSuites=false` remains a separate release risk.
 
+On 2026-09-19, all 13 then-open pull requests were re-reviewed at their exact
+heads. [Nexus #11](https://github.com/soufianeelbiki1/Nexus/pull/11),
+[#27](https://github.com/soufianeelbiki1/Nexus/pull/27) and
+[#28](https://github.com/soufianeelbiki1/Nexus/pull/28) were closed without
+merging: the first conflicts with the reviewed Node 24 runtime direction, while
+the latter two fail CI, security and integrated-demo checks as isolated
+runtime/type peer updates. Ten PRs remain open. Their exact-head workflows are
+green, although the old AtlasPay #22 and #25 branches still have base conflicts.
+No default branch, deployment or paid resource changed during this cleanup.
+
 ## Current release state
 
 | Work | State and evidence | Remaining gate |
@@ -101,13 +111,12 @@ changes, while `checkSuites=false` remains a separate release risk.
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `0ede0d6ce04699917b71f9b557cd24e94a79ea3f`; evaluated policy mean, point-in-time guards, per-SKU queue evidence, installed wheel and JSON report; exact-head Python 3.11/3.12 CI passes 33 tests | Desktop/mobile table and keyboard QA; release-effect verification |
 
-All scoped open PRs, latest file diffs, checks and comments were inspected before
-this change, including dependency PRs. No review comments were pending. Do not
-blindly merge runtime-major upgrades: Nexus Node 26 suggestions conflict with
-the reviewed Node 24 runtime alignment. Nexus #27 and #28 currently fail because
-Dependabot split peer-dependent React type/runtime upgrades; #29 is green but
-must not be treated as proof that the red fragments are independently safe.
-Recheck heads before every write/merge.
+All scoped open PRs, latest file diffs, checks, comments, reviews and review
+threads were inspected before this change. No human review feedback was
+pending. The obsolete Node 26 and failing split-peer Nexus branches were closed
+recoverably, not deleted or merged. Nexus #29 remains green but must still be
+reviewed together with the lockfile/runtime branch before release. Recheck heads
+before every write or merge.
 
 ## Already merged to main
 
