@@ -80,10 +80,13 @@ Maven/Docker execution is CI-based, not falsely claimed local. The
 [walkthrough](https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/docs/LOCAL_WALKTHROUGH.md)
 and [three case studies](CASE_STUDIES.md) describe the combined evidence.
 
-AtlasPay main stays at `7990d04f2485b9cf46ab5c540b0418a128b48a7b`.
-No production merge, deployment, hosted database/API/model call or paid resource.
-The two live Railway services now ignore unrelated monorepo changes; saving and
-re-reading those trigger rules created no build or restart.
+AtlasPay main is now `cfc0f6058d2c416187c87e4965d8ba971f3d1913` after the
+workflow-only [setup-java v6 update](https://github.com/soufianeelbiki1/AtlasPay/pull/30).
+Both Railway services recorded that revision as `SKIPPED`; their running
+deployments remain on `7990d04f2485b9cf46ab5c540b0418a128b48a7b`. No runtime
+deployment, hosted database/API/model call or paid resource accompanied the
+merge. This is direct evidence that the monorepo watch paths ignore unrelated
+changes, while `checkSuites=false` remains a separate release risk.
 
 ## Current release state
 
@@ -106,6 +109,14 @@ Recheck heads before every write/merge.
 
 ## Already merged to main
 
+- [AtlasPay #30](https://github.com/soufianeelbiki1/AtlasPay/pull/30): Java CI
+  setup action upgraded to the Node 24-based v6 release without changing Java
+  21, Temurin or Maven caching. Merge
+  `cfc0f6058d2c416187c87e4965d8ba971f3d1913`;
+  [post-merge Java CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35450638739)
+  and [root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35450638713)
+  passed. Railway marked the commit `SKIPPED` for both services, leaving their
+  active September 8 deployments unchanged.
 - [AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12): bounded
   citation recall and separate evidence-decision failure modes. Merge
   `18ac326741cae5db33fabb5f3c6a9b6a1047a025`;
@@ -141,9 +152,10 @@ Recheck heads before every write/merge.
    on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
    resources and still tracking **main** with `checkSuites=false`. Exact watch
    paths now prevent an unrelated or Java-only change from rebuilding the
-   Python API, and saving them triggered no deployment. The exact remaining
-   credit is still unavailable; #38 contains Java runtime changes and would
-   still deploy that service. Verify the allowance before merging to main.
+   Python API. The workflow-only #30 merge produced explicit `SKIPPED` records
+   for both services without replacing their active deployments. The exact
+   remaining credit is still unavailable; #38 contains Java runtime changes and
+   would still deploy that service. Verify the allowance before merging to main.
 3. **Vercel:** read-only recheck on 2026-09-13 shows Hobby; Nexus is GitHub-linked,
    `soufiane-portfolio` is not. [Hobby rules](https://vercel.com/docs/plans/hobby)
    require non-commercial personal use; do not publish freelance-services
