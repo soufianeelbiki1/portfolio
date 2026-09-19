@@ -1,6 +1,6 @@
 # Recruiter-readiness backlog and evidence
 
-Updated: 2026-09-14. Backend-first full-stack/platform engineering: Java/Spring
+Updated: 2026-09-19. Backend-first full-stack/platform engineering: Java/Spring
 Boot, TypeScript/React/Next.js, PostgreSQL, data workflows and reliability.
 Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
@@ -50,10 +50,14 @@ passes a clean Node 24 install, TypeScript, **21 tests**, production build and
 non-root container. The [security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889920)
 and [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889913)
 also pass. The [Vercel preview](https://nexus-mchodvzdz-soufiane15.vercel.app/)
-was verified in a real 1363×936 browser: live authenticated data rendered with
-no horizontal overflow, semantic landmarks were exposed, and a reload advanced
-the producer timestamp, proving runtime data was not frozen at build. Mobile and
-the conditional transaction filter remain unverified.
+was rechecked in a real 1363×936 browser on 2026-09-19: live authenticated data
+rendered with no horizontal overflow, semantic landmarks were exposed, and a
+reload advanced the producer timestamp from 09:08:29 to 09:09:33, proving
+runtime data was not frozen at build. Vercel reported no runtime error cluster
+or warning/error/fatal log for the exact preview in the preceding 24 hours.
+Mobile geometry remains unverified. The search/outcome filter is deliberately a
+fixture-development interaction; the authenticated live view instead exposes
+privacy-safe aggregates without identifier-bearing transaction rows.
 
 [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) and
 [AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) are merged
@@ -84,14 +88,17 @@ No production merge, deployment, hosted database/API/model call or paid resource
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally | Real desktop/mobile, keyboard, reduced-motion and contact-path verification; eligible hosting |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `9e04930d863abd88a0c6813c8c32aa878869e204`; 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Current zero-cost main deployment effects |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
-| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview verified | Mobile/filter QA and production API/deployment effects |
+| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview and live refresh reverified 2026-09-19 | Mobile browser QA and final production deployment effects |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `0ede0d6ce04699917b71f9b557cd24e94a79ea3f`; evaluated policy mean, point-in-time guards, per-SKU queue evidence, installed wheel and JSON report; exact-head Python 3.11/3.12 CI passes 33 tests | Desktop/mobile table and keyboard QA; release-effect verification |
 
 All scoped open PRs, latest file diffs, checks and comments were inspected before
 this change, including dependency PRs. No review comments were pending. Do not
 blindly merge runtime-major upgrades: Nexus Node 26 suggestions conflict with
-the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
+the reviewed Node 24 runtime alignment. Nexus #27 and #28 currently fail because
+Dependabot split peer-dependent React type/runtime upgrades; #29 is green but
+must not be treated as proof that the red fragments are independently safe.
+Recheck heads before every write/merge.
 
 ## Already merged to main
 
@@ -120,8 +127,8 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
 
 1. **Browser:** the local portfolio preview still returns
    `ERR_BLOCKED_BY_CLIENT`. The public Nexus preview works, but the supported
-   browser exposes only a fixed 1363×936 viewport; its URL policy rejected an
-   isolated narrow-width frame on 2026-09-14. That is not mobile verification.
+   browser exposes only a fixed 1363×936 viewport. Nexus has explicit 820 px and
+   520 px CSS breakpoints, but code inspection is not mobile browser evidence.
    DOM tests and static builds do not establish responsive geometry, real
    keyboard traversal or mail-client behavior. No alternate control/network
    bypass or unverified UI merge.
@@ -152,7 +159,8 @@ the reviewed Node 24 runtime alignment. Recheck heads before every write/merge.
    keyboard navigation, reduced motion, three scenario controls and contact
    links. Keep #11 draft until actual browser evidence exists. Do not add effects.
 2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
-   Verify Nexus #26 on mobile and its conditional filter before its main release.
+   Verify Nexus #26 on mobile before its main release; fixture-only filters are
+   covered by CI and are not represented as live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
 3. Verify RetailIntel's updated queue and uncertainty evidence in a real
    desktop/mobile browser, then release the coherent data/business case study;
@@ -167,4 +175,5 @@ permitted zero-cost verified demos. Then switch to targeted maintenance.
 
 Historical details are preserved in the [September 12–13 archive](progress/2026-09-12-13.md).
 The latest merge and verification trail is in the
-[September 14 log](progress/2026-09-14.md).
+[September 14 log](progress/2026-09-14.md). The current Vercel and PR audit is in
+the [September 19 log](progress/2026-09-19.md).
