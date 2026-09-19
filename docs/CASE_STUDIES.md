@@ -112,6 +112,9 @@ inventory movement ledger or a purchasing integration.
   of aggregate category demand or confidence for every individual SKU.
 - Export input parameters, versions, dates and limitations with the JSON report.
   Ship SQL as package resources so the installed wheel runs outside its checkout.
+- Give the report and dashboard one set of generator defaults and CLI options.
+  Print seed, order count, demand range, inventory snapshot and evaluation cutoff
+  in the dashboard so a reviewer can detect mismatched decision evidence.
 
 ### Inspect the evidence
 
@@ -122,6 +125,9 @@ inventory movement ledger or a purchasing integration.
   unscored states when evaluation occurs after the inventory decision.
 - [JSON report tests][retail-report-tests]: reproducibility, empty evaluation
   histories, undefined metrics and CLI behavior.
+- [Dashboard provenance tests][retail-dashboard-tests]: custom inputs, visible
+  point-in-time cutoffs, ambiguous caller-supplied metadata and non-destructive
+  invalid-input handling.
 - [Installed-wheel regression][retail-wheel]: install the package and generate
   reports outside the source repository.
 - [Business decision walkthrough][retail-walkthrough]: actual synthetic results,
@@ -131,8 +137,9 @@ inventory movement ledger or a purchasing integration.
 
 Use the commands in the pinned walkthrough to generate the JSON and dashboard
 in a fresh Python environment. The default sample is seed `20260831`, 600 orders
-and 20 products. Compare identical inputs: the evaluation CLI's custom inputs
-are not automatically applied to the dashboard CLI.
+and 20 products. Both commands accept the same `--seed` and `--order-count`;
+use identical values and verify the dashboard's visible provenance before
+comparing it with the JSON.
 
 The recorded synthetic category WAPE ranges from **61.49% to 71.90%** for the
 mean baseline, versus **79.26% to 103.30%** for seasonal naive. These are high
@@ -234,13 +241,14 @@ publication remain separate release gates.
 [nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/docs/LOCAL_DEMO.md
 [nexus-ci]: https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889919
 [nexus-preview]: https://nexus-mchodvzdz-soufiane15.vercel.app/
-[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/src/retailintel/sql/marts/forecast_evaluation.sql
-[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_forecast_evaluation.py
-[retail-policy]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/src/retailintel/sql/marts/replenishment_recommendation.sql
-[retail-policy-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_replenishment.py
-[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_evaluation_report.py
-[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/tests/test_wheel_installation.py
-[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/0ede0d6ce04699917b71f9b557cd24e94a79ea3f/docs/DECISION_WALKTHROUGH.md
+[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/src/retailintel/sql/marts/forecast_evaluation.sql
+[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_forecast_evaluation.py
+[retail-policy]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/src/retailintel/sql/marts/replenishment_recommendation.sql
+[retail-policy-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_replenishment.py
+[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_evaluation_report.py
+[retail-dashboard-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_dashboard.py
+[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_wheel_installation.py
+[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/docs/DECISION_WALKTHROUGH.md
 [retail-pr]: https://github.com/soufianeelbiki1/RetailIntel/pull/6
 [rag-evaluator]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/app/rag_evaluation.py
 [rag-tests]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/tests/test_rag_evaluation.py
