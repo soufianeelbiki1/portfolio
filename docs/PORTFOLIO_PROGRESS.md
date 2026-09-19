@@ -62,16 +62,18 @@ privacy-safe aggregates without identifier-bearing transaction rows.
 [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) and
 [AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) are merged
 into the existing **#38 review branch, not main**, at
-`9e04930d863abd88a0c6813c8c32aa878869e204`. The root README now leads with the
+`968bd5703360f346438ed6c7b2afb1c24d197a7d`. The root README now leads with the
 Java/Spring Boot boundary, links directly to the reproducible retry/HTTP
 evidence, separates Python and Java startup paths and states finite-trial hosting
 limits. A regression test rejects broken or repository-escaping local README
-links. Validation and idempotency behavior remain tested together.
+links. Validation and idempotency behavior remain tested together. The
+[cloud architecture notes](https://github.com/soufianeelbiki1/AtlasPay/blob/968bd5703360f346438ed6c7b2afb1c24d197a7d/docs/CLOUD_PLATFORM_ARCHITECTURE.md)
+now record the live Railway watch paths that isolate Java and Python builds.
 
-[Combined-head Java 21 CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966552)
+[Combined-head Java 21 CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35436564888)
 passes **36 tests, zero failures/errors/skips**: 12 real-server HTTP/PostgreSQL
 cases, three PostgreSQL concurrency/rollback cases, 14 MVC cases, three service
-cases and four authentication cases. [Root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34785966473)
+cases and four authentication cases. [Root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35436564884)
 passes lint/format, all migrations, **105 Python/PostgreSQL tests**, runtime-image
 build and non-root verification. Local diff, format and README-link checks pass;
 Maven/Docker execution is CI-based, not falsely claimed local. The
@@ -80,13 +82,15 @@ and [three case studies](CASE_STUDIES.md) describe the combined evidence.
 
 AtlasPay main stays at `7990d04f2485b9cf46ab5c540b0418a128b48a7b`.
 No production merge, deployment, hosted database/API/model call or paid resource.
+The two live Railway services now ignore unrelated monorepo changes; saving and
+re-reading those trigger rules created no build or restart.
 
 ## Current release state
 
 | Work | State and evidence | Remaining gate |
 | --- | --- | --- |
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally | Real desktop/mobile, keyboard, reduced-motion and contact-path verification; eligible hosting |
-| [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `9e04930d863abd88a0c6813c8c32aa878869e204`; 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Current zero-cost main deployment effects |
+| [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
 | [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview and live refresh reverified 2026-09-19 | Mobile browser QA and final production deployment effects |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
@@ -133,13 +137,13 @@ Recheck heads before every write/merge.
    keyboard traversal or mail-client behavior. No alternate control/network
    bypass or unverified UI merge.
 2. **Railway:** the user's matching project screenshot confirmed a finite Trial
-   on 2026-09-12, not permanent free hosting or today's allowance. Read-only
-   recheck on 2026-09-13 shows AtlasPay Python and Java still track **main**, with
-   `checkSuites=false` and health checks. Only production is listed. No service,
-   variable, deployment or billing setting was changed. The latest deployments
-   for both AtlasPay services still reference the unchanged main commit above.
-   Current remaining credit
-   and release effects must be verified before merging to main.
+   on 2026-09-12, not permanent free hosting or today's allowance. Live recheck
+   on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
+   resources and still tracking **main** with `checkSuites=false`. Exact watch
+   paths now prevent an unrelated or Java-only change from rebuilding the
+   Python API, and saving them triggered no deployment. The exact remaining
+   credit is still unavailable; #38 contains Java runtime changes and would
+   still deploy that service. Verify the allowance before merging to main.
 3. **Vercel:** read-only recheck on 2026-09-13 shows Hobby; Nexus is GitHub-linked,
    `soufiane-portfolio` is not. [Hobby rules](https://vercel.com/docs/plans/hobby)
    require non-commercial personal use; do not publish freelance-services
