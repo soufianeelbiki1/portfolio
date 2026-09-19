@@ -96,9 +96,15 @@ heads. [Nexus #11](https://github.com/soufianeelbiki1/Nexus/pull/11),
 [#28](https://github.com/soufianeelbiki1/Nexus/pull/28) were closed without
 merging: the first conflicts with the reviewed Node 24 runtime direction, while
 the latter two fail CI, security and integrated-demo checks as isolated
-runtime/type peer updates. Ten PRs remain open. Their exact-head workflows are
-green, although the old AtlasPay #22 and #25 branches still have base conflicts.
-No default branch, deployment or paid resource changed during this cleanup.
+runtime/type peer updates. A fresh recheck found all ten remaining PRs mergeable,
+correcting the earlier transient conflict state for AtlasPay #22/#25.
+[AtlasPay #22](https://github.com/soufianeelbiki1/AtlasPay/pull/22) and
+[#25](https://github.com/soufianeelbiki1/AtlasPay/pull/25) were then closed
+without merging: the former is an unplanned Python 3.11 → 3.14 runtime migration,
+and the latter is a dev-only pytest range change whose watched
+`pyproject.toml` would still trigger a Railway deployment. Eight PRs remain
+open; all are mergeable with green exact-head workflows. No default branch,
+deployment or paid resource changed during either cleanup.
 
 ## Current release state
 
