@@ -80,13 +80,15 @@ Maven/Docker execution is CI-based, not falsely claimed local. The
 [walkthrough](https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/docs/LOCAL_WALKTHROUGH.md)
 and [three case studies](CASE_STUDIES.md) describe the combined evidence.
 
-AtlasPay main is now `cfc0f6058d2c416187c87e4965d8ba971f3d1913` after the
-workflow-only [setup-java v6 update](https://github.com/soufianeelbiki1/AtlasPay/pull/30).
-Both Railway services recorded that revision as `SKIPPED`; their running
-deployments remain on `7990d04f2485b9cf46ab5c540b0418a128b48a7b`. No runtime
-deployment, hosted database/API/model call or paid resource accompanied the
-merge. This is direct evidence that the monorepo watch paths ignore unrelated
-changes, while `checkSuites=false` remains a separate release risk.
+AtlasPay main is now `fa662a25fa429a8129a4497a242a856039bee61d` after the
+workflow-only [setup-java v6](https://github.com/soufianeelbiki1/AtlasPay/pull/30)
+and [setup-python v7](https://github.com/soufianeelbiki1/AtlasPay/pull/24)
+updates. Both Railway services recorded both revisions as `SKIPPED`; their
+running deployments remain on `7990d04f2485b9cf46ab5c540b0418a128b48a7b`.
+No runtime deployment, hosted database/API/model call or paid resource
+accompanied either merge. This is direct evidence that the monorepo watch paths
+ignore unrelated changes, while `checkSuites=false` remains a separate release
+risk.
 
 ## Current release state
 
@@ -109,6 +111,15 @@ Recheck heads before every write/merge.
 
 ## Already merged to main
 
+- [AtlasPay #24](https://github.com/soufianeelbiki1/AtlasPay/pull/24): root and
+  security workflows upgraded to `actions/setup-python@v7` without changing
+  Python 3.11 or pip caching. Merge
+  `fa662a25fa429a8129a4497a242a856039bee61d`;
+  [post-merge root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35454293378)
+  passed 104 PostgreSQL tests and container checks, while
+  [security CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35454293388)
+  passed dependency audit and runtime health smoke. Railway marked the commit
+  `SKIPPED` for both services.
 - [AtlasPay #30](https://github.com/soufianeelbiki1/AtlasPay/pull/30): Java CI
   setup action upgraded to the Node 24-based v6 release without changing Java
   21, Temurin or Maven caching. Merge
@@ -152,10 +163,14 @@ Recheck heads before every write/merge.
    on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
    resources and still tracking **main** with `checkSuites=false`. Exact watch
    paths now prevent an unrelated or Java-only change from rebuilding the
-   Python API. The workflow-only #30 merge produced explicit `SKIPPED` records
-   for both services without replacing their active deployments. The exact
-   remaining credit is still unavailable; #38 contains Java runtime changes and
-   would still deploy that service. Verify the allowance before merging to main.
+   Python API. The workflow-only #30 and #24 merges produced explicit `SKIPPED`
+   records for both services without replacing their active deployments. The
+   official Wait for CI requirements are met, but the available control path
+   stages that setting as an environment change whose acceptance triggers a
+   deployment. The staged investigation was discarded and production was
+   re-read unchanged. The exact remaining credit is still unavailable; #38
+   contains Java runtime changes and would still deploy that service. Verify
+   the allowance before merging to main.
 3. **Vercel:** read-only recheck on 2026-09-13 shows Hobby; Nexus is GitHub-linked,
    `soufiane-portfolio` is not. [Hobby rules](https://vercel.com/docs/plans/hobby)
    require non-commercial personal use; do not publish freelance-services
