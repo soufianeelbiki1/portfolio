@@ -6,6 +6,23 @@ Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
 
+[Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9) is merged
+at [`36e81e18`](https://github.com/soufianeelbiki1/soufianeelbiki1/commit/36e81e18fd6facf6e46a57f6da846519902d9c62).
+The public GitHub profile now leads with the live Nexus console and a
+revision-pinned case-study guide instead of the older portfolio deployment. It
+records Nexus #26, RetailIntel #6 and AtlasRAG #12 as merged, keeps AtlasPay #38
+explicitly reviewed but unmerged/undeployed, and retains the personal-project,
+synthetic-data, adoption and scale boundaries.
+
+The [rendered profile](https://github.com/soufianeelbiki1) returned HTTP 200 in
+Chromium at 1440×1000, 390×844 and 844×390. The README and page had no horizontal
+overflow or clipping, all four primary evidence/contact links were present, no
+stale status copy remained and the README region had zero axe WCAG A/AA
+violations. There were no page errors. The restricted desktop runner logged six
+external-resource timeouts after the README rendered; both mobile runs were
+console-clean. The merge changed documentation only and created no deployment or
+paid resource.
+
 [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) is merged
 to main at `878526db1753ecca415f4f06dc717e8d90a1f9b9`. It connects the forecast
 evaluation to the replenishment decision. The policy uses the same
@@ -106,10 +123,16 @@ and the latter is a dev-only pytest range change whose watched
 open after the reviewed RetailIntel #6 merge; their last inspected exact-head
 workflows were green and no human feedback was unresolved.
 
+After the Nexus release, all six remaining scoped pull requests were rechecked
+at their exact heads: portfolio #11, AtlasPay #38 and Nexus #12/#13/#23/#29.
+Each was mergeable with green workflows and no unresolved human feedback before
+profile #9 was opened and merged. Six scoped pull requests remain open.
+
 ## Current release state
 
 | Work | State and evidence | Remaining gate |
 | --- | --- | --- |
+| [GitHub profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9) | Merged at `36e81e18fd6facf6e46a57f6da846519902d9c62`; rendered desktop/phone geometry, primary links and README-scoped axe checks passed | Targeted maintenance only; do not add unsupported experience, scale or adoption claims |
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
@@ -125,6 +148,11 @@ against the now-merged lockfile/runtime baseline before any further merge.
 
 ## Already merged to main
 
+- [Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9):
+  current merged flagship states, revision-pinned evidence and working public
+  entry points. Merge `36e81e18fd6facf6e46a57f6da846519902d9c62`;
+  rendered desktop/phone geometry, link presence and README-scoped axe checks
+  passed. Documentation only; no deployment or paid resource.
 - [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6):
   auditable synthetic inputs, point-in-time policy/evaluation alignment,
   installed-wheel execution and accessible dashboard tables. Merge
@@ -220,9 +248,10 @@ against the now-merged lockfile/runtime baseline before any further merge.
    Nexus fixture-only filters remain covered by CI and are not represented as
    live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
-3. Refresh public evidence entry points to the verified revisions; curate the
-   supporting repositories only where they add distinct evidence. Never invent
-   client adoption, scale, production benchmarks or personal experience.
+3. Reassess the four remaining Nexus dependency pull requests against the
+   merged Node 24 lockfile/runtime baseline. Curate supporting repositories only
+   where they add distinct evidence. Never invent client adoption, scale,
+   production benchmarks or personal experience.
 
 Completion: three polished reproducible flagship case studies, a distinctive
 responsive portfolio with working contacts, curated profile, reliable CI and
