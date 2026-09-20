@@ -285,10 +285,17 @@ baseline before merging.
    non-commercial personal use. A read-only portfolio deployment query found no
    deployment newer than 2026-08-31. Nexus is GitHub-linked; the portfolio is
    not. Do not publish freelance-services marketing without eligible terms.
-4. **Alternative hosting:** Netlify Free remains a candidate, not a connected,
-   account-verified release route. Do not create accounts, enable auto-recharge,
-   upgrade, buy domains or provision resources. Keep demos static/local where
-   possible; inspect costs and side effects before any cloud action.
+4. **Alternative hosting:** the official Netlify pricing page was rechecked
+   on 2026-09-20. It presents marketing sites as a supported use case, lists
+   Free at **$0 forever**, and says the Free plan has a hard monthly limit that
+   cannot be exceeded or incur costs; its self-serve agreement permits use for
+   the customer's business purposes. This makes Netlify Free the strongest
+   verified zero-additional-spend candidate for this static site. GitHub Pages
+   is not a fallback: its official limits prohibit using Pages as free hosting
+   for an online business. No Netlify account or deployment connector is
+   available in the current authorised workspace, so nothing was provisioned.
+   Do not create accounts, enable auto-recharge, upgrade, buy domains or
+   provision resources without a connected, account-verified route.
 5. **GitHub metadata:** descriptions/topics were empty in the prior scoped audit;
    the connected interface has no metadata-edit operation. Manual About/settings
    curation is separate from code work. Do not repeat this request every run.
