@@ -6,6 +6,23 @@ Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
 
+[Nexus #23](https://github.com/soufianeelbiki1/Nexus/pull/23) is merged at
+[`c69766c`](https://github.com/soufianeelbiki1/Nexus/commit/c69766c71d969b6e562d6b1f4b46dc207c8f37ad).
+The scoped patch moves Next.js 16.3.3 to the official 16.3.5 bug-fix release
+without changing React or React DOM 19.2.8. Dependabot rebased it onto the
+merged Node 24 workflow baseline before review, so no stale green check was used.
+
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628009)
+passes a locked install, TypeScript, **22 tests**, the Next.js 16.3.5 production
+build and non-root container checks. [Security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521627970)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628013)
+also pass. Vercel published the exact merge through the existing personal-project
+Hobby route. Its [immutable deployment](https://nexus-5ii2rciyu-soufiane15.vercel.app/)
+and [canonical dashboard](https://nexus-soufiane15.vercel.app/) returned live
+authenticated `atlaspay-api` data in Chromium at 1440×1000, 390×844,
+844×390 and 320×568 with no overflow/clipping, console/page errors or axe
+WCAG A/AA violations. No production runtime errors were reported after release.
+
 [Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12) is merged at
 [`6ff449d`](https://github.com/soufianeelbiki1/Nexus/commit/6ff449d79511b9fbc7f058fb5aa478a3679da7a7).
 It consolidates all six workflow checkout steps on `actions/checkout@v7` and
@@ -148,7 +165,8 @@ Each was mergeable with green workflows and no unresolved human feedback before
 profile #9 was opened and merged. Nexus #13 was subsequently consolidated into
 #12 and closed, #29 was closed as an incomplete coupled upgrade, and #12 was
 merged after its combined and post-merge checks passed. Three scoped pull
-requests remain open: portfolio #11, Nexus #23 and AtlasPay #38.
+requests remain open: portfolio #11 and AtlasPay #38. Nexus has no remaining
+open dependency pull request after #23's reviewed merge.
 
 ## Current release state
 
@@ -158,18 +176,27 @@ requests remain open: portfolio #11, Nexus #23 and AtlasPay #38.
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
-| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Released baseline at `65c72e2`; main now includes #12 at `6ff449d` with checkout/setup-node v7; all post-merge workflow groups pass and production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
+| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Released baseline at `65c72e2`; main includes #12 at `6ff449d` and the reviewed Next.js 16.3.5 patch #23 at `c69766c`; all post-merge workflow groups pass and exact production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Released through #26 | None |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Merged at `878526db1753ecca415f4f06dc717e8d90a1f9b9`; 35 tests passed on Python 3.11/3.12; desktop/phone Chromium, keyboard scrolling and axe WCAG checks passed | Local static artifact only; no hosted retail integration claimed |
 
 All scoped open PRs, latest file diffs, checks, comments, reviews and review
 threads were inspected before this change. No human review feedback was
 pending. The obsolete Node 26 and failing split-peer Nexus branches were closed
-recoverably, not deleted or merged. Recheck the remaining Dependabot heads
-against the now-merged lockfile/runtime baseline before any further merge.
+recoverably, not deleted or merged. Nexus has no remaining open dependency pull
+request. Recheck any future Dependabot head against the merged lockfile/runtime
+baseline before merging.
 
 ## Already merged to main
 
+- [Nexus #23](https://github.com/soufianeelbiki1/Nexus/pull/23): Next.js
+  16.3.3 → 16.3.5 on the merged Node 24 baseline, while React/React DOM stay
+  on 19.2.8. Merge `c69766c71d969b6e562d6b1f4b46dc207c8f37ad`;
+  [CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628009),
+  [security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521627970)
+  and the [integrated demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628013)
+  passed. The exact production deployment passed four responsive Chromium and
+  axe checks with live data and no runtime errors.
 - [Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12): consolidated
   Node 24 action runtimes across CI, security and integrated demo. Merge
   `6ff449d79511b9fbc7f058fb5aa478a3679da7a7`; all three post-merge workflow
@@ -274,8 +301,7 @@ against the now-merged lockfile/runtime baseline before any further merge.
    Nexus fixture-only filters remain covered by CI and are not represented as
    live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
-3. Review Nexus #23's Next.js 16.3.5 patch as the only remaining Nexus
-   dependency pull request, including a production browser pass if released.
+3. Keep Nexus on targeted maintenance after the verified Next.js 16.3.5 release.
    Curate supporting repositories only where they add distinct evidence. Never
    invent client adoption, scale, production benchmarks or personal experience.
 
