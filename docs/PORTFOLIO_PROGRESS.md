@@ -1,14 +1,14 @@
 # Recruiter-readiness backlog and evidence
 
-Updated: 2026-09-19. Backend-first full-stack/platform engineering: Java/Spring
+Updated: 2026-09-20. Backend-first full-stack/platform engineering: Java/Spring
 Boot, TypeScript/React/Next.js, PostgreSQL, data workflows and reliability.
 Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
 
-[RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) now
-connects the forecast evaluation to the replenishment decision at
-`d02ec9a2f540bc438f87b4a32b414057429640d8`. The policy uses the same
+[RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) is merged
+to main at `878526db1753ecca415f4f06dc717e8d90a1f9b9`. It connects the forecast
+evaluation to the replenishment decision. The policy uses the same
 prior-only seven-day mean that the holdout scores, rather than a separate
 unscored 28-day mean. Demand is selected at or before the inventory snapshot,
 and evidence observed after that snapshot is withheld. The queue places both
@@ -18,14 +18,14 @@ dashboard commands now share generator defaults and custom-input options; the
 dashboard prints seed, order count, demand range, inventory snapshot and
 evaluation cutoff instead of silently allowing incomparable samples.
 
-The exact local gate passes **35 tests**, lint, formatting, installed-wheel
-deterministic JSON/dashboard generation and dependency checks. The
-[exact-head CI](https://github.com/soufianeelbiki1/RetailIntel/actions/runs/35475376274)
-passes the same 35 tests on Python 3.11 and 3.12 plus lint and formatting. New
-regressions cover formula equivalence, lagged snapshots, matching evidence rows
-and unscored point-in-time states. The PR stays draft because real
-desktop/mobile and keyboard verification is still unavailable; no deployment
-or paid resource was used.
+The reviewed head passes **35 tests**, lint, formatting, installed-wheel
+deterministic JSON/dashboard generation and dependency checks in
+[exact-head CI](https://github.com/soufianeelbiki1/RetailIntel/actions/runs/35489079697)
+on Python 3.11 and 3.12. A real Chromium pass at 1440×1000, 390×844 and
+844×390 found zero page overflow, clipped regions, console/page errors or axe
+WCAG 2.0/2.1 A/AA violations. Each wide table is a labelled, keyboard-focusable
+scroll region and keyboard horizontal scrolling was exercised. No deployment,
+hosted API/model/database or paid resource accompanied the merge.
 
 [AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12) is merged to
 main at `18ac326741cae5db33fabb5f3c6a9b6a1047a025`. Duplicate relevant citations
@@ -105,20 +105,20 @@ correcting the earlier transient conflict state for AtlasPay #22/#25.
 [#25](https://github.com/soufianeelbiki1/AtlasPay/pull/25) were then closed
 without merging: the former is an unplanned Python 3.11 → 3.14 runtime migration,
 and the latter is a dev-only pytest range change whose watched
-`pyproject.toml` would still trigger a Railway deployment. Eight PRs remain
-open; all are mergeable with green exact-head workflows. No default branch,
-deployment or paid resource changed during either cleanup.
+`pyproject.toml` would still trigger a Railway deployment. Seven PRs remain
+open after the reviewed RetailIntel #6 merge; their last inspected exact-head
+workflows were green and no human feedback was unresolved.
 
 ## Current release state
 
 | Work | State and evidence | Remaining gate |
 | --- | --- | --- |
-| [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally | Real desktop/mobile, keyboard, reduced-motion and contact-path verification; eligible hosting |
+| [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
 | [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview and live refresh reverified 2026-09-19 | Mobile browser QA and final production deployment effects |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
-| [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Draft at `d02ec9a2f540bc438f87b4a32b414057429640d8`; evaluated policy mean, point-in-time guards, per-SKU queue evidence, aligned artifact provenance and installed-wheel execution; exact-head Python 3.11/3.12 CI passes 35 tests | Desktop/mobile table and keyboard QA; release-effect verification |
+| [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Merged at `878526db1753ecca415f4f06dc717e8d90a1f9b9`; 35 tests passed on Python 3.11/3.12; desktop/phone Chromium, keyboard scrolling and axe WCAG checks passed | Local static artifact only; no hosted retail integration claimed |
 
 All scoped open PRs, latest file diffs, checks, comments, reviews and review
 threads were inspected before this change. No human review feedback was
@@ -129,6 +129,12 @@ before every write or merge.
 
 ## Already merged to main
 
+- [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6):
+  auditable synthetic inputs, point-in-time policy/evaluation alignment,
+  installed-wheel execution and accessible dashboard tables. Merge
+  `878526db1753ecca415f4f06dc717e8d90a1f9b9`; exact-head CI passed 35 tests
+  on Python 3.11/3.12 and the generated dashboard passed desktop/phone Chromium
+  geometry, keyboard and axe WCAG checks. No deployment accompanied the merge.
 - [AtlasPay #23](https://github.com/soufianeelbiki1/AtlasPay/pull/23): all root,
   Java and security workflow checkout steps upgraded to the Node 24-based v7
   release. Merge `e9e46c022e756c0bc60dca2a3229aacc2e79525b`;
@@ -176,13 +182,13 @@ before every write or merge.
 
 ## Exact blockers and budget rules
 
-1. **Browser:** the local portfolio preview still returns
-   `ERR_BLOCKED_BY_CLIENT`. The public Nexus preview works, but the supported
-   browser exposes only a fixed 1363×936 viewport. Nexus has explicit 820 px and
-   520 px CSS breakpoints, but code inspection is not mobile browser evidence.
-   DOM tests and static builds do not establish responsive geometry, real
-   keyboard traversal or mail-client behavior. No alternate control/network
-   bypass or unverified UI merge.
+1. **Browser:** a local Chromium route now verifies portfolio and RetailIntel
+   layouts at desktop, phone portrait and phone landscape widths, including
+   keyboard interactions, reduced/coarse-pointer behavior, overflow/clipping,
+   console errors and axe WCAG checks. The portfolio email control retains the
+   intended `mailto:` URL; opening a real mail application and delivery remain
+   outside automated verification. Nexus's public preview still needs a genuine
+   phone-width pass before its main release.
 2. **Railway:** the user's matching project screenshot confirmed a finite Trial
    on 2026-09-12, not permanent free hosting or today's allowance. Live recheck
    on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
@@ -212,17 +218,13 @@ before every write or merge.
 
 ## Next priorities
 
-1. Recover a permitted portfolio preview and verify desktop/mobile layout,
-   keyboard navigation, reduced motion, three scenario controls and contact
-   links. Keep #11 draft until actual browser evidence exists. Do not add effects.
+1. Establish an eligible zero-cost commercial hosting route for the portfolio,
+   then review and release #11 without changing its verified UI scope.
 2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
    Verify Nexus #26 on mobile before its main release; fixture-only filters are
    covered by CI and are not represented as live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
-3. Verify RetailIntel's updated queue and uncertainty evidence in a real
-   desktop/mobile browser, then release the coherent data/business case study;
-   no further dashboard feature scope first.
-4. Refresh public evidence entry points to the verified revisions; curate the
+3. Refresh public evidence entry points to the verified revisions; curate the
    supporting repositories only where they add distinct evidence. Never invent
    client adoption, scale, production benchmarks or personal experience.
 
@@ -232,5 +234,5 @@ permitted zero-cost verified demos. Then switch to targeted maintenance.
 
 Historical details are preserved in the [September 12–13 archive](progress/2026-09-12-13.md).
 The latest merge and verification trail is in the
-[September 14 log](progress/2026-09-14.md). The current Vercel and PR audit is in
-the [September 19 log](progress/2026-09-19.md).
+[September 20 log](progress/2026-09-20.md). The preceding Vercel and PR audit is
+in the [September 19 log](progress/2026-09-19.md).

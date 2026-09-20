@@ -40,14 +40,18 @@ legal notice. No paid Pro assets or license keys are used.
 ## Verification status
 
 TypeScript and the static build pass; the 20 existing source/navigation tests and
-all four DOM integration tests pass locally. DOM tests exercise the generated production bundle, including hydration,
-scenario switching, source links, no backend calls and motion preferences. These
-are not browser layout tests.
+all four DOM integration tests pass locally. DOM tests exercise the generated
+production bundle, including hydration, scenario switching, source links, no
+backend calls and motion preferences.
 
-The supported browser cannot open the local preview (`ERR_BLOCKED_BY_CLIENT`).
-Desktop/mobile screenshots, responsive geometry, keyboard traversal and a real
-mail-client handoff remain unverified. Keep the existing UI PR draft until these
-are checked; do not present build success as public UX verification.
+On September 20, 2026, the built site was also inspected in headless Chromium at
+1440×1000, 390×844 and 844×390. All three viewports had zero page overflow,
+clipped interactive elements, console/page errors or axe WCAG 2.0/2.1 A/AA
+violations. Keyboard activation changed the scenario state, native details
+opened from the keyboard, reduced/coarse-pointer motion stayed disabled and the
+email control retained its `mailto:` destination. Launching a real mail client
+was outside the browser sandbox, so only the handoff URL—not delivery—was
+verified.
 
 No hosting configuration is changed. Publication still needs an eligible zero-cost
 route for a portfolio that mentions scoped projects.

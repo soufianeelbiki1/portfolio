@@ -5,11 +5,11 @@ deployments, production adoption or commercial results. All payment scenarios
 and retail inputs are synthetic. The AI demonstration uses deterministic
 retrieval and extractive answers, not a paid model.
 
-Evidence reviewed on September 14, 2026. AtlasRAG's metric correction and
-decision-breakdown safeguards are merged to main. AtlasPay/Nexus and RetailIntel
-improvements remain on review branches;
-AtlasPay #37 and #39 are integrated into #38, not main. Passing checks do not
-mean the published portfolio or production services include those branches.
+Evidence reviewed on September 20, 2026. AtlasRAG's metric correction,
+decision-breakdown safeguards and RetailIntel's decision evidence are merged to
+main. AtlasPay #37 and #39 are integrated into #38, not main; Nexus remains on
+its review branch. Passing checks do not mean the published portfolio or
+production services include those branches.
 Links below pin source revisions so the behavior remains inspectable after a
 branch changes.
 
@@ -152,9 +152,11 @@ evidence would be required before turning a recommendation into a purchase order
 **Limits:** One generated final-seven-day scoring window, not a production
 backtest. The 28-day demand standard deviation remains a separate safety-stock
 assumption; forecast scores do not validate it. Multiple rolling windows and
-reconciled inventory are future work. The dashboard changes in
-[RetailIntel #6][retail-pr] are not published and their desktop/mobile usability
-remains unverified.
+reconciled inventory are future work. [RetailIntel #6][retail-pr] is merged to
+main. Its generated dashboard passed Chromium checks at desktop, phone portrait
+and phone landscape widths with keyboard-scrollable tables and zero axe WCAG
+2.0/2.1 A/AA violations. It is still a local static artifact, not a hosted
+retail integration.
 
 ## 3. AtlasRAG: testing when to answer and when to abstain
 
@@ -241,14 +243,14 @@ publication remain separate release gates.
 [nexus-walkthrough]: https://github.com/soufianeelbiki1/Nexus/blob/372a9a41607cd07c59e4cfefbecc7c046383a313/docs/LOCAL_DEMO.md
 [nexus-ci]: https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889919
 [nexus-preview]: https://nexus-mchodvzdz-soufiane15.vercel.app/
-[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/src/retailintel/sql/marts/forecast_evaluation.sql
-[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_forecast_evaluation.py
-[retail-policy]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/src/retailintel/sql/marts/replenishment_recommendation.sql
-[retail-policy-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_replenishment.py
-[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_evaluation_report.py
-[retail-dashboard-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_dashboard.py
-[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/tests/test_wheel_installation.py
-[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/d02ec9a2f540bc438f87b4a32b414057429640d8/docs/DECISION_WALKTHROUGH.md
+[retail-sql]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/src/retailintel/sql/marts/forecast_evaluation.sql
+[retail-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/tests/test_forecast_evaluation.py
+[retail-policy]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/src/retailintel/sql/marts/replenishment_recommendation.sql
+[retail-policy-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/tests/test_replenishment.py
+[retail-report-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/tests/test_evaluation_report.py
+[retail-dashboard-tests]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/tests/test_dashboard.py
+[retail-wheel]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/tests/test_wheel_installation.py
+[retail-walkthrough]: https://github.com/soufianeelbiki1/RetailIntel/blob/878526db1753ecca415f4f06dc717e8d90a1f9b9/docs/DECISION_WALKTHROUGH.md
 [retail-pr]: https://github.com/soufianeelbiki1/RetailIntel/pull/6
 [rag-evaluator]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/app/rag_evaluation.py
 [rag-tests]: https://github.com/soufianeelbiki1/AtlasRAG/blob/18ac326741cae5db33fabb5f3c6a9b6a1047a025/tests/test_rag_evaluation.py
