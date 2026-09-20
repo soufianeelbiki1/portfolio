@@ -36,6 +36,7 @@ test('HTML contains all project, contact and case-study paths without JavaScript
   assert.equal(document.querySelector('h1').textContent, 'Calm systems.Clear decisions.');
   assert.ok(document.querySelector('a[href="mailto:elbikisoufiane@gmail.com"]'));
   assert.ok(document.querySelector('a[href*="CASE_STUDIES.md"]'));
+  assert.ok(document.querySelector('a[href="https://nexus-soufiane15.vercel.app/"]'));
   assert.ok(document.querySelector('.lab-result').textContent.includes('One decision.'));
   assert.ok(document.querySelector('noscript').textContent.includes('JavaScript is off'));
   dom.window.close();
@@ -45,7 +46,7 @@ test('production hydration switches retry, conflict and outage with accurate sou
   const { document, waitFor } = await open(t);
   const buttons = [...document.querySelectorAll('.scenario-controls button')];
   const state = () => document.querySelector('.state-label').textContent;
-  for(const [index, expected, source] of [[1,'CONFLICT','AtlasPay/pull/38'],[2,'UNAVAILABLE','Nexus/pull/26'],[0,'REPLAY','AtlasPay/pull/38']]) {
+  for(const [index, expected, source] of [[1,'CONFLICT','AtlasPay/pull/38'],[2,'UNAVAILABLE','Nexus/commit/65c72e204c0fb6b3b281483ffd35872c05335df4'],[0,'REPLAY','AtlasPay/pull/38']]) {
     buttons[index].click(); await waitFor(()=>state()===expected);
     assert.equal(document.querySelectorAll('.scenario-controls [aria-pressed="true"]').length, 1);
     assert.equal(buttons[index].getAttribute('aria-pressed'), 'true');

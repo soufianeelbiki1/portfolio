@@ -41,26 +41,23 @@ passes **44 tests** on both Python 3.11 and 3.12 with PostgreSQL, plus dependenc
 lint, formatting and compilation checks. No deployment, hosted model/API call or
 paid resource accompanied the merge.
 
-[Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) is merged into the
-existing **#26 review branch, not main**, at
-`372a9a41607cd07c59e4cfefbecc7c046383a313`. The top-level README now gives a
-short operator walkthrough, links implementation evidence, labels the hosted
-stack as a simulation and distinguishes a finite Railway trial from permanent
-hosting. A new test prevents broken local README/operator-guide links.
+[Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26), including the
+previously consolidated #25 documentation, is merged to main at
+[`65c72e2`](https://github.com/soufianeelbiki1/Nexus/commit/65c72e204c0fb6b3b281483ffd35872c05335df4).
+It ships reproducible Node 24 builds, runtime-only authenticated rendering,
+fail-closed outage/recovery checks and a truthful operator walkthrough. A visual
+review found cramped route diagnostics on narrow phones; the merged fix stacks
+those long values below 520 px and adds a responsive regression.
 
-[Combined-head Nexus CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889919)
-passes a clean Node 24 install, TypeScript, **21 tests**, production build and
-non-root container. The [security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889920)
-and [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/34782889913)
-also pass. The [Vercel preview](https://nexus-mchodvzdz-soufiane15.vercel.app/)
-was rechecked in a real 1363×936 browser on 2026-09-19: live authenticated data
-rendered with no horizontal overflow, semantic landmarks were exposed, and a
-reload advanced the producer timestamp from 09:08:29 to 09:09:33, proving
-runtime data was not frozen at build. Vercel reported no runtime error cluster
-or warning/error/fatal log for the exact preview in the preceding 24 hours.
-Mobile geometry remains unverified. The search/outcome filter is deliberately a
-fixture-development interaction; the authenticated live view instead exposes
-privacy-safe aggregates without identifier-bearing transaction rows.
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857214)
+passes a clean install, TypeScript, **22 tests**, production build and non-root
+container. [Security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857277)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857231)
+also pass. The [production dashboard](https://nexus-soufiane15.vercel.app/) was
+verified at 1440×1000, 390×844, 844×390 and 320×568 with live `atlaspay-api`
+provenance, changing timestamps, no overflow/clipping or console errors and zero
+axe WCAG A/AA violations. Fixture search/outcome filters are not presented as
+live authenticated functionality.
 
 [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) and
 [AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) are merged
@@ -116,16 +113,15 @@ workflows were green and no human feedback was unresolved.
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
-| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Ready at `372a9a41607cd07c59e4cfefbecc7c046383a313`; reproducible Node 24, dynamic rendering, truthful operator guide and all six checks pass; desktop preview and live refresh reverified 2026-09-19 | Mobile browser QA and final production deployment effects |
-| [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Merged into #26 review branch; not main | Released only when #26 clears its remaining gates |
+| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Merged at `65c72e204c0fb6b3b281483ffd35872c05335df4`; all three post-merge workflow groups pass; production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
+| [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Released through #26 | None |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Merged at `878526db1753ecca415f4f06dc717e8d90a1f9b9`; 35 tests passed on Python 3.11/3.12; desktop/phone Chromium, keyboard scrolling and axe WCAG checks passed | Local static artifact only; no hosted retail integration claimed |
 
 All scoped open PRs, latest file diffs, checks, comments, reviews and review
 threads were inspected before this change. No human review feedback was
 pending. The obsolete Node 26 and failing split-peer Nexus branches were closed
-recoverably, not deleted or merged. Nexus #29 remains green but must still be
-reviewed together with the lockfile/runtime branch before release. Recheck heads
-before every write or merge.
+recoverably, not deleted or merged. Recheck the remaining Dependabot heads
+against the now-merged lockfile/runtime baseline before any further merge.
 
 ## Already merged to main
 
@@ -187,8 +183,8 @@ before every write or merge.
    keyboard interactions, reduced/coarse-pointer behavior, overflow/clipping,
    console errors and axe WCAG checks. The portfolio email control retains the
    intended `mailto:` URL; opening a real mail application and delivery remain
-   outside automated verification. Nexus's public preview still needs a genuine
-   phone-width pass before its main release.
+   outside automated verification. Nexus now passes the same geometry and axe
+   checks through 320 px on its production deployment.
 2. **Railway:** the user's matching project screenshot confirmed a finite Trial
    on 2026-09-12, not permanent free hosting or today's allowance. Live recheck
    on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
@@ -221,8 +217,8 @@ before every write or merge.
 1. Establish an eligible zero-cost commercial hosting route for the portfolio,
    then review and release #11 without changing its verified UI scope.
 2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
-   Verify Nexus #26 on mobile before its main release; fixture-only filters are
-   covered by CI and are not represented as live authenticated functionality.
+   Nexus fixture-only filters remain covered by CI and are not represented as
+   live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
 3. Refresh public evidence entry points to the verified revisions; curate the
    supporting repositories only where they add distinct evidence. Never invent
