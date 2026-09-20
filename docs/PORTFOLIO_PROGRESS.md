@@ -6,6 +6,25 @@ Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
 ## Latest completed work
 
+[Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12) is merged at
+[`6ff449d`](https://github.com/soufianeelbiki1/Nexus/commit/6ff449d79511b9fbc7f058fb5aa478a3679da7a7).
+It consolidates all six workflow checkout steps on `actions/checkout@v7` and
+both Node setup steps on `actions/setup-node@v7`, preserving Node 24, locked
+installs, least-privilege permissions, application dependencies and the pinned
+AtlasPay demo revision. Conflicting checkout PR #13 was closed as superseded.
+Split React PR #29 was closed without merge because it advanced React/types to
+19.3 while leaving React DOM/types on 19.2.
+
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449654),
+[security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449687)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449895)
+all pass. Vercel published the exact merge commit through the existing
+personal-project Hobby route. The [production dashboard](https://nexus-soufiane15.vercel.app/)
+returned authenticated `atlaspay-api` data in Chromium at 1440×1000, 390×844,
+844×390 and 320×568 with no overflow/clipping, console/page errors or axe WCAG
+A/AA violations. No paid plan, credential, hosted data or billable resource
+changed.
+
 [Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9) is merged
 at [`36e81e18`](https://github.com/soufianeelbiki1/soufianeelbiki1/commit/36e81e18fd6facf6e46a57f6da846519902d9c62).
 The public GitHub profile now leads with the live Nexus console and a
@@ -126,7 +145,10 @@ workflows were green and no human feedback was unresolved.
 After the Nexus release, all six remaining scoped pull requests were rechecked
 at their exact heads: portfolio #11, AtlasPay #38 and Nexus #12/#13/#23/#29.
 Each was mergeable with green workflows and no unresolved human feedback before
-profile #9 was opened and merged. Six scoped pull requests remain open.
+profile #9 was opened and merged. Nexus #13 was subsequently consolidated into
+#12 and closed, #29 was closed as an incomplete coupled upgrade, and #12 was
+merged after its combined and post-merge checks passed. Three scoped pull
+requests remain open: portfolio #11, Nexus #23 and AtlasPay #38.
 
 ## Current release state
 
@@ -136,7 +158,7 @@ profile #9 was opened and merged. Six scoped pull requests remain open.
 | [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
 | [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
 | [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
-| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Merged at `65c72e204c0fb6b3b281483ffd35872c05335df4`; all three post-merge workflow groups pass; production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
+| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Released baseline at `65c72e2`; main now includes #12 at `6ff449d` with checkout/setup-node v7; all post-merge workflow groups pass and production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
 | [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Released through #26 | None |
 | [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Merged at `878526db1753ecca415f4f06dc717e8d90a1f9b9`; 35 tests passed on Python 3.11/3.12; desktop/phone Chromium, keyboard scrolling and axe WCAG checks passed | Local static artifact only; no hosted retail integration claimed |
 
@@ -148,6 +170,10 @@ against the now-merged lockfile/runtime baseline before any further merge.
 
 ## Already merged to main
 
+- [Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12): consolidated
+  Node 24 action runtimes across CI, security and integrated demo. Merge
+  `6ff449d79511b9fbc7f058fb5aa478a3679da7a7`; all three post-merge workflow
+  groups and the four-viewport production browser check passed.
 - [Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9):
   current merged flagship states, revision-pinned evidence and working public
   entry points. Merge `36e81e18fd6facf6e46a57f6da846519902d9c62`;
@@ -248,10 +274,10 @@ against the now-merged lockfile/runtime baseline before any further merge.
    Nexus fixture-only filters remain covered by CI and are not represented as
    live authenticated functionality.
    No bypass, forced push, silently disabled service or trial/plan change.
-3. Reassess the four remaining Nexus dependency pull requests against the
-   merged Node 24 lockfile/runtime baseline. Curate supporting repositories only
-   where they add distinct evidence. Never invent client adoption, scale,
-   production benchmarks or personal experience.
+3. Review Nexus #23's Next.js 16.3.5 patch as the only remaining Nexus
+   dependency pull request, including a production browser pass if released.
+   Curate supporting repositories only where they add distinct evidence. Never
+   invent client adoption, scale, production benchmarks or personal experience.
 
 Completion: three polished reproducible flagship case studies, a distinctive
 responsive portfolio with working contacts, curated profile, reliable CI and
