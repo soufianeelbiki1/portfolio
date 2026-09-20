@@ -1,0 +1,26 @@
+{
+  "name": "soufiane-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "preview": "python3 -m http.server 8767 --bind 0.0.0.0",
+    "test": "python3 -m unittest discover -s tests -v"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.0",
+    "esbuild": "0.28.2",
+    "jsdom": "27.0.0",
+    "typescript": "7.0.2"
+  }
+}

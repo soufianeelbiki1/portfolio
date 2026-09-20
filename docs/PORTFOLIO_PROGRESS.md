@@ -1,105 +1,322 @@
 # Recruiter-readiness backlog and evidence
 
-Updated: 2026-09-13. Positioning: backend-first full-stack/platform engineering; Java/Spring Boot, TypeScript/Next.js, PostgreSQL, reliability and data workflows. Budget: zero additional spend. Project simulations and synthetic data must remain explicitly labelled.
+Updated: 2026-09-20. Backend-first full-stack/platform engineering: Java/Spring
+Boot, TypeScript/React/Next.js, PostgreSQL, data workflows and reliability.
+Budget: zero additional spend. Simulations and synthetic results stay labelled.
 
-## Current integration decision (2026-09-13)
+## Latest completed work
 
-Portfolio #10 changes only this log, the source audit and offline navigation tests. It does not change the rendered site or cloud configuration. The repository is public, its only workflow runs standard ubuntu-latest Python checks, and the known Vercel portfolio project exposes no GitHub connection. Source-only integration is independent of UI/browser and hosting-release gates; merge after exact-head CI and review, without deploying.
+[Nexus #23](https://github.com/soufianeelbiki1/Nexus/pull/23) is merged at
+[`c69766c`](https://github.com/soufianeelbiki1/Nexus/commit/c69766c71d969b6e562d6b1f4b46dc207c8f37ad).
+The scoped patch moves Next.js 16.3.3 to the official 16.3.5 bug-fix release
+without changing React or React DOM 19.2.8. Dependabot rebased it onto the
+merged Node 24 workflow baseline before review, so no stale green check was used.
 
-The user's matching Railway project screenshot confirms an existing Trial plan with credit remaining (observed 2026-09-12, not a live quota reading). Earlier entries saying the plan is unknown are historical and superseded. Credit expiry still prevents promising permanent hosting; no paid upgrade or new trial is authorised. The screenshot itself is not committed. No Railway service or deployment is changed in this integration.
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628009)
+passes a locked install, TypeScript, **22 tests**, the Next.js 16.3.5 production
+build and non-root container checks. [Security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521627970)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628013)
+also pass. Vercel published the exact merge through the existing personal-project
+Hobby route. Its [immutable deployment](https://nexus-5ii2rciyu-soufiane15.vercel.app/)
+and [canonical dashboard](https://nexus-soufiane15.vercel.app/) returned live
+authenticated `atlaspay-api` data in Chromium at 1440×1000, 390×844,
+844×390 and 320×568 with no overflow/clipping, console/page errors or axe
+WCAG A/AA violations. No production runtime errors were reported after release.
 
-Next priority: separate or verify portfolio #11's presentation work so the revision-pinned case studies can reach main; recover supported desktop/mobile/contact verification. Do not block independent documentation/tests on unrelated cloud publishing. AtlasPay #37 remains open with passing checks; Nexus #25 remains open with dependency failures, addressed separately by #26.
+[Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12) is merged at
+[`6ff449d`](https://github.com/soufianeelbiki1/Nexus/commit/6ff449d79511b9fbc7f058fb5aa478a3679da7a7).
+It consolidates all six workflow checkout steps on `actions/checkout@v7` and
+both Node setup steps on `actions/setup-node@v7`, preserving Node 24, locked
+installs, least-privilege permissions, application dependencies and the pinned
+AtlasPay demo revision. Conflicting checkout PR #13 was closed as superseded.
+Split React PR #29 was closed without merge because it advanced React/types to
+19.3 while leaving React DOM/types on 19.2.
 
-## Progress / evidence
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449654),
+[security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449687)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35518449895)
+all pass. Vercel published the exact merge commit through the existing
+personal-project Hobby route. The [production dashboard](https://nexus-soufiane15.vercel.app/)
+returned authenticated `atlaspay-api` data in Chromium at 1440×1000, 390×844,
+844×390 and 320×568 with no overflow/clipping, console/page errors or axe WCAG
+A/AA violations. No paid plan, credential, hosted data or billable resource
+changed.
 
-- Profile presentation previously published: [profile README](https://github.com/soufianeelbiki1/soufianeelbiki1). Do not infer professional scale or adoption from portfolio demos.
-- AtlasPay flagship introduction: [ready-for-review #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37), head `012f456b1806c1cb02f0b5f65e12247f40cd5ef4`. README diff reviewed; no inline comments; test and container checks successful. Marked ready after review and passing checks; not merged because Railway main auto-deployment budget eligibility remains unverified.
-- Nexus operator walkthrough: [draft #25](https://github.com/soufianeelbiki1/Nexus/pull/25), head `7e410576559cc98f0944db1f7c7ef7c3f197c85e`. README diff reviewed; no inline comments. Build and container checks fail during dependency installation, not application tests.
-- Nexus reproducible-build fix: [ready-for-review #26](https://github.com/soufianeelbiki1/Nexus/pull/26), commit `4a5fb9da9d9ecc29ec193e03be9cae0b083fd182`. Compatible React DOM types pinned, npm-generated dependency lock committed, Node 24 aligned in engines/CI/Docker, npm ci used in builds/audits/local instructions, lockfile changes trigger security checks. No forced peer resolution. Local clean install, typecheck, 20 tests and production build passed. Docker is unavailable locally. Remote build, container, dependency audit and runtime-smoke checks now pass; integrated demo check passed on that earlier head. Vercel automatically produced a READY [personal-demo preview](https://nexus-2fcsyova2-soufiane15.vercel.app) for this exact commit; public interactions are unverified (public fetch was blocked). No production merge or explicit deployment performed.
+[Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9) is merged
+at [`36e81e18`](https://github.com/soufianeelbiki1/soufianeelbiki1/commit/36e81e18fd6facf6e46a57f6da846519902d9c62).
+The public GitHub profile now leads with the live Nexus console and a
+revision-pinned case-study guide instead of the older portfolio deployment. It
+records Nexus #26, RetailIntel #6 and AtlasRAG #12 as merged, keeps AtlasPay #38
+explicitly reviewed but unmerged/undeployed, and retains the personal-project,
+synthetic-data, adoption and scale boundaries.
 
-## Release gates / blockers
+The [rendered profile](https://github.com/soufianeelbiki1) returned HTTP 200 in
+Chromium at 1440×1000, 390×844 and 844×390. The README and page had no horizontal
+overflow or clipping, all four primary evidence/contact links were present, no
+stale status copy remained and the README region had zero axe WCAG A/AA
+violations. There were no page errors. The restricted desktop runner logged six
+external-resource timeouts after the README rendered; both mobile runs were
+console-clean. The merge changed documentation only and created no deployment or
+paid resource.
 
-1. Inspect latest PR heads, diffs, checks and review comments before writes; do not create duplicate fix PRs. No active-run overlap.
-2. Never bypass protected workflow approvals or required checks. Recheck exact head SHA before merging.
-3. Railway trial identity is confirmed by the user's 2026-09-12 screenshot of the known project: finite remaining trial credit and two services online. This resolves the previously unknown plan, not permanent free hosting. Recheck remaining allowance and deployment side effects before AtlasPay merges (main auto-deploys with checkSuites=false). Never upgrade, create billable resources, or shut down infrastructure without authority.
-4. Vercel team remains Hobby and Nexus project remains Node 24 (checked 2026-09-12). Personal-demo previews do not establish eligibility for a commercial freelance-services site. [Hobby rules](https://vercel.com/docs/plans/hobby) restrict use to non-commercial personal projects; verify a commercial-compatible free static route before publishing service marketing. No upgrades, trials, paid calls, paid resources or domains.
-5. A possible Netlify Free route was checked on 2026-09-12: the official pricing page lists $0 forever with a 300-credit monthly hard limit and says auto-recharge is off by default; credits meter production deploys, web requests, bandwidth and functions. It is a candidate only until Soufiane connects an account and we confirm the account’s exact terms/settings, disable/keep auto-recharge off, and review the deploy before publishing. Do not use functions, database, AI, forms, or extra domains for the static portfolio.
-6. Deployment READY is not end-to-end proof. Test source unavailable/recovery states, credentials staying server-side, and key interactions. Any UI change requires desktop/mobile browser and accessibility verification.
+[RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) is merged
+to main at `878526db1753ecca415f4f06dc717e8d90a1f9b9`. It connects the forecast
+evaluation to the replenishment decision. The policy uses the same
+prior-only seven-day mean that the holdout scores, rather than a separate
+unscored 28-day mean. Demand is selected at or before the inventory snapshot,
+and evidence observed after that snapshot is withheld. The queue places both
+baselines' SKU-level MAE, WAPE and sample count beside the proposed order while
+retaining the separate 28-day volatility input for safety stock. Its JSON and
+dashboard commands now share generator defaults and custom-input options; the
+dashboard prints seed, order count, demand range, inventory snapshot and
+evaluation cutoff instead of silently allowing incomparable samples.
 
-## Ordered backlog
+The reviewed head passes **35 tests**, lint, formatting, installed-wheel
+deterministic JSON/dashboard generation and dependency checks in
+[exact-head CI](https://github.com/soufianeelbiki1/RetailIntel/actions/runs/35489079697)
+on Python 3.11 and 3.12. A real Chromium pass at 1440×1000, 390×844 and
+844×390 found zero page overflow, clipped regions, console/page errors or axe
+WCAG 2.0/2.1 A/AA violations. Each wide table is a labelled, keyboard-focusable
+scroll region and keyboard horizontal scrolling was exercised. No deployment,
+hosted API/model/database or paid resource accompanied the merge.
 
-- **Next:** Turn portfolio audit findings into an evidence-led UI branch: visible Java boundary, three focused case studies, accurate static snapshot labels/provenance and confirmed contact paths. Recover supported desktop/mobile browser verification; no production publish until permitted zero-cost hosting is verified.
-- **AtlasPay + Nexus:** Make the Java service reproducible in an integrated local walkthrough. Verify authorization/idempotency/accounting boundaries from actual code and tests; show an operator investigation and outage/recovery, not invented production metrics.
-- **RetailIntel:** Audit actual pipeline and demo; deliver a business decision walkthrough with reproducible synthetic inputs, data-quality checks and reconciled outputs.
-- **AtlasRAG:** Audit retrieval/evaluation and citation correctness; add reproducible offline evaluation and honest failure examples with no paid model/API requirement.
-- **Portfolio:** Audit existing static demos and contact paths, choose explicit visual references, implement a distinctive responsive design with three evidence-backed case studies. Publish only through confirmed zero-cost, permitted hosting.
-- **Supporting repositories:** Curate AtlasAnalytics, ExperimentLab and ForecastLab around demonstrated engineering evidence rather than additional project count.
+[AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12) is merged to
+main at `18ac326741cae5db33fabb5f3c6a9b6a1047a025`. Duplicate relevant citations
+can no longer inflate recall above 100%: each expected chunk contributes at most
+one hit while every duplicate stays in the precision denominator. The evaluator
+now separates answerable-grounding and safe-abstention rates and counts false
+abstentions and unsafe evidence responses, so opposite failure modes cannot hide
+inside one aggregate. The deterministic report exposes the same case-level
+outcomes and retains its synthetic-data and non-semantic-evaluation limits.
 
-## Completion criteria
+[Post-merge CI](https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34795357503)
+passes **44 tests** on both Python 3.11 and 3.12 with PostgreSQL, plus dependency,
+lint, formatting and compilation checks. No deployment, hosted model/API call or
+paid resource accompanied the merge.
 
-Three polished reproducible flagship case studies; distinctive responsive portfolio; working contact paths; curated GitHub profile; reliable CI; permitted zero-cost deployments and actual verified URLs. Once reached, switch to targeted maintenance rather than feature churn.
+[Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26), including the
+previously consolidated #25 documentation, is merged to main at
+[`65c72e2`](https://github.com/soufianeelbiki1/Nexus/commit/65c72e204c0fb6b3b281483ffd35872c05335df4).
+It ships reproducible Node 24 builds, runtime-only authenticated rendering,
+fail-closed outage/recovery checks and a truthful operator walkthrough. A visual
+review found cramped route diagnostics on narrow phones; the merged fix stacks
+those long values below 520 px and adds a responsive regression.
 
-## Latest verification improvement (2026-09-12)
+[Post-merge CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857214)
+passes a clean install, TypeScript, **22 tests**, production build and non-root
+container. [Security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857277)
+and the [authenticated outage/recovery demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35501857231)
+also pass. The [production dashboard](https://nexus-soufiane15.vercel.app/) was
+verified at 1440×1000, 390×844, 844×390 and 320×568 with live `atlaspay-api`
+provenance, changing timestamps, no overflow/clipping or console errors and zero
+axe WCAG A/AA violations. Fixture search/outcome filters are not presented as
+live authenticated functionality.
 
-Nexus #26 head `d060f45a28d10de342bb6861599de5c99f76bed3` now passes build, container, dependency audit, runtime-smoke and integrated demo checks. The demo pins AtlasPay `7990d04f2485b9cf46ab5c540b0418a128b48a7b`, runs on lockfile changes, checks authenticated console output, shuts down the local API to assert unavailable output with no fixture fallback, then checks recovery without reseeding.
+[AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) and
+[AtlasPay #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39) are merged
+into the existing **#38 review branch, not main**, at
+`968bd5703360f346438ed6c7b2afb1c24d197a7d`. The root README now leads with the
+Java/Spring Boot boundary, links directly to the reproducible retry/HTTP
+evidence, separates Python and Java startup paths and states finite-trial hosting
+limits. A regression test rejects broken or repository-escaping local README
+links. Validation and idempotency behavior remain tested together. The
+[cloud architecture notes](https://github.com/soufianeelbiki1/AtlasPay/blob/968bd5703360f346438ed6c7b2afb1c24d197a7d/docs/CLOUD_PLATFORM_ARCHITECTURE.md)
+now record the live Railway watch paths that isolate Java and Python builds.
 
-The first stronger smoke run failed before shutdown: the Docker build prerendered the fixture dashboard without runtime API credentials. The fix declares the dashboard force-dynamic; the local production build now identifies / as dynamic, TypeScript and all 20 unit tests pass, and the full remote outage/recovery scenario passes. YAML parsing, all Bash syntax checks and diff whitespace checks pass. This is server-rendered HTTP verification, not browser/mobile/accessibility verification.
+[Combined-head Java 21 CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35436564888)
+passes **36 tests, zero failures/errors/skips**: 12 real-server HTTP/PostgreSQL
+cases, three PostgreSQL concurrency/rollback cases, 14 MVC cases, three service
+cases and four authentication cases. [Root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35436564884)
+passes lint/format, all migrations, **105 Python/PostgreSQL tests**, runtime-image
+build and non-root verification. Local diff, format and README-link checks pass;
+Maven/Docker execution is CI-based, not falsely claimed local. The
+[walkthrough](https://github.com/soufianeelbiki1/AtlasPay/blob/9e04930d863abd88a0c6813c8c32aa878869e204/java-service/docs/LOCAL_WALKTHROUGH.md)
+and [three case studies](CASE_STUDIES.md) describe the combined evidence.
 
-Nexus #26 and AtlasPay #37 were marked ready after substantive review and successful checks. Neither is merged. Latest automatic Vercel [preview](https://nexus-mhpa0gsfa-soufiane15.vercel.app) is READY for the corrected head; public browser experience is still unverified. Production runtime credentials could call hosted AtlasPay: verify zero-cost deployment effects before merging, not merely Vercel build eligibility. Railway billing remains unverified. Next: inspect production source configuration without exposing credentials, confirm permitted no-cost deployment, and verify browser source-state interactions. Continue independent Java/local-demo work if publishing remains blocked.
+AtlasPay main is now `e9e46c022e756c0bc60dca2a3229aacc2e79525b` after the
+workflow-only [setup-java v6](https://github.com/soufianeelbiki1/AtlasPay/pull/30)
+[setup-python v7](https://github.com/soufianeelbiki1/AtlasPay/pull/24) and
+[checkout v7](https://github.com/soufianeelbiki1/AtlasPay/pull/23) updates.
+Both Railway services recorded all three revisions as `SKIPPED`; their running
+deployments remain on `7990d04f2485b9cf46ab5c540b0418a128b48a7b`. No runtime
+deployment, hosted database/API/model call or paid resource accompanied the
+merges. This is direct evidence that the monorepo watch paths ignore unrelated
+changes, while `checkSuites=false` remains a separate release risk.
 
-## Java authorization replay and concurrency correctness (2026-09-12)
+On 2026-09-19, all 13 then-open pull requests were re-reviewed at their exact
+heads. [Nexus #11](https://github.com/soufianeelbiki1/Nexus/pull/11),
+[#27](https://github.com/soufianeelbiki1/Nexus/pull/27) and
+[#28](https://github.com/soufianeelbiki1/Nexus/pull/28) were closed without
+merging: the first conflicts with the reviewed Node 24 runtime direction, while
+the latter two fail CI, security and integrated-demo checks as isolated
+runtime/type peer updates. A fresh recheck found all ten remaining PRs mergeable,
+correcting the earlier transient conflict state for AtlasPay #22/#25.
+[AtlasPay #22](https://github.com/soufianeelbiki1/AtlasPay/pull/22) and
+[#25](https://github.com/soufianeelbiki1/AtlasPay/pull/25) were then closed
+without merging: the former is an unplanned Python 3.11 → 3.14 runtime migration,
+and the latter is a dev-only pytest range change whose watched
+`pyproject.toml` would still trigger a Railway deployment. Seven PRs remain
+open after the reviewed RetailIntel #6 merge; their last inspected exact-head
+workflows were green and no human feedback was unresolved.
 
-[AtlasPay ready-for-review #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38), head `037937c7dcd78f1335bf4d4ef4dff79e6a6e6812`: changed payment/issuer/amount/currency on replay conflicts with HTTP 409. Identical replay keeps the original decision. Concurrent first requests are arbitrated by PostgreSQL unique-key insertion with ON CONFLICT DO NOTHING; the losing request rereads the committed winner under explicit READ COMMITTED isolation and performs no duplicate outbox write.
+After the Nexus release, all six remaining scoped pull requests were rechecked
+at their exact heads: portfolio #11, AtlasPay #38 and Nexus #12/#13/#23/#29.
+Each was mergeable with green workflows and no unresolved human feedback before
+profile #9 was opened and merged. Nexus #13 was subsequently consolidated into
+#12 and closed, #29 was closed as an incomplete coupled upgrade, and #12 was
+merged after its combined and post-merge checks passed. Three scoped pull
+requests remain open: portfolio #11 and AtlasPay #38. Nexus has no remaining
+open dependency pull request after #23's reviewed merge.
 
-Three real PostgreSQL 16 Testcontainer tests use Spring's actual transaction proxy: forced overlapping first reads yield one decision and one event for identical requests; different simultaneous amounts yield one success and one conflict; an outbox failure rolls back the decision. Java 21 CI logs report BUILD SUCCESS, 10 tests, zero failures/errors/skips, including all three PostgreSQL tests. Root tests and container checks pass on this exact head. Local whitespace checks pass; Java 21/Maven/Docker execution is CI-based because they are unavailable locally. Tests use disposable local containers, not hosted databases or APIs. This is bounded authorization correctness evidence, not a production benchmark or whole-system exactly-once claim.
+## Current release state
 
-PR #38 was returned to draft while changing its head, then marked ready after substantive diff review and passing new-head checks. No merge or deployment: Railway billing remains unverified. Prior ready AtlasPay #37 and Nexus #26 heads/checks were rechecked unchanged; Nexus #25 remains blocked until #26 can safely merge. Next priority: audit the Java HTTP validation boundary and provide a reproducible local authorization walkthrough; independently verify no-cost release effects and browser behavior before production publishing.
+| Work | State and evidence | Remaining gate |
+| --- | --- | --- |
+| [GitHub profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9) | Merged at `36e81e18fd6facf6e46a57f6da846519902d9c62`; rendered desktop/phone geometry, primary links and README-scoped axe checks passed | Targeted maintenance only; do not add unsupported experience, scale or adoption claims |
+| [Portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) | Draft React Bits redesign; static HTML/React/TypeScript; 20 Python and four DOM tests, typecheck and build rechecked locally; Chromium passed desktop, phone portrait/landscape, keyboard interactions, reduced/coarse-pointer behavior and WCAG checks | Eligible zero-cost commercial hosting; real mail-client delivery remains outside automated verification |
+| [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38) | Ready combined Java correctness/presentation branch at `968bd5703360f346438ed6c7b2afb1c24d197a7d`; isolated Railway watch paths, 36 Java and 105 Python/PostgreSQL tests plus container checks pass | Remaining Java deployment allowance and `checkSuites=false` release risk |
+| [AtlasPay #37](https://github.com/soufianeelbiki1/AtlasPay/pull/37) | Merged into #38 review branch; not main | Released only when #38 clears its deployment gate |
+| [Nexus #26](https://github.com/soufianeelbiki1/Nexus/pull/26) | Released baseline at `65c72e2`; main includes #12 at `6ff449d` and the reviewed Next.js 16.3.5 patch #23 at `c69766c`; all post-merge workflow groups pass and exact production is browser-verified from desktop through 320 px | Personal project evidence on finite Vercel Hobby limits; no production-adoption claim |
+| [Nexus #25](https://github.com/soufianeelbiki1/Nexus/pull/25) | Released through #26 | None |
+| [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6) | Merged at `878526db1753ecca415f4f06dc717e8d90a1f9b9`; 35 tests passed on Python 3.11/3.12; desktop/phone Chromium, keyboard scrolling and axe WCAG checks passed | Local static artifact only; no hosted retail integration claimed |
 
-## Java HTTP validation evidence (2026-09-12)
+All scoped open PRs, latest file diffs, checks, comments, reviews and review
+threads were inspected before this change. No human review feedback was
+pending. The obsolete Node 26 and failing split-peer Nexus branches were closed
+recoverably, not deleted or merged. Nexus has no remaining open dependency pull
+request. Recheck any future Dependabot head against the merged lockfile/runtime
+baseline before merging.
 
-[AtlasPay ready-for-review #39](https://github.com/soufianeelbiki1/AtlasPay/pull/39), head `da0510bb824d855284c4d82e3ffb39b61df8c516`: requires currency, bounds identifiers/keys to database column lengths, preserves positive minor amounts and uppercase currency shape. Invalid authenticated input returns HTTP 400 without calling authorization; missing credentials returns HTTP 401. Controller reformatted for review. Java 21 CI reports BUILD SUCCESS: 14 new MVC cases, 19 total tests on this independent branch, zero failures/errors/skips. Root tests and container checks pass. MVC tests include the real authentication/validation layer with a mocked service; database transaction evidence remains in #38, not implied by #39. No hosted API/database calls or deployments. Ready after diff/check review; unmerged because Railway release costs remain unverified. Next: finalize the reproducible Java local walkthrough, then shift to RetailIntel's business/data case study rather than accumulating more Java features. Recheck all exact heads before integration; combine #38/#39 only after permitted release route and required checks are established.
+## Already merged to main
 
-## RetailIntel forecast evaluation (2026-09-12)
+- [Nexus #23](https://github.com/soufianeelbiki1/Nexus/pull/23): Next.js
+  16.3.3 → 16.3.5 on the merged Node 24 baseline, while React/React DOM stay
+  on 19.2.8. Merge `c69766c71d969b6e562d6b1f4b46dc207c8f37ad`;
+  [CI](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628009),
+  [security/runtime checks](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521627970)
+  and the [integrated demo](https://github.com/soufianeelbiki1/Nexus/actions/runs/35521628013)
+  passed. The exact production deployment passed four responsive Chromium and
+  axe checks with live data and no runtime errors.
+- [Nexus #12](https://github.com/soufianeelbiki1/Nexus/pull/12): consolidated
+  Node 24 action runtimes across CI, security and integrated demo. Merge
+  `6ff449d79511b9fbc7f058fb5aa478a3679da7a7`; all three post-merge workflow
+  groups and the four-viewport production browser check passed.
+- [Profile #9](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/9):
+  current merged flagship states, revision-pinned evidence and working public
+  entry points. Merge `36e81e18fd6facf6e46a57f6da846519902d9c62`;
+  rendered desktop/phone geometry, link presence and README-scoped axe checks
+  passed. Documentation only; no deployment or paid resource.
+- [RetailIntel #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6):
+  auditable synthetic inputs, point-in-time policy/evaluation alignment,
+  installed-wheel execution and accessible dashboard tables. Merge
+  `878526db1753ecca415f4f06dc717e8d90a1f9b9`; exact-head CI passed 35 tests
+  on Python 3.11/3.12 and the generated dashboard passed desktop/phone Chromium
+  geometry, keyboard and axe WCAG checks. No deployment accompanied the merge.
+- [AtlasPay #23](https://github.com/soufianeelbiki1/AtlasPay/pull/23): all root,
+  Java and security workflow checkout steps upgraded to the Node 24-based v7
+  release. Merge `e9e46c022e756c0bc60dca2a3229aacc2e79525b`;
+  [root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35456732363),
+  [Java CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35456732405)
+  and [security CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35456732372)
+  passed. Railway marked the commit `SKIPPED` for both services.
+- [AtlasPay #24](https://github.com/soufianeelbiki1/AtlasPay/pull/24): root and
+  security workflows upgraded to `actions/setup-python@v7` without changing
+  Python 3.11 or pip caching. Merge
+  `fa662a25fa429a8129a4497a242a856039bee61d`;
+  [post-merge root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35454293378)
+  passed 104 PostgreSQL tests and container checks, while
+  [security CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35454293388)
+  passed dependency audit and runtime health smoke. Railway marked the commit
+  `SKIPPED` for both services.
+- [AtlasPay #30](https://github.com/soufianeelbiki1/AtlasPay/pull/30): Java CI
+  setup action upgraded to the Node 24-based v6 release without changing Java
+  21, Temurin or Maven caching. Merge
+  `cfc0f6058d2c416187c87e4965d8ba971f3d1913`;
+  [post-merge Java CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35450638739)
+  and [root CI](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/35450638713)
+  passed. Railway marked the commit `SKIPPED` for both services, leaving their
+  active September 8 deployments unchanged.
+- [AtlasRAG #12](https://github.com/soufianeelbiki1/AtlasRAG/pull/12): bounded
+  citation recall and separate evidence-decision failure modes. Merge
+  `18ac326741cae5db33fabb5f3c6a9b6a1047a025`;
+  [post-merge CI](https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34795357503)
+  passed 44 tests on Python 3.11 and 3.12 with PostgreSQL.
+- [Portfolio #10](https://github.com/soufianeelbiki1/portfolio/pull/10): source
+  audit, navigation tests and durable backlog; no site deployment.
+- [AtlasRAG #11](https://github.com/soufianeelbiki1/AtlasRAG/pull/11): truthful
+  evidence-decision metric and always-abstain counterexample. Merge
+  `bfbd979a5b2bde2d14a777be87ac3c6569d0e0ee`;
+  [post-merge CI](https://github.com/soufianeelbiki1/AtlasRAG/actions/runs/34744313209)
+  passed 42 tests on Python 3.11 and 3.12 with PostgreSQL.
+- [Profile #8](https://github.com/soufianeelbiki1/soufianeelbiki1/pull/8): curated,
+  status-labelled evidence links and removal of unrelated temporary tooling.
+  Merge `468285f7e3e47807f84a3a100668b10ede1863cb`; five evidence links verified.
+- [ForecastLab #10](https://github.com/soufianeelbiki1/ForecastLab/pull/10): duplicate
+  manifest/locator/license-reference/frame safeguards. Merge
+  `59b5d119dad82a486914051e967aeb2b9da7c311`;
+  [post-merge CI](https://github.com/soufianeelbiki1/ForecastLab/actions/runs/34755564721)
+  passed all 32 tests. No person-identity deduplication claim.
 
-[Ready-for-review #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6), head `9dd6f1d6e7190c6452470b244d0128a7db4fe303`: new SQL mart compares trailing-seven-day mean and seasonal-naive baselines on identical eligible final-seven-day SKU observations. Reports MAE, WAPE, mean error, dates and sample counts at SKU/category grain; category scores pool SKU-day errors, and zero-demand WAPE remains null. Prior-only walk-forward protocol, incomplete history and final-return availability limitations are documented; all inputs remain synthetic and no savings/production accuracy are claimed. Five new hand-calculation, zero-demand, history, pooling/population and future-perturbation tests pass; full local suite 22 passed, Ruff lint/format and diff checks pass. Exact-head public CI passed install, lint, formatting and tests on Python 3.11/3.12. Published five-file diff reviewed; no inline comments. Marked ready after substantive review and both successful jobs. No UI changes, hosted API/database calls, explicit deployment or merge. Next: establish no-cost merge side effects and create an inspectable business decision walkthrough, with desktop/mobile checks if changing the dashboard. Existing AtlasPay #37/#38/#39 and Nexus #25/#26 were rechecked unchanged; no inline review comments, newer fixes pass checks, #25 retains its old dependency failure. Deployment cost/browser gates remain unresolved; do not bypass them.
+## Exact blockers and budget rules
 
-## RetailIntel reproducible decision evidence (2026-09-12)
+1. **Browser:** a local Chromium route now verifies portfolio and RetailIntel
+   layouts at desktop, phone portrait and phone landscape widths, including
+   keyboard interactions, reduced/coarse-pointer behavior, overflow/clipping,
+   console errors and axe WCAG checks. The portfolio email control retains the
+   intended `mailto:` URL; opening a real mail application and delivery remain
+   outside automated verification. Nexus now passes the same geometry and axe
+   checks through 320 px on its production deployment.
+2. **Railway:** the user's matching project screenshot confirmed a finite Trial
+   on 2026-09-12, not permanent free hosting or today's allowance. Live recheck
+   on 2026-09-19 shows AtlasPay Python and Java healthy, actively consuming
+   resources and still tracking **main** with `checkSuites=false`. Exact watch
+   paths now prevent an unrelated or Java-only change from rebuilding the
+   Python API. The workflow-only #30, #24 and #23 merges produced explicit
+   `SKIPPED` records for both services without replacing their active
+   deployments. The
+   official Wait for CI requirements are met, but the available control path
+   stages that setting as an environment change whose acceptance triggers a
+   deployment. The staged investigation was discarded and production was
+   re-read unchanged. The exact remaining credit is still unavailable; #38
+   contains Java runtime changes and would still deploy that service. Verify
+   the allowance before merging to main.
+3. **Vercel:** the official [Hobby rules](https://vercel.com/docs/plans/hobby),
+   last updated 2026-09-14 and rechecked 2026-09-20, still restrict Hobby to
+   non-commercial personal use. A read-only portfolio deployment query found no
+   deployment newer than 2026-08-31. Nexus is GitHub-linked; the portfolio is
+   not. Do not publish freelance-services marketing without eligible terms.
+4. **Alternative hosting:** the official Netlify pricing page was rechecked
+   on 2026-09-20. It presents marketing sites as a supported use case, lists
+   Free at **$0 forever**, and says the Free plan has a hard monthly limit that
+   cannot be exceeded or incur costs; its self-serve agreement permits use for
+   the customer's business purposes. This makes Netlify Free the strongest
+   verified zero-additional-spend candidate for this static site. GitHub Pages
+   is not a fallback: its official limits prohibit using Pages as free hosting
+   for an online business. No Netlify account or deployment connector is
+   available in the current authorised workspace, so nothing was provisioned.
+   Do not create accounts, enable auto-recharge, upgrade, buy domains or
+   provision resources without a connected, account-verified route.
+5. **GitHub metadata:** descriptions/topics were empty in the prior scoped audit;
+   the connected interface has no metadata-edit operation. Manual About/settings
+   curation is separate from code work. Do not repeat this request every run.
 
-Extended existing [#6](https://github.com/soufianeelbiki1/RetailIntel/pull/6), new head `2991fbd72ce0a1fbfe9727b350b849737fd314ee`, returned to draft during changes. Added self-describing JSON CLI (seed/input size/version, protocol, precision, metrics, sample counts, limitations) and [decision walkthrough](https://github.com/soufianeelbiki1/RetailIntel/blob/feat/forecast-baseline-evaluation/docs/DECISION_WALKTHROUGH.md). Actual default synthetic scores reproduced locally; high errors are shown, not marketed as accuracy/savings. Docs distinguish independently generated inventory/order inputs, prior-only walk-forward scoring and unmatched custom evaluation/default dashboard samples. Five export tests cover repeated generation, JSON nulls, short history, invalid inputs and a real CLI subprocess. Initial tests exposed machine-epsilon floating differences and short-history empty scores; declared 12-place report precision and truthful empty scoring fix them. Full local suite 27 passed; Ruff lint/format and diff checks passed. New-head Python 3.11/3.12 CI passed install/lint/format/tests. Eight-file published diff reviewed and default synthetic values reproduced. Marked ready on exact head after both CI jobs passed; no merge or deployment. No UI changes, merge, explicit deployment or paid resources/API/model calls. Rechecked all open AtlasPay, Nexus, RetailIntel and portfolio PR filenames/checks/comments; existing heads unchanged. Railway lists only AtlasPay services but exposes no billing/quota verification. Next: expose inventory/dashboard uncertainty and verify it in desktop/mobile browser. Separately establish permitted no-cost production route before flagship release.
+## Next priorities
 
-## RetailIntel distributable-package correctness (2026-09-12)
+1. Establish an eligible zero-cost commercial hosting route for the portfolio,
+   then review and release #11 without changing its verified UI scope.
+2. Verify a no-cost release route, then release the consolidated AtlasPay #38.
+   Nexus fixture-only filters remain covered by CI and are not represented as
+   live authenticated functionality.
+   No bypass, forced push, silently disabled service or trial/plan change.
+3. Keep Nexus on targeted maintenance after the verified Next.js 16.3.5 release.
+   Curate supporting repositories only where they add distinct evidence. Never
+   invent client adoption, scale, production benchmarks or personal experience.
 
-Extended existing [#6](https://github.com/soufianeelbiki1/RetailIntel/pull/6), head `26085df435b7c3b7ab48ad7eb5132a422db7808c`, returned to draft while checking the new head. Audit found checkout-relative SQL could not run from an installed wheel. Moved the ten authoritative SQL resources into src/retailintel/sql, declared setuptools package data and loaded scripts with importlib.resources. No SQL logic changes or duplicate resource source. Added wheel-install regression: build wheel without hosted services, inspect all ten SQL entries, install into an isolated temporary target and generate JSON/dashboard outside checkout while asserting the imported module is the installed package. Full local suite 28 passed, including wheel test; lint/format and whitespace passed. Separate wheel build succeeded. New-head Python 3.11/3.12 CI passed install, lint, formatting and tests including the installed-wheel regression. Published diff confirms nine unchanged SQL renames plus the new evaluation resource; packaging/config/loader/tests reviewed. Marked ready on exact head after both jobs passed. No dashboard UI change, hosted API/model/database calls, explicit deployment or merge. Packaging was prioritised over queue UI because clean installation is prerequisite reproducibility evidence. Rechecked flagship PRs and #6/#10 unchanged before modifications; no inline review comments. Railway billing/quota and Nexus production browser/cost gates still unresolved. Next: display forecast uncertainty beside the inventory queue and verify desktop/mobile/accessibility.
+Completion: three polished reproducible flagship case studies, a distinctive
+responsive portfolio with working contacts, curated profile, reliable CI and
+permitted zero-cost verified demos. Then switch to targeted maintenance.
 
-## RetailIntel dashboard forecast evidence (2026-09-12)
-
-[Draft #6](https://github.com/soufianeelbiki1/RetailIntel/pull/6), head `400f9f41520feca7392d4a472049db23eb2c6792`: added category baseline comparison beside inventory queue, showing matching scored dates/counts, MAE/WAPE/bias and explicit empty-history/undefined-WAPE states. Synthetic limits and prior-only/short-window semantics stay visible; not policy automation. Table has caption, scoped headers and keyboard-focusable horizontal scroll region. Four targeted dashboard tests pass locally, including empty scores, undefined WAPE and HTML escaping; lint passed. New exact-head Python 3.11/3.12 CI passed install, lint, formatting and full tests; previous 28-test head evidence is not attributed to this revision. Browser skill used to attempt live rendering; navigation to http://127.0.0.1:8765/index.html failed to return, so desktop/mobile screenshots, scrolling and accessibility remain UNVERIFIED. No alternative browser bypass attempted. Remain draft, unmerged and undeployed until actual browser verification and zero-cost release side effects are established. All initial flagship heads/checks/inline comments rechecked unchanged; Nexus #25 still has old dependency failures. Next priority: recover the supported preview/browser connection, then verify desktop and 390px viewport layout, keyboard scrolling, table semantics and rendered source values. Do not add further dashboard features until this verification gap is closed.
-
-## AtlasRAG evidence-decision metric (2026-09-12)
-
-[Ready-for-review AtlasRAG #11](https://github.com/soufianeelbiki1/AtlasRAG/pull/11), head `880d6f36c0fefa7ea45bec899d37b74b9faa196c`: fixed a misleading recruiter-facing label. The prior `abstention_accuracy` counted both correct abstentions and grounded answerable cases, so it is now explicit `evidence_decision_accuracy`. It checks expected behavior across all examples: answerable cases need grounded evidence; abstention cases need no citations. Citation quality and answer support remain separate. New failure test makes all answerable cases abstain; only the one expected abstention passes (25%). No claim of LLM semantic judgment added. Local 39 pass/3 Postgres skips, lint/format/whitespace passed. Exact-head CI quality checks passed on Python 3.11 and 3.12 with the CI PostgreSQL container setup. The exact diff (33 additions/10 deletions across five files) was reviewed clean; no comments/reviews, mergeable. Marked ready after checks. No merge/deploy/paid call. Next: recover RetailIntel visual verification rather than add feature scope.
-
-## Java HTTP-to-PostgreSQL walkthrough (2026-09-12)
-
-Extended existing [AtlasPay #38](https://github.com/soufianeelbiki1/AtlasPay/pull/38), head `2b3a606d1697f4e323fe385fa0cf914d8f6f3cfe`, rather than duplicating the PR. Added [LOCAL_WALKTHROUGH.md](https://github.com/soufianeelbiki1/AtlasPay/blob/fix/java-authorization-replay-conflicts/java-service/docs/LOCAL_WALKTHROUGH.md) and four real-server HTTP tests backed by a disposable PostgreSQL 16 Testcontainer. Identical retries return the same decision; changed amounts return 409 without changing the original amount/ID or adding events; missing credentials and zero amounts write nothing; synthetic declines return HTTP 200 with a declined business decision and corresponding outbox payload. The HTTP suite uses only the outbox columns this boundary writes, not a publisher/consumer.
-
-Exact-head Java 21 [CI run](https://github.com/soufianeelbiki1/AtlasPay/actions/runs/34709914274) logs confirm the actual Spring Boot application/Tomcat started, all four HTTP cases passed, and 14 total tests ran with zero failures/errors/skips. Existing three PostgreSQL concurrency/rollback tests also passed. Root tests and non-root container checks passed. Source/diff and manual commands reviewed; local whitespace passes; Maven/Docker execution is CI-based, not falsely claimed local. Manual curl walkthrough has not been separately executed. All prior PR heads/diffs/checks/comments were rechecked unchanged before this addition; no reviews/inline comments on the new #38 head. Marked ready after exact-head checks. No merge/deploy, workflow change, hosted API/database/model calls, or infrastructure change. Railway release billing remains unverified; RetailIntel UI remains draft pending browser checks, and Netlify account access is absent. Next: portfolio audit and evidence-led static case studies while recovering visual verification and permitted zero-cost publishing.
-
-## Portfolio source/navigation audit (2026-09-12)
-
-Existing #10 now includes tests/test_local_links.py and docs/SITE_AUDIT.md alongside this backlog. No UI, workflow, hosting or contact changes. Offline navigation checks cover all seven HTML pages and local links/anchors/assets; fixture tests prove detection of missing pages/anchors/scripts/images, percent-encoded root traversal, duplicate IDs and placeholders. All 16 local unittest cases pass; compile and whitespace checks pass. Exact-head remote CI pending; remain draft/unmerged/undeployed. Audit identifies hidden Java positioning, GitHub-only contact, static snapshots labelled LIVE, missing generator pins, and the copied AtlasRAG metric mislabel. These are documented implementation gaps, not silently changed public claims. All open flagship PR heads/diffs/checks/comments were rechecked unchanged before work; AtlasPay #37/#38/#39, Nexus #26 and AtlasRAG #11 checks pass, Nexus #25 retains old dependency failures, RetailIntel #6 UI remains draft awaiting supported browser verification. Next: implement the focused portfolio case-study/contact/snapshot corrections in a separate UI branch, verify desktop/mobile accessibility and publish only via confirmed zero-cost eligible hosting.
-
-## Portfolio presentation corrections (2026-09-12)
-
-Separate UI branch `fix/java-contact-snapshot-presentation`, head `ee9c333c3ee469969783d4bcc67402bb9f0a02d1`: AtlasPay card now visibly names Java 21 / Spring Boot beside FastAPI; direct email contact sits in a named section with a primary-nav anchor; all six fixed report cards say STATIC instead of LIVE and explain snapshots are not running backend sessions; AtlasRAG evidence-decision label is corrected on both surfaces without changing numerical results. Four new source tests cover boundaries/contact/labels. Local 20 tests pass (13 branch-source checks plus seven navigation-validator cases from #10); whitespace passes. [Draft portfolio #11](https://github.com/soufianeelbiki1/portfolio/pull/11) exact-head [source CI](https://github.com/soufianeelbiki1/portfolio/actions/runs/34715950635) passes all 13 branch tests and compilation. This is not browser verification. Previous #10 navigation-audit head 6155892aed9f151590af43e8d0ccc162fa5c3665 passed its 16-test CI. No public copy is published.
-
-Browser skill successfully connected, but opening the supported local preview returns net::ERR_BLOCKED_BY_CLIENT; desktop/mobile layout, keyboard interaction, mail client and public accessibility remain UNVERIFIED. No fallback/bypass. Rechecked Vercel Hobby and current portfolio project detail (no GitHub link exposed); Railway still lists the known AtlasPay project only, with billing unknown. Draft UI PR, no merge/deploy/resources/outreach or paid calls. Next: recover a permitted browser preview, verify desktop/mobile/contact interactions, then build the three focused case studies with explicit visual references. Netlify account access and zero-cost publishing eligibility remain unresolved.
-
-
-## Three revision-pinned case studies (2026-09-12)
-
-Extended existing [portfolio draft #11](https://github.com/soufianeelbiki1/portfolio/pull/11), head `102c1c26a19a30f352cf4090a0e84d9adb303358`, with [CASE_STUDIES.md](https://github.com/soufianeelbiki1/portfolio/blob/102c1c26a19a30f352cf4090a0e84d9adb303358/docs/CASE_STUDIES.md) and a README entry point. Three reviewer walkthroughs cover AtlasPay/Nexus retry and failure visibility, RetailIntel forecast error and purchasing assumptions, and AtlasRAG evidence/citation decisions. Each separates problem, implementation choice, test evidence, reproduction and limits. Fifteen source references pin commits; all 19 evidence links fetched successfully. Java is explicitly separate from the Python-to-Nexus integration, and #39 validation is not implied by #38. Synthetic error rates and the always-abstain counterexample are explained without production claims.
-
-Verification: all 20 combined local portfolio/navigation tests and whitespace checks pass; [exact-head branch CI passes](https://github.com/soufianeelbiki1/portfolio/actions/runs/34718856504). This extension changes Markdown only, no HTML/CSS. #11 remains draft because its earlier UI lacks desktop/mobile/browser validation. Open PR heads reviewed unchanged, no inline reviews/comments; checks pass except Nexus #25's known dependency failures. No merge, infrastructure change or deployment.
-
-Hosting clarification: user sought maximum ChatGPT automation, not a Netlify-only route. Read-only Vercel check still shows Hobby, portfolio link=null, Nexus linked and latest preview READY; remaining account quota unavailable. Sites and Cloudflare were discussed as alternatives, not provisioned or selected for migration. Do not treat those suggestions as verified no-cost hosting. Next: recover supported browser verification and turn these three evidence narratives into the public portfolio's primary navigation/layout, using explicit visual references before publishing. Keep source-only progress available while release gates remain closed.
+Historical details are preserved in the [September 12–13 archive](progress/2026-09-12-13.md).
+The latest merge and verification trail is in the
+[September 20 log](progress/2026-09-20.md). The preceding Vercel and PR audit is
+in the [September 19 log](progress/2026-09-19.md).
