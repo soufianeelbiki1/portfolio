@@ -203,11 +203,11 @@ before every write or merge.
    re-read unchanged. The exact remaining credit is still unavailable; #38
    contains Java runtime changes and would still deploy that service. Verify
    the allowance before merging to main.
-3. **Vercel:** read-only recheck on 2026-09-13 shows Hobby; Nexus is GitHub-linked,
-   `soufiane-portfolio` is not. [Hobby rules](https://vercel.com/docs/plans/hobby)
-   require non-commercial personal use; do not publish freelance-services
-   marketing without eligible terms. Nexus's automatic personal-project preview
-   was inspected; the commercial portfolio was not deployed.
+3. **Vercel:** the official [Hobby rules](https://vercel.com/docs/plans/hobby),
+   last updated 2026-09-14 and rechecked 2026-09-20, still restrict Hobby to
+   non-commercial personal use. A read-only portfolio deployment query found no
+   deployment newer than 2026-08-31. Nexus is GitHub-linked; the portfolio is
+   not. Do not publish freelance-services marketing without eligible terms.
 4. **Alternative hosting:** Netlify Free remains a candidate, not a connected,
    account-verified release route. Do not create accounts, enable auto-recharge,
    upgrade, buy domains or provision resources. Keep demos static/local where
